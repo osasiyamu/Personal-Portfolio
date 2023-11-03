@@ -25,7 +25,7 @@
       <a href="/join.html">Sign Up/In</a>
     </div>
 
-    <div>
+    <div id="content">
       <div class="profileImgContainer" style="background-image: '';">
         <div style="display: flex;">
           <img src="" alt="proile image">
@@ -41,18 +41,46 @@
         <div class="portfolioSections">
           <table>
             <tr>
-              <td><button>About</button></td>
-              <td><button>Education</button></td>
-              <td><button>Experience</button></td>
-              <td><button>Licences</button></td>
-              <td><button>Project</button></td>
-              <td><button>Skills</button></td>
-              <td><button>Contact</button></td>
+              <td><button onclick="handleButtonClick(this)" class="clicked">About</button></td>
+              <td><button onclick="handleButtonClick(this)">Education</button></td>
+              <td><button onclick="handleButtonClick(this)">Experience</button></td>
+              <td><button onclick="handleButtonClick(this)">Licences</button></td>
+              <td><button onclick="handleButtonClick(this)">Project</button></td>
+              <td><button onclick="handleButtonClick(this)">Skills</button></td>
+              <td><button onclick="handleButtonClick(this)">Contact</button></td>
             </tr>
           </table>
+
+          <script>
+            // Function to handle button clicks
+            function handleButtonClick(button) {
+              // Remove the 'clicked' class from all buttons within this div
+              button.closest('div').querySelectorAll('button').forEach(function (btn) {
+                    btn.classList.remove('clicked');
+                });
+
+                // Add the 'clicked' class to the clicked button
+                button.classList.add('clicked');
+
+                // Update the portfolioDetailContainer
+                document.getElementById("portfolioDetailContainer").style.backgroundColor = updatePortfolioDetailContainer();
+              }
+
+            // Function to generate a random color
+            function updatePortfolioDetailContainer() {
+              const letters = '0123456789ABCDEF';
+              let color = '#';
+              for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+              }
+              return color;
+            }
+          </script>
         </div>
+      </div>
         
-        <div id="portfolioDetailContainer"></div>
+      <div id="portfolioDetailContainer">
+        <h1>Hello</h1>
       </div>
     </div>
   </body>
