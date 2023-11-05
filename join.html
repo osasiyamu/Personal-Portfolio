@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Portfolio</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/assests/css/join.css" />
     <link rel="stylesheet" href="/assests/css/main.css" />
   </head>
@@ -27,5 +27,35 @@
         My Portfolio
       </a>
     </div>
+
+    <div id = "pageHeading">
+      <h1>Create a New Account</h1>
+      <h3>Hello, let's set up your new account. Already have an account? <a href = ""> sign in here</a></h3>
+    </div>
+
+    <div id = "signUpC">
+      <form method = "post" action = "" id = signupForm>
+        
+        <label>Username:</label>
+        <input type= "text" id="username" name="username" required>
+
+        <label>Email:</label>
+        <input type = "text" id = "email" name = "email" required>
+
+        <label>Password:</label>
+        <input type= "password" id="password" name="password" required>
+
+        <div>
+          <input type = "checkbox" id = "checkbox" name = "checkbox" required>
+          <label> I accept the Terms and Conditions </label>
+        </div>
+        
+        
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+
+
   </body>
 </html>
