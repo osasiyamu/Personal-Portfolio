@@ -5,6 +5,7 @@
     <title>Your Portfolio</title>
     <link rel="stylesheet" href="/assests/css/jobs.css" />
     <link rel="stylesheet" href="/assests/css/main.css" />
+
   </head>
   <body>
     <div class="navbar">
@@ -23,6 +24,67 @@
         My Portfolio
       </a>
       <a href="/join.html" class="icons"> Sign Up/In</a>
+    </div>
+  
+    
+  </body>
+  </html>
+  
+  </head>
+  <body>
+
+    <div class="filter-bar">
+      <!-- Filter bar above the job list -->
+      <input type="text" placeholder="Filter jobs">
+  </div>
+
+    <div class="search-bar">
+      <!-- Search bar at the top right -->
+      <input type="text" placeholder="Search jobs">
+    </div>
+
+    <div class="job-list">
+      <!-- Panels for job titles - Replace this with dynamic content -->
+      <div class="job" data-description="Description of Job 1">Job Title 1</div>
+      <div class="job" data-description="Description of Job 2">Job Title 2</div>
+      <div class="job" data-description="Description of Job 3">Job Title 3</div>
+      <div class="job" data-description="Description of Job 4">Job Title 4</div>
+      <div class="job" data-description="Description of Job 5">Job Title 5</div>
+      <!-- Add more job panels here -->
+    </div>
+  
+    <div class="job-display-panel" id="jobDescription">
+      <!-- Job description will be displayed here -->
+      <span class="close-button" onclick="toggleJobDescription()">x</span>
+      <div id="jobDescriptionContent">
+          <h4>Job Description</h4>
+          <p>Job description content will appear here.</p>
+          <div class="additional-panels">
+              <div class="apply-panel">Panel 1</div>
+              <div class="description-panel">Panel 2</div>
+          </div>
+      </div>
+  </div>
+  
+  <script>
+    function toggleJobDescription() {
+        const jobDescription = document.getElementById('jobDescription');
+        jobDescription.style.display = (jobDescription.style.display === 'none' || jobDescription.style.display === '') ? 'block' : 'none';
+    }
+
+    const jobList = document.querySelectorAll('.job');
+    jobList.forEach(job => {
+        job.addEventListener('click', function() {
+            const description = this.getAttribute('data-description');
+            const jobDescriptionContent = document.getElementById('jobDescriptionContent');
+            jobDescriptionContent.innerHTML = `<h2>Job Description</h2><p>${description}</p>`;
+            toggleJobDescription();
+        });
+    });
+</script>
+
+    <div>
+
     </div>
   </body>
 </html>
