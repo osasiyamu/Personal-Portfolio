@@ -2,7 +2,7 @@
     position: absolute;
     top: 140px;
     margin-bottom: 30px;
-    right: 90px;
+    right: 70px;
     border-radius: 50%;
     border-color: black;
     padding: 10px;
@@ -27,24 +27,44 @@
         /* border-bottom: 1px solid #ccc; */
     }
 
-  .job-list {
-    width: 30%;
-    float: left;
-    margin-bottom: 50px;
-    padding: 20px;
-    border-right: 1px solid #ccc;
-    height: 600px;
-    overflow-y: scroll;
-  }
-
-  .job {
-    cursor: pointer;
-    margin-bottom: 20px;
-    padding: 90px;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-  }
-
+    .job-list {
+        width: 30%;
+        float: left;
+        margin-bottom: 50px;
+        padding: 20px;
+        border-right: 1px solid #ccc;
+        height: 600px;
+        overflow-y: scroll;
+    }
+    
+    .job {
+        cursor: pointer;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+    }
+    
+    .job img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    
+    .job h3 {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+    
+    .job h4 {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    
+    .job p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+    
     .job-display-panel {
         display: none;
         width: 55%;
@@ -58,19 +78,31 @@
         border: 1px solid #ccc;
         border-radius: 5px;
     }
-
+    
     .apply-panel {
-        width: 48%;
-        padding: 10px;
-        background: #f5f5f5;
+        /* background: #527759; */
+        padding: 15px;
+        background-color: #eaeaea;
         border: 1px solid #ccc;
         border-radius: 5px;
+        margin: 10px;
     }
 
     .description-panel {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
+        padding: 15px;
+        background-color: #eaeaea;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px;
+    }
+    
+    .description-panel div {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        background: #9eabb0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
 
     .close-button {
@@ -80,4 +112,3 @@
         background-color: #ccc;
         border-radius: 50%;
     }
-    

@@ -45,43 +45,76 @@
 
     <div class="job-list">
       <!-- Panels for job titles - Replace this with dynamic content -->
-      <div class="job" data-description="Description of Job 1">Job Title 1</div>
-      <div class="job" data-description="Description of Job 2">Job Title 2</div>
-      <div class="job" data-description="Description of Job 3">Job Title 3</div>
-      <div class="job" data-description="Description of Job 4">Job Title 4</div>
-      <div class="job" data-description="Description of Job 5">Job Title 5</div>
-      <!-- Add more job panels here -->
-    </div>
-  
-    <div class="job-display-panel" id="jobDescription">
-      <!-- Job description will be displayed here -->
-      <span class="close-button" onclick="toggleJobDescription()">x</span>
-      <div id="jobDescriptionContent">
-          <h4>Job Description</h4>
-          <p>Job description content will appear here.</p>
-          <div class="additional-panels">
-              <div class="apply-panel">Panel 1</div>
-              <div class="description-panel">Panel 2</div>
-          </div>
+      <div class="job" data-description="Description of Job 1">
+          <img src="company_logo_1.jpg" alt="Company Logo 1" />
+          <h3>Company Name 1</h3>
+          <h4>Job Title 1</h4>
+          <p>Location: City, Country</p>
+          <p>Salary: $60,000 - $80,000</p>
       </div>
+      <div class="job" data-description="Description of Job 2">
+          <img src="company_logo_2.jpg" alt="Company Logo 2" />
+          <h3>Company Name 2</h3>
+          <h4>Job Title 2</h4>
+          <p>Location: City, Country</p>
+          <p>Salary: $70,000 - $90,000</p>
+      </div>
+      <div class="job" data-description="Description of Job 3">
+        <img src="company_logo_3jpg" alt="Company Logo 3" />
+        <h3>Company Name 3</h3>
+        <h4>Job Title 3</h4>
+        <p>Location: City, Country</p>
+        <p>Salary: $70,000 - $90,000</p>
+    </div>
+    <div class="job" data-description="Description of Job 4">
+      <img src="company_logo_4.jpg" alt="Company Logo 4" />
+      <h3>Company Name 4</h3>
+      <h4>Job Title 4</h4>
+      <p>Location: City, Country</p>
+      <p>Salary: $70,000 - $90,000</p>
   </div>
-  
-  <script>
-    function toggleJobDescription() {
-        const jobDescription = document.getElementById('jobDescription');
-        jobDescription.style.display = (jobDescription.style.display === 'none' || jobDescription.style.display === '') ? 'block' : 'none';
-    }
+  <div class="job" data-description="Description of Job 5">
+    <img src="company_logo_5.jpg" alt="Company Logo 5" />
+    <h3>Company Name 5</h3>
+    <h4>Job Title 5</h4>
+    <p>Location: City, Country</p>
+    <p>Salary: $70,000 - $90,000</p>
+</div>
+      <!-- Add more job panels here -->
+  </div>
 
-    const jobList = document.querySelectorAll('.job');
-    jobList.forEach(job => {
-        job.addEventListener('click', function() {
-            const description = this.getAttribute('data-description');
-            const jobDescriptionContent = document.getElementById('jobDescriptionContent');
-            jobDescriptionContent.innerHTML = `<h2>Job Description</h2><p>${description}</p>`;
-            toggleJobDescription();
-        });
-    });
-</script>
+  <div class="job-display-panel" id="jobDescription">
+    <span class="close-button" onclick="toggleJobDescription()">x</span>
+    <div id="jobDescriptionContent">
+        <h4>Job Description</h4>
+        <p>Job description content will appear here.</p>
+        <div class="additional-panels">
+            <div class="apply-panel">Panel 1</div>
+            <div class="description-panel">Panel 2</div>
+        </div>
+    </div>
+</div>
+
+  <script>
+      function toggleJobDescription() {
+          const jobDescription = document.getElementById('jobDescription');
+          jobDescription.style.display = (jobDescription.style.display === 'none' || jobDescription.style.display === '') ? 'block' : 'none';
+      }
+
+      const jobList = document.querySelectorAll('.job');
+      jobList.forEach(job => {
+          job.addEventListener('click', function() {
+              const description = this.getAttribute('data-description');
+              const jobDescriptionContent = document.getElementById('jobDescriptionContent');
+              jobDescriptionContent.innerHTML = `<h2>Job Description</h2><p>${description}</p>
+              <div class="additional-panels">
+                  <div class="apply-panel">Panel 1</div>
+                  <div class="description-panel">Panel 2</div>
+              </div>`;
+              toggleJobDescription();
+          });
+      });
+  </script>
 
     <div>
 
