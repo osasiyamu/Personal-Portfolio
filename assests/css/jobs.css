@@ -80,16 +80,23 @@
     }
     
     .apply-panel {
-        /* background: #527759; */
-        padding: 15px;
-        background-color: #eaeaea;
+        padding: 30px; /* Increase the padding to make it larger */
+        background-color: #4CAF50; /* Set the background color to an appropriate shade of green */
         border: 1px solid #ccc;
         border-radius: 5px;
         margin: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .apply-panel button {
+        /* Additional button styling */
+        margin-left: 5px; /* Adjust the margin to control the space between buttons */
     }
 
     .description-panel {
-        padding: 15px;
+        padding: 90px; /* Make it 3x larger thasn the apply panel */
         background-color: #eaeaea;
         border: 1px solid #ccc;
         border-radius: 5px;
