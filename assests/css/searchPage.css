@@ -1,0 +1,55 @@
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the items in the .search div */
+    width: 400px;
+  }
+input {
+    flex: 1;
+    height: 30px;
+    width: 500px;
+    padding: 20px;
+    margin: 20px 0 0 5px;
+    border-radius: 20px;
+    outline: 0;
+    font-size: 18px;
+    /* color:rgb(0, 2, 4); */
+}
+.filterComponents {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    margin-left: auto
+    /* Remove the margin to align it to the far right */
+  }
+.searchResults {
+    width: 50px;
+    height: 20px;
+    border-color: black;
+    width: 1000px;
+    height: 600px;
+    display: inline-block;
+    align-items: center;
+    overflow-y: scroll;
+}
+.searchResults div{
+    width: 1000px;
+    height: 100px;
+    border: 2px solid #a4a2a2; /* You can change the color by replacing #000 with the color of your choice */
+    border-radius: 10px; /* You can adjust the border radius value as needed */
+    padding: 10px; /* Optional: Add padding to the content inside the div */
+    margin: 10px; /* Optional: Add margin around the div */
+    display: flex;
+    align-items: start;
+    justify-content: left;
+}
+
+.searchResults div img {
+    width: 100px; /* Adjust the image width as needed */
+    height: 100px; /* Adjust the image height as needed */
+    object-fit: cover; /* Maintain the aspect ratio and cover the container */
+    border: 2px solid #000;
+    border-radius: 50%;
+    margin-right: 10px; /* Optional: Add margin to separate the image from the content */
+}

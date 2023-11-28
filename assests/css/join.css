@@ -1,0 +1,50 @@
+a{
+    text-decoration: none; 
+}
+
+#pageHeading {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+
+#signupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+
+label {
+    text-align: left;
+    margin-top: 10px;
+}
+
+#checkbox {
+	width: 18px;
+	height: 18px;
+	padding: 8px 8px 8px 8px;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 2px 2px 2px 2px;
+}
+
+input, button {
+    width: 20%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 6%;
+    background-color: green;
+    border: none;
+}
+
+button:hover {
+    background-color: darkgreen;
+}
+
