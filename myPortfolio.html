@@ -7,23 +7,7 @@
     <link rel="stylesheet" href="/assests/css/main.css" />
   </head>
   <body>
-    <div class="navbar">
-      <img id="mainlogo" src="/images/mainLogo.png" alt="logo" />
-      <div class="logo"></div>
-      <a href="/index.html" class="icons">
-        <img src="images/homeIcon.png" alt="homeIcon" />
-        Home
-      </a>
-      <a href="/searchPage.html" class="icons">
-        <img src="images/searchIcon.png" alt="searchIcon" />
-        Search
-      </a>
-      <a href="/jobs.html" class="icons">
-        <img src="images/jobIcon.png" alt="jobIcon" />
-        Jobs
-      </a>
-      <a href="/join.html">Sign Up/In</a>
-    </div>
+    <div id="navbar-container"></div>
 
     <div>
       <div class="profileImgContainer" style="background-image: '';">
@@ -55,5 +39,16 @@
         <div id="portfolioDetailContainer"></div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Fetch and include the navbar.html content
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById("navbar-container").innerHTML = html;
+          });
+      });
+    </script>
   </body>
 </html>
