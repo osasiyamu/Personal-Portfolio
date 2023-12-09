@@ -28,20 +28,20 @@ function profileImgContainerSetup() {
 function sectionControlsSetup() {
     const container = document.getElementById("sectionControls");
 
-    container.appendChild(createButton("About"));
-    container.appendChild(createButton("Search"));
-    container.appendChild(createButton("Education"));
-    container.appendChild(createButton("Experience"));
-    container.appendChild(createButton("Licenses"));
-    container.appendChild(createButton("Project"));
-    container.appendChild(createButton("Skills"));
-    container.appendChild(createButton("Contact"));
+    container.appendChild(createSectionButton("About"));
+    container.appendChild(createSectionButton("Search"));
+    container.appendChild(createSectionButton("Education"));
+    container.appendChild(createSectionButton("Experience"));
+    container.appendChild(createSectionButton("Licenses"));
+    container.appendChild(createSectionButton("Project"));
+    container.appendChild(createSectionButton("Skills"));
+    container.appendChild(createSectionButton("Contact"));
 }
 
 function getSectionContent(name) {
     const container = document.getElementById("sectionContent");
     const contentDiv = document.createElement("div");
-    // You can customize this logic to handle different names
+
     if (name === "About") {
         contentDiv.innerHTML = "Content for " + name;
     } else if (name === "Search") {
@@ -61,25 +61,27 @@ function getSectionContent(name) {
     }
 
     const editButtonDiv = document.createElement("div");
-    editButtonDiv.setAttribute("margin-top", "10px");
-    editButtonDiv.appendChild(createSectionEditButton(name));
+    editButtonDiv.id = "editBtnContainer";
+    editButtonDiv.appendChild(createEditButton(name));
 
+    container.innerHTML = "";
     container.appendChild(contentDiv);
     container.appendChild(editButtonDiv);
 }
 
-function createButton(name) {
+function createSectionButton(name) {
     const buttonElement = document.createElement("button");
     buttonElement.setAttribute("onclick", "getSectionContent('" + name + "')");
-    buttonElement.setAttribute("class", "btn btn-primary")
+    buttonElement.className = "btn btn-primary";
+    buttonElement.id = "ctrlBtn";
     buttonElement.textContent = name;
     return buttonElement;
 }
 
-function createSectionEditButton(section) {
+function createEditButton(section) {
     const buttonElement = document.createElement("button");
-    buttonElement.setAttribute("onclick", "getSectionContent('" + section + "')");
-    buttonElement.setAttribute("class", "btn btn-Secondary")
+    buttonElement.setAttribute("onclick", "editSection('" + section + "')");
+    buttonElement.className = "btn btn-Secondary";
     buttonElement.textContent = "Edit";
     return buttonElement;
 }
