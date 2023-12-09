@@ -2,9 +2,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Your Portfolio</title>
-    <link rel="stylesheet" href="/assests/css/myPortfolio.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assests/css/main.css" />
+    <link rel="stylesheet" href="/assests/css/myPortfolio.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="/assests/scripts/myPortfolio.js"></script>
   </head>
   <body>
     <div class="navbar">
@@ -25,34 +30,13 @@
       <a href="/join.html">Sign Up/In</a>
     </div>
 
-    <div>
-      <div class="profileImgContainer" style="background-image: '';">
-        <div style="display: flex;">
-          <img src="" alt="proile image">
-        </div>
-        
-        <div>
-          <h1>Name</h1>
-          <p>Ocupation</p>
-        </div>
-      </div>
-  
-      <div>
-        <div class="portfolioSections">
-          <table>
-            <tr>
-              <td><button>About</button></td>
-              <td><button>Education</button></td>
-              <td><button>Experience</button></td>
-              <td><button>Licences</button></td>
-              <td><button>Project</button></td>
-              <td><button>Skills</button></td>
-              <td><button>Contact</button></td>
-            </tr>
-          </table>
-        </div>
-        
-        <div id="portfolioDetailContainer"></div>
+    <div class="container">
+      <div id="profileImgContainer"></div>
+
+      <div class="sectionContainer">
+        <div id="sectionControls"></div>
+        <hr>
+        <div id="sectionContent"></div>
       </div>
     </div>
   </body>
