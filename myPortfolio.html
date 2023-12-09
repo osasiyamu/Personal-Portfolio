@@ -2,9 +2,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Your Portfolio</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assests/css/myPortfolio.css" />
     <link rel="stylesheet" href="/assests/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="/assests/scripts/myPortfolio.js"></script>
   </head>
   <body>
     <div class="navbar">
@@ -25,62 +30,13 @@
       <a href="/join.html">Sign Up/In</a>
     </div>
 
-    <div id="content">
-      <div class="profileImgContainer" style="background-image: '';">
-        <div style="display: flex;">
-          <img src="" alt="proile image">
-        </div>
-        
-        <div>
-          <h1>Name</h1>
-          <p>Ocupation</p>
-        </div>
-      </div>
-  
-      <div>
-        <div class="portfolioSections">
-          <table>
-            <tr>
-              <td><button onclick="handleButtonClick(this)" class="clicked">About</button></td>
-              <td><button onclick="handleButtonClick(this)">Education</button></td>
-              <td><button onclick="handleButtonClick(this)">Experience</button></td>
-              <td><button onclick="handleButtonClick(this)">Licences</button></td>
-              <td><button onclick="handleButtonClick(this)">Project</button></td>
-              <td><button onclick="handleButtonClick(this)">Skills</button></td>
-              <td><button onclick="handleButtonClick(this)">Contact</button></td>
-            </tr>
-          </table>
+    <div class="container">
+      <div id="profileImgContainer"></div>
 
-          <script>
-            // Function to handle button clicks
-            function handleButtonClick(button) {
-              // Remove the 'clicked' class from all buttons within this div
-              button.closest('div').querySelectorAll('button').forEach(function (btn) {
-                    btn.classList.remove('clicked');
-                });
-
-                // Add the 'clicked' class to the clicked button
-                button.classList.add('clicked');
-
-                // Update the portfolioDetailContainer
-                document.getElementById("portfolioDetailContainer").style.backgroundColor = updatePortfolioDetailContainer();
-              }
-
-            // Function to generate a random color
-            function updatePortfolioDetailContainer() {
-              const letters = '0123456789ABCDEF';
-              let color = '#';
-              for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-              }
-              return color;
-            }
-          </script>
-        </div>
-      </div>
-        
-      <div id="portfolioDetailContainer">
-        <h1>Hello</h1>
+      <div class="sectionContainer">
+        <div id="sectionControls"></div>
+        <hr>
+        <div id="sectionContent"></div>
       </div>
     </div>
   </body>
