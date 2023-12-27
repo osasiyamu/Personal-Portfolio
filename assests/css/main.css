@@ -1,6 +1,6 @@
 body {
     background: linear-gradient(to bottom, white, rgb(198, 240, 198));
-  }
+}
 
 .navbar {
     display: flex;
@@ -23,10 +23,6 @@ body {
     margin-right: 10px;
     text-decoration: none;
     color: black;
-}
-
-.navbar button {
-    padding: 8px 12px;
 }
 
 #mainlogo{
