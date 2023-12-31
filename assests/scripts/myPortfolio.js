@@ -2,27 +2,41 @@ function profileImgContainerSetup() {
     const container = document.getElementById("profileImgContainer");
 
     const profile = document.createElement("img");
-    profile.id = "prifileImg";
-    profile.src = "/images/connectImage.png"; // todo: get user's image
+    profile.id = "profileImg";
+    profile.src = getProfilePic();
     profile.alt = "Profile Image";
-    profile.style.height = "auto";
-    profile.style.width = "200px";
 
     const tempDiv1 = document.createElement("div");
     tempDiv1.appendChild(profile);
 
     const name = document.createElement("h1");
-    name.innerHTML = "User Name"; // todo: get user's name
+    name.innerHTML = getUserName();
 
     const occupation = document.createElement("h3");
-    occupation.innerHTML = "User Occupation"; // todo: get user's occupation
+    occupation.innerHTML = getUserOcupation();
 
     const tempDiv2 = document.createElement("div");
+    tempDiv2.id = "userBio"
     tempDiv2.appendChild(name);
     tempDiv2.appendChild(occupation);
     
     container.appendChild(tempDiv1);
     container.appendChild(tempDiv2);
+}
+
+function getProfilePic() {
+    // set the user's profile picture
+    return "/images/connectImage.png"; // todo: get
+}
+
+function getUserName() {
+    // set the user's name
+    return "User Name"; // todo: get
+}
+
+function getUserOcupation() {
+    // set the user's occupation
+    return "User Occupation"; // todo: get
 }
 
 function sectionControlsSetup() {
@@ -36,6 +50,15 @@ function sectionControlsSetup() {
     container.appendChild(createSectionButton("Project"));
     container.appendChild(createSectionButton("Skills"));
     container.appendChild(createSectionButton("Contact"));
+}
+
+function createSectionButton(name) {
+    const buttonElement = document.createElement("button");
+    buttonElement.setAttribute("onclick", "getSectionContent('" + name + "')");
+    buttonElement.className = "btn btn-primary";
+    buttonElement.id = "ctrlBtn";
+    buttonElement.textContent = name;
+    return buttonElement;
 }
 
 function getSectionContent(name) {
@@ -67,15 +90,6 @@ function getSectionContent(name) {
     container.innerHTML = "";
     container.appendChild(contentDiv);
     container.appendChild(editButtonDiv);
-}
-
-function createSectionButton(name) {
-    const buttonElement = document.createElement("button");
-    buttonElement.setAttribute("onclick", "getSectionContent('" + name + "')");
-    buttonElement.className = "btn btn-primary";
-    buttonElement.id = "ctrlBtn";
-    buttonElement.textContent = name;
-    return buttonElement;
 }
 
 function createEditButton(section) {
