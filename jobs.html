@@ -8,24 +8,7 @@
 
   </head>
   <body>
-    <div class="navbar">
-      <img id="mainlogo" src="/images/mainLogo.png" alt="logo" />
-      <div class="logo"></div>
-      <a href="/index.html" class="icons">
-        <img src="images/homeIcon.png" alt="homeIcon" />
-        Home
-      </a>
-      <a href="/searchPage.html" class="icons">
-        <img src="images/searchIcon.png" alt="searchIcon" />
-        Search
-      </a>
-      <a href="/myPortfolio.html" class="icons">
-        <img src="images/myPortfolioIcon.png" alt="myPortfolioIcon" />
-        My Portfolio
-      </a>
-      <a href="/join.html" class="icons"> Sign Up/In</a>
-    </div>
-  
+    <div id="navbar-container"></div>  
     
   </body>
   </html>
@@ -135,6 +118,16 @@
 
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Fetch and include the navbar.html content
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  });
+</script>
     <div>
 
     </div>

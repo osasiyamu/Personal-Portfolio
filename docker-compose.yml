@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  db:
+    image: postgres
+    container_name: searchmeup_container
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres_db
+    ports:
+      - 5432:5432

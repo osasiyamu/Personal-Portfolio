@@ -9,64 +9,79 @@
     <link rel="stylesheet" href="/assests/css/main.css" />
   </head>
   <body>
-    <div class="navbar">
-      <img id="mainlogo" src="/images/mainLogo.png" alt="logo" />
-      <div class="logo"></div>
-      <a href="/index.html" class="icons">
-        <img src="images/homeIcon.png" alt="homeIcon" />
-        Home
-      </a>
-      <a href="/jobs.html" class="icons">
-        <img src="images/jobIcon.png" alt="jobIcon" />
-        Jobs
-      </a>
-      <a href="/myPortfolio.html" class="icons">
-        <img src="images/myPortfolioIcon.png" alt="myPortfolioIcon" />
-        My Portfolio
-      </a>
-      <a href="/join.html" class="icons"> Sign Up/In</a>
-    </div>
+    <div class="fixedContent">
+      <div id="navbar-container"></div>
 
+      <div class="search">
+        <div>
+          <input type="text" placeholder="Search..." style="flex: 1;">
+        </div>
+        <div class="filterComponents">
+          <label for="filterBy">Filter By</label>
+          <i class="fa-regular fa-user"></i>
+          <!-- <i class="fas fa-building">Organizations</i> -->
+        </div>
+      </div>
 
-    <div class="search">
-      <div>
-        <input type="text" placeholder="Search..." style="flex: 1;">
-      </div>
-      <div class="filterComponents">
-        <label for="filterBy">Filter By</label>
-        <i class="fa-regular fa-user"></i>
-        <!-- <i class="fas fa-building">Organizations</i> -->
-      </div>
-    </div>
+  </div>
 
     <div class="searchResults">
+
+    
+      <div class="user">
+        <img src="images/personIcon.jpeg" alt="" />
         <div class="info">
-          <img src="images/personIcon.jpeg" alt="" />
           <p>Kareem Abdo</p>
-        </div>
+          <p>Software Engineering</p>
+        </div>  
+      </div>
 
+      <div class="user">
+        <img src="images/personIcon.jpeg" alt="" />
         <div class="info">
-          <img src="images/personIcon.jpeg" alt="" />
           <p>Ese Iyamu</p>
-        </div>
+          <p>Software Engineering</p>
+        </div>  
+      </div>
 
-        <div class="info">
-          <img src="images/personIcon.jpeg" alt="" />
-          <p>Oyindamola Taiwo-Olupeka</p>
-        </div>
-
-        <div class="info">
-          <img src="images/personIcon.jpeg" alt="" />
-          <p>Osamudiamen Nwoko</p>
-        </div>
-
-        <div class="info">
-          <img src="images/personIcon.jpeg" alt="" />
-          <p>Osas Iyamu</p>
-        </div>
+    
+    <div class="user">
+      <img src="images/personIcon.jpeg" alt="" />
+      <div class="info">
+        <p>Oyindamola Taiwo-Olupeka</p>
+        <p>Software Engineering</p>
+      </div>  
     </div>
-    <div>
-
+    
+    <div class="user">
+      <img src="images/personIcon.jpeg" alt="" />
+      <div class="info">
+        <p>Osamudiamen Nwoko</p>
+        <p>Software Engineering</p>
+      </div>  
     </div>
+      
+    <div class="user">
+      <img src="images/personIcon.jpeg" alt="" />
+      <div class="info">
+        <p>Osas Iyamu</p>
+        <p>Software Engineering</p>
+      </div>  
+    </div>
+  </div>
+  <div>
+  </div>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Fetch and include the navbar.html content
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById("navbar-container").innerHTML = html;
+          });
+      });
+    </script>
   </body>
 </html>
