@@ -1,7 +1,6 @@
 {
   "name": "personal-portfolio",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -14,5 +13,7 @@
   "dependencies": {
     "pg": "^8.11.3",
     "selenium-webdriver": "^4.11.1"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
