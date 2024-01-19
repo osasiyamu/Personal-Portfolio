@@ -1,5 +1,7 @@
-body {
+.body {
     background: linear-gradient(to bottom, white, rgb(198, 240, 198));
+    font-family: Arial, sans-serif;
+    font-size: large;
 }
 
 .navbar {
@@ -42,11 +44,4 @@ body {
     width: 20px;
     height: 20px;
     margin-right: 5px;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    font-size: large;
-    margin: 0;
-    padding: 0;
 }

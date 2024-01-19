@@ -1,0 +1,10 @@
+.error-page {
+    background-color: green;
+    text-align: center;
+    padding: 20px;
+}
+
+.errorBtn {
+    background-color: transparent;
+    border-color: white;
+}
