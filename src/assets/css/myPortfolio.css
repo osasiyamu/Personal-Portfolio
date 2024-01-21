@@ -5,34 +5,41 @@
     padding: 5px;
 }
 
-.profileImgContainer {
+#profileImgContainer {
     /* background-image: -moz-linear-gradient(); */
-    background-image: url("../images/connectImage.png");
-    display: flex;
-    height: 300px;
-    width: 100%;
+    background-color: white;
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 10px;
+    display: block;
+    /* height: 270px; */
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow: hidden;
 }
 
-.portfolioSections button {
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    border-bottom: 2px solid transparent;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    display: flex;
-    padding: 5px 10px;
+#profileImg {
+    display: block;
+    float: left;
+    height: 250px;
+    width: 250px;
 }
 
-.portfolioSections button:hover {
-    border-bottom: 2px solid yellow;
+#userBio {
+    align-items: flex-end;
+    margin-left: 270px;
+    margin-top: 75px;
 }
 
-.portfolioSections button.clicked {
-    border-bottom: 2px solid rgb(0, 0, 0);
+#username {
+    font-weight: bolder;
+    font-size: 50px;;
 }
 
-.sectionContainer {
+#userOccupation {
+    font-size: 40px;
+}
+
+#sectionContainer {
     background-color: rgb(245, 245, 245);
     border: 1px solid rgb(215, 215, 215);
     border-radius: 10px;
@@ -49,6 +56,7 @@
     background-color: rgba(20, 150, 20, 0.75);
     border: 1px solid rgba(20, 150, 20, 1);
     color: rgb(255, 255, 255);
+    cursor: pointer;
     margin: 5px;
     width: 120px;
 }
