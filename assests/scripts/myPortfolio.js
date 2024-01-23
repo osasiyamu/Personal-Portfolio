@@ -9,10 +9,12 @@ function profileImgContainerSetup() {
     const tempDiv1 = document.createElement("div");
     tempDiv1.appendChild(profile);
 
-    const name = document.createElement("h1");
+    const name = document.createElement("p");
+    name.id = "profileUsername";
     name.innerHTML = getUserName();
 
-    const occupation = document.createElement("h3");
+    const occupation = document.createElement("p");
+    occupation.id = "profileUserOccupation";
     occupation.innerHTML = getUserOcupation();
 
     const tempDiv2 = document.createElement("div");
@@ -26,24 +28,23 @@ function profileImgContainerSetup() {
 
 function getProfilePic() {
     // set the user's profile picture
-    return "/images/connectImage.png"; // todo: get
+    return "https://avatars.githubusercontent.com/u/1"; // todo: get
 }
 
 function getUserName() {
     // set the user's name
-    return "User Name"; // todo: get
+    return "John Doe"; // todo: get
 }
 
 function getUserOcupation() {
     // set the user's occupation
-    return "User Occupation"; // todo: get
+    return "Doctor"; // todo: get
 }
 
 function sectionControlsSetup() {
     const container = document.getElementById("sectionControls");
 
     container.appendChild(createSectionButton("About"));
-    container.appendChild(createSectionButton("Search"));
     container.appendChild(createSectionButton("Education"));
     container.appendChild(createSectionButton("Experience"));
     container.appendChild(createSectionButton("Licenses"));
