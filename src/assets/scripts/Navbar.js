@@ -14,11 +14,11 @@ const Navbar = () => {
                 <img src={homeIcon} alt="homeIcon" />
                 Home
             </a>
-            <a href="/searchPage.html" className="icons">
+            <a href="/searchPage" className="icons">
                 <img src={searchIcon} alt="searchIcon" />
                 Search
             </a>
-            <a href="/jobs.html" className="icons">
+            <a href="/jobs" className="icons">
                 <img src={jobIcon} alt="jobIcon" />
                 Jobs
             </a>
@@ -26,7 +26,7 @@ const Navbar = () => {
                 <img src={myPortfolioIcon} alt="myPortfolioIcon" />
                 My Portfolio
             </a>
-            <a href="/join.html" className="icons"> Sign Up/In</a>
+            <a href="/join" className="icons"> Sign Up/In</a>
         </div>
     );
 }

@@ -4,6 +4,7 @@ import Join from './Join';
 import Login from'./Login';
 import MyPortfolio from'./portfolio/MyPortfolio';
 import PageNotFound from './ErrorPage';
+import Search from './Search';
 
 export {
     Home,
@@ -11,5 +12,6 @@ export {
     Join,
     Login,
     MyPortfolio,
-    PageNotFound
+    PageNotFound,
+    Search
 };
