@@ -2,7 +2,7 @@ import './assets/css/main.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './assets/components';
-import { Home, Jobs, Join, MyPortfolio, PageNotFound, Search } from './pages';
+import { Home, Jobs, Join, Login, MyPortfolio, PageNotFound, Search } from './pages';
 
 function App() {
 	return (
@@ -15,6 +15,7 @@ function App() {
 					<Route path='jobs' element={<Jobs />} />
 					<Route path='myportfolio' element={<MyPortfolio />} />
 					<Route path='join' element={<Join />} />
+					<Route path='login' element={<Login />} />
 					<Route path='*' element={<PageNotFound />} />
 				</Routes>
 			</BrowserRouter>
