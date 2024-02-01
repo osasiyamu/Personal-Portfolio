@@ -1,5 +1,4 @@
 #navbar-container {
-    /* position: fixed; */
     top: 0;
     left: 0;
     right: 0;
@@ -8,40 +7,31 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .search {
-    /* position: fixed; */
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center; /* Optional: Align items vertically if needed */
-    width: 400px;
+    border-style: ridge;
+    padding-bottom: 10px;
 
   }
 input {
-    flex: 1;
+    /* flex: 1; */
     margin: 20px 0 0 5px;
     border-radius: 20px;
-    outline: 0;
+    /* outline: 0; */
     font-size: 16px;
     height: 30px;
     width: 500px;
     padding: 20px;
     margin: 20px 0 0 5px;
     border-radius: 20px;
-    outline: 0;
-    /* color:rgb(0, 2, 4); */
 }
 .filterComponents {
-    display: flex;
-    flex-direction:inline;
-    /* justify-content: space-between; */
     align-items: center;
     float: right;
-    margin-left: auto
-    /* Remove the margin to align it to the far right */
+    margin-left: 30px;
   }
 
 .filterComponents .label {
-    /* Add margin or padding as needed for spacing between label and filters */
     margin-bottom: 10px;
     font-size: medium;
 }
@@ -67,8 +57,7 @@ input {
 .searchResults {
     width: 100%;
     height: 600px;
-    /* display: inline-block;
-    align-items: center; */
+    align-items: center;
     margin-bottom: 50px;
     padding: 20px;
     overflow-y: scroll;
@@ -112,6 +101,4 @@ input {
     max-height: 80px; /* Adjust the max-height as needed */
     overflow-y: auto;
 }
-  
-  /* Adjust other styles as needed */
   
