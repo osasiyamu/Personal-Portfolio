@@ -1,4 +1,4 @@
-#content div {
+.container > div {
     background-color: rgb(169, 224, 144);
     border-radius: 10px;
     margin: 10px;
@@ -6,37 +6,36 @@
 }
 
 #profileImgContainer {
-    /* background-image: -moz-linear-gradient(); */
     background-color: white;
     border: 1px solid rgb(215, 215, 215);
     border-radius: 10px;
-    display: block;
-    /* height: 270px; */
-    margin-bottom: 10px;
-    padding: 10px;
-    overflow: hidden;
+    display: flex;
 }
 
 #profileImg {
-    display: block;
-    float: left;
-    height: 250px;
-    width: 250px;
+    border-radius: 50%;
+    height: 200px;
+    margin: 10px;
+    width: 200px;
 }
 
 #userBio {
     align-items: flex-end;
-    margin-left: 270px;
-    margin-top: 75px;
+    margin-left: 10px;
+    margin-top: 95px;
 }
 
 #username {
     font-weight: bolder;
-    font-size: 50px;;
+    font-size: 40px;
+    margin: 0px;
+    padding: 0px;
 }
 
 #userOccupation {
-    font-size: 40px;
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
 }
 
 #sectionContainer {
