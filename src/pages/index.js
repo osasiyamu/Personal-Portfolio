@@ -1,5 +1,5 @@
 import Home from './Home';
-import Jobs from './Jobs';
+import Jobs from './jobs/Jobs';
 import Join from './Join';
 import Login from'./Login';
 import MyPortfolio from'./portfolio/MyPortfolio';

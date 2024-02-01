@@ -1,10 +1,16 @@
 import '../assets/css/index.css';
 
+import { useEffect } from 'react';
+
 import mainImage from '../assets/images/mainImage.webp';
 import skillImage from '../assets/images/skillImage.webp';
 import connectImage from '../assets/images/connectImage.png';
 
 const Home = () => {
+    useEffect(() => {
+        document.title = "SearchMeUp"
+    }, []);
+
     return (
         <div>
             <div class="content">

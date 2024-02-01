@@ -1,7 +1,7 @@
 import './assets/css/main.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar } from './assets/scripts';
+import { Navbar } from './assets/components';
 import { Home, Jobs, Join, MyPortfolio, PageNotFound, Search } from './pages';
 
 function App() {
