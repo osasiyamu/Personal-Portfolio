@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const Join = () => {
     useEffect(() => {
-        document.title = "SearchMeUp"
+        document.title = "Join"
     }, []);
 
     return (
