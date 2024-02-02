@@ -11,7 +11,7 @@ function App() {
 			<BrowserRouter>
 				<Routes path='/' element={<Home />}>
 					<Route index element={<Home />} />
-					<Route path='searchPage' element={<Search />} />
+					<Route path='search' element={<Search />} />
 					<Route path='jobs' element={<Jobs />} />
 					<Route path='myportfolio' element={<MyPortfolio />} />
 					<Route path='join' element={<Join />} />

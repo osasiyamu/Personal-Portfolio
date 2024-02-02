@@ -1,0 +1,123 @@
+#navbar-container {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+    /* position: fixed; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Optional: Align items vertically if needed */
+    width: 400px;
+
+}
+
+input {
+    flex: 1;
+    margin: 20px 0 0 5px;
+    border-radius: 20px;
+    outline: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 500px;
+    padding: 20px;
+    margin: 20px 0 0 5px;
+    border-radius: 20px;
+    outline: 0;
+    /* color:rgb(0, 2, 4); */
+}
+
+.filterComponents {
+    display: flex;
+    flex-direction:inline;
+    /* justify-content: space-between; */
+    align-items: center;
+    float: right;
+    margin-left: auto
+    /* Remove the margin to align it to the far right */
+}
+
+.filterComponents .label {
+    /* Add margin or padding as needed for spacing between label and filters */
+    margin-bottom: 10px;
+    font-size: medium;
+}
+
+.icon-container {
+    text-align: center; /* Center the content horizontally */
+    margin-right: 10px;
+}
+
+.icon-container i {
+    font-size: 15px; /* Adjust the icon size as needed */
+    margin-bottom: 0px;
+}
+
+.icon-container p {
+    margin-top: 5px; /* Adjust the space between text and other content */
+    font-size: small;
+}
+
+.filters {
+    display: flex;
+    flex-direction:inline;
+    border:#000;
+    border-radius: 10px;
+}
+
+.searchResults {
+    width: 100%;
+    height: 600px;
+    /* display: inline-block;
+    align-items: center; */
+    margin-bottom: 50px;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.user-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Optional: Add margin between user containers */
+    padding: 10px; /* Adjust padding as needed */
+    border-bottom: 1px solid #ccc; /* Add a border between users */
+}
+
+.user {
+    width: 80%; /* Adjust width as needed */
+    height: 100px;
+    border: 2px solid #cdcccc;
+    border-radius: 10px; /* Adjust border-radius as needed */
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Optional: Add padding for better spacing */
+    margin-bottom: 10px;
+    margin-right: 2px;
+}   
+
+.user img {
+    width: 70px; /* Adjust image width as needed */
+    height: 70px; /* Adjust image height as needed */
+    border-radius: 50%;
+    margin-right: 10px; /* Optional: Add margin to separate the image from the content */
+}
+
+.info {
+    flex: 1;
+}
+
+.info p {
+    margin: 0; /* Remove default margin for paragraphs */
+    flex: 1;
+    max-height: 80px; /* Adjust the max-height as needed */
+    overflow-y: auto;
+}
+  
+  /* Adjust other styles as needed */

@@ -14,7 +14,7 @@ const Navbar = () => {
                 <img src={homeIcon} alt="homeIcon" />
                 Home
             </a>
-            <a href="/searchPage" className="icons">
+            <a href="/search" className="icons">
                 <img src={searchIcon} alt="searchIcon" />
                 Search
             </a>
