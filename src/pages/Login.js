@@ -3,6 +3,10 @@ import '../assets/css/join.css';
 import { useEffect } from 'react';
 
 const Login = () => {
+    useEffect(() => {
+        document.title = "Login"
+    }, []);
+
     return (
         <div>
             <div id="pageHeading">
