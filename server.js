@@ -13,6 +13,16 @@ const pool = new Pool({
 });
 
 /* routes */
+app.get('/api/printusers', async (req, res) => {
+    try {
+        let data = await pool.query("SELECT * from users;");
+        res.status(200).send(data.rows)
+    } catch (err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+});
+
 app.get('/api/setup', async (req, res) => {
     try {
         const sql_data = fs.readFileSync('./src/assets/sql/setup.sql', 'utf-8')
