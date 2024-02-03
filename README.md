@@ -4,6 +4,7 @@
 **Table of Contents**
 * [Overview](#overview)
 * [Authors](#authors)
+* [Running the Application](#running-the-application)
 <!-- TOC -->
 
 ## Overview
@@ -19,3 +20,7 @@ The project aims to create a personal portfolio website that serves as a showcas
 3. Ese Iyamu
 4. Osamudiamen Nwoko
 5. Oyindamola Taiwo-Olupeka
+
+## Running the Application
+1. Navigate to the project directory in your terminal
+2. Run the command `yarn start`
