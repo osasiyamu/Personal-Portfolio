@@ -2,7 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const app = express();
 const fs = require('fs');
-const port = 5000;
+const port = 5555;
 
 const pool = new Pool({
     host: 'localhost',
