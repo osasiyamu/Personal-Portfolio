@@ -15,7 +15,7 @@ const pool = new Pool({
 /* routes */
 app.get('/api/setup', async (req, res) => {
     try {
-        const sql_data = fs.readFileSync('assests/sql/setup.sql', 'utf-8')
+        const sql_data = fs.readFileSync('./src/assets/sql/setup.sql', 'utf-8')
         await pool.query(sql_data);
         res.status(200).send({ message: "Successfully setup database." })
     } catch (err) {
@@ -26,7 +26,7 @@ app.get('/api/setup', async (req, res) => {
 
 app.get('/api/teardown', async (req, res) => {
     try {
-        const sql_data = fs.readFileSync('assests/sql/tearDown.sql', 'utf-8')
+        const sql_data = fs.readFileSync('./src/assets/sql/tearDown.sql', 'utf-8')
         await pool.query(sql_data);
         res.status(200).send({ message: "Successfully tore down database." })
     } catch (err) {
