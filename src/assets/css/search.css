@@ -1,5 +1,4 @@
 #navbar-container {
-    /* position: fixed; */
     top: 0;
     left: 0;
     right: 0;
@@ -9,13 +8,10 @@
 }
 
 .search {
-    /* position: fixed; */
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center; /* Optional: Align items vertically if needed */
-    width: 400px;
-
+    align-items: center; 
+    width: auto;
 }
 
 input {
@@ -30,52 +26,54 @@ input {
     margin: 20px 0 0 5px;
     border-radius: 20px;
     outline: 0;
-    /* color:rgb(0, 2, 4); */
 }
 
 .filterComponents {
-    display: flex;
-    flex-direction:inline;
-    /* justify-content: space-between; */
-    align-items: center;
-    float: right;
-    margin-left: auto
-    /* Remove the margin to align it to the far right */
+    border-style:ridge;
+    border-radius: 5%;
+    padding: 5px;
+    padding-top: 0px;
+    margin-right: 10px;
+    border-width: 0.5px;
+
 }
 
-.filterComponents .label {
-    /* Add margin or padding as needed for spacing between label and filters */
-    margin-bottom: 10px;
-    font-size: medium;
+.filterComponents a {
+    margin-right: 5px;
+}
+
+.filterComponents button {
+    padding-top: 5px;
+    margin-right: 5px;
+    background-color: rgb(124, 152, 124);
+    width: auto;
+    height: 35px;
+    text-align: center;
+    align-items: center;
+}
+
+.filterComponents label{
+    margin-right: 5px;
 }
 
 .icon-container {
-    text-align: center; /* Center the content horizontally */
+    text-align: center;
     margin-right: 10px;
 }
 
 .icon-container i {
-    font-size: 15px; /* Adjust the icon size as needed */
+    font-size: 15px;
     margin-bottom: 0px;
 }
 
 .icon-container p {
-    margin-top: 5px; /* Adjust the space between text and other content */
+    margin-top: 5px;
     font-size: small;
-}
-
-.filters {
-    display: flex;
-    flex-direction:inline;
-    border:#000;
-    border-radius: 10px;
 }
 
 .searchResults {
     width: 100%;
-    height: 600px;
-    /* display: inline-block;
-    align-items: center; */
+    height: 800px;
     margin-bottom: 50px;
     padding: 20px;
     overflow-y: scroll;
@@ -85,39 +83,39 @@ input {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px; /* Optional: Add margin between user containers */
-    padding: 10px; /* Adjust padding as needed */
-    border-bottom: 1px solid #ccc; /* Add a border between users */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .user {
-    width: 80%; /* Adjust width as needed */
+    width: 80%;
     height: 100px;
     border: 2px solid #cdcccc;
-    border-radius: 10px; /* Adjust border-radius as needed */
+    border-radius: 10px;
     display: flex;
     align-items: center;
-    padding: 10px; /* Optional: Add padding for better spacing */
+    padding: 10px;
     margin-bottom: 10px;
     margin-right: 2px;
 }   
 
 .user img {
-    width: 70px; /* Adjust image width as needed */
-    height: 70px; /* Adjust image height as needed */
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    margin-right: 10px; /* Optional: Add margin to separate the image from the content */
+    margin-right: 10px;
 }
 
 .info {
     flex: 1;
+    font-size: small;
 }
 
 .info p {
-    margin: 0; /* Remove default margin for paragraphs */
+    margin: 0;
     flex: 1;
-    max-height: 80px; /* Adjust the max-height as needed */
+    max-height: 80px;
     overflow-y: auto;
 }
   
-  /* Adjust other styles as needed */
