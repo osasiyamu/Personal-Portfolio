@@ -3,7 +3,6 @@ import '../assets/css/search.css';
 import { useEffect } from 'react';
 
 import personIcon from '../assets/images/personIcon.jpeg';
-import { Button } from 'react-bootstrap';
 
 const Search = () => {
     useEffect(() => {
@@ -23,7 +22,7 @@ const Search = () => {
                         <a href="#nothing">People</a>
                         <a href="#nothing">Skills</a> */}
                         <button>Jobs</button>
-                        <button>People</button>
+                        <button id="people">People</button>
                         <button>Skills</button>
                         {/* <i class="fa-regular fa-user"></i> */}
                         {/* <i class="fas fa-building">Organizations</i> */}

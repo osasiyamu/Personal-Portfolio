@@ -45,11 +45,15 @@ input {
 .filterComponents button {
     padding-top: 5px;
     margin-right: 5px;
-    background-color: rgb(124, 152, 124);
+    background-color: rgb(221, 230, 221);
     width: auto;
     height: 35px;
     text-align: center;
     align-items: center;
+}
+
+#people {
+    background-color: rgb(101, 136, 101);
 }
 
 .filterComponents label{
