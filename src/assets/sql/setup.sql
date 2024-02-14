@@ -1,6 +1,6 @@
 CREATE TABLE Users (
     UserID          SERIAL,
-    Username        VARCHAR(100) NOT NULL,
+    Username        VARCHAR(100) NOT NULL UNIQUE,
     PasswordHash    VARCHAR(255) NOT NULL,
     Email           VARCHAR(255) UNIQUE,
     PRIMARY KEY (UserID)
@@ -98,8 +98,5 @@ CREATE TABLE JobPostings (
     SalaryRange             VARCHAR(100) NOT NULL,
     Category                VARCHAR(30) CHECK (Category IN ('Software Development', 'Design & UI/UX', 'Data Analysis & Science', 'IT & Networking','Other')),
     PRIMARY KEY (JobID),
-    FOREIGN KEY (PostedByUserID) REFERENCES Users(UserID)
+    FOREIGN KEY (PostedByUserID) REFERENCES Profiles(ProfileID)
 );
-
--- Questions
--- - Why is there a user and profile table, aren't they the same thing?
