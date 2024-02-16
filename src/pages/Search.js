@@ -18,14 +18,9 @@ const Search = () => {
                     </div>
                     <div class="filterComponents">
                         <label for="filterBy">Filter By: </label>
-                        {/* <a href="#nothing">Jobs</a>
-                        <a href="#nothing">People</a>
-                        <a href="#nothing">Skills</a> */}
-                        <button>Jobs</button>
                         <button id="people">People</button>
+                        <button>Portfolios</button>
                         <button>Skills</button>
-                        {/* <i class="fa-regular fa-user"></i> */}
-                        {/* <i class="fas fa-building">Organizations</i> */}
                     </div>
                 </div>
             </div>
