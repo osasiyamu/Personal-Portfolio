@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { Button } from 'react-bootstrap';
 
 const ProfileImgContainer = () => {
     var profileId = 1;
