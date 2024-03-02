@@ -1,11 +1,18 @@
+import { useEffect, useState } from 'react';
+
 import AboutSection from "./AboutSection";
 
-const SectionContent = ({sectionName}) => {
+const SectionContent = ({ profileId }) => {
+
+    const [profileInfo, setProfileInfo] = useState([]);
 
     return (
         <div>
-            <p>Content for {sectionName}</p>
-            <AboutSection {...sectionName == "About"} />
+            <p>Content for {window.location.pathname}</p>
+            
+            {(window.location.pathname === "/myportfolio") && 
+                <AboutSection profileId={profileId} />
+            }
         </div>
     );
 }

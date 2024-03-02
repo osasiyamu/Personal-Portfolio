@@ -7,30 +7,56 @@ import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
 const MyPortfolio = () => {
-    useEffect(() => {
-        document.title = "MyPortfolio"
-    }, []);
 
-    const [currSection, setCurrSection] = useState("About");
+    var profileId = 1;
+    const [profileInfo, setProfileInfo] = useState([]);
     const myArray = ['Item 1', 'Item 2', 'Item 3'];
+
+    const getProfileInfo = () => {
+        fetch(`http://localhost:5555/myportfolio/${profileId}`)
+		.then(response => {
+			if (!response.ok) {
+			  	throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+        .then(data => {
+            setProfileInfo(data);
+        })
+		.catch(error => {
+			console.error("Error fetching data: ", error);
+		});
+    };
+
+    useEffect(() => {
+        document.title = "MyPortfolio";
+		getProfileInfo();
+    }, []);
 
     return (
         <div className="container mt-5">
-            <ProfileImgContainer />
+            <ProfileImgContainer
+                imgSrc="https://avatars.githubusercontent.com/u/1"
+                fname={profileInfo["firstname"]}
+                lname={profileInfo["lastname"]}
+                occupation={profileInfo["occupation"]}
+            />
 
             <div id='sectionContainer'>
                 <div id='sectionControls'>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("About")}>About</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("Education")}>Education</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("Experience")}>Experience</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("Licenses")}>Licenses</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("Projects")}>Projects</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("Skills")}>Skills</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => setCurrSection("Contact")}>Contact</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio"}>About</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/education"}>Education</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/experience"}>Experience</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/licenses"}>Licenses</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/projects"}>Projects</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/skills"}>Skills</Button>
+                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/contact"}>Contact</Button>
                 </div>
                 <hr />
 
-                <SectionContent sectionName={currSection} />
+                <SectionContent
+                    profileId={profileId}
+                />
 
                 <div id='editBtnContainer'>
                     <Button className='btn btn-secondary'>Edit</Button>

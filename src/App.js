@@ -14,6 +14,12 @@ function App() {
 					<Route path='search' element={<Search />} />
 					<Route path='jobs' element={<Jobs />} />
 					<Route path='myportfolio' element={<MyPortfolio />} />
+					<Route path='myportfolio/education' element={<MyPortfolio />} />
+					<Route path='myportfolio/experience' element={<MyPortfolio />} />
+					<Route path='myportfolio/licenses' element={<MyPortfolio />} />
+					<Route path='myportfolio/projects' element={<MyPortfolio />} />
+					<Route path='myportfolio/skills' element={<MyPortfolio />} />
+					<Route path='myportfolio/contact' element={<MyPortfolio />} />
 					<Route path='join' element={<Join />} />
 					<Route path='login' element={<Login />} />
 					<Route path='*' element={<PageNotFound />} />

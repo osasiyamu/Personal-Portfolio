@@ -46,6 +46,22 @@ app.get('/api/teardown', async (req, res) => {
 });
 
 /*  Testing DB */
+app.get('/api/testdatainsert', async (req, res) => {
+    try {
+        await pool.query("INSERT INTO users (username, passwordhash, email) VALUES ('johndoe', 'password', 'johndoe@gmail.com');");
+        await pool.query("INSERT INTO users (username, passwordhash, email) VALUES ('janedoe', 'password2', 'janedoe@gmail.com');");
+
+        await pool.query("INSERT INTO profiles (userid, firstname, lastname, occupation, about) VALUES (1, 'John', 'Doe', 'Doctor', 'A dummy user for testing');");
+        await pool.query("INSERT INTO profiles (userid, firstname, lastname, occupation, about) VALUES (2, 'Jane', 'Doe', 'Engineer', 'Another dummy user for testing');");
+
+        await pool.query("INSERT INTO about (profileid, about) VALUES (1, 'A dummy user for testing');");
+        await pool.query("INSERT INTO about (profileid, about) VALUES (2, 'Another dummy user for testing');");
+    } catch (err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+});
+
 app.get('/api/printusers', async (req, res) => {
     try {
         let data = await pool.query("SELECT * from users;");
@@ -65,7 +81,5 @@ app.get('/api/printprofiles', async (req, res) => {
         res.sendStatus(500)
     }
 });
-
-app.listen(port, () => console.log(`Server has started on port: ${port}`))
 
 module.exports = { app, pool, port };
