@@ -51,11 +51,13 @@ app.get('/api/testdatainsert', async (req, res) => {
         await pool.query("INSERT INTO users (username, passwordhash, email) VALUES ('johndoe', 'password', 'johndoe@gmail.com');");
         await pool.query("INSERT INTO users (username, passwordhash, email) VALUES ('janedoe', 'password2', 'janedoe@gmail.com');");
 
-        await pool.query("INSERT INTO profiles (userid, firstname, lastname, occupation, about) VALUES (1, 'John', 'Doe', 'Doctor', 'A dummy user for testing');");
-        await pool.query("INSERT INTO profiles (userid, firstname, lastname, occupation, about) VALUES (2, 'Jane', 'Doe', 'Engineer', 'Another dummy user for testing');");
+        await pool.query("INSERT INTO profiles (userid, firstname, lastname, occupation) VALUES (1, 'John', 'Doe', 'Doctor');");
+        await pool.query("INSERT INTO profiles (userid, firstname, lastname, occupation) VALUES (2, 'Jane', 'Doe', 'Engineer');");
 
         await pool.query("INSERT INTO about (profileid, about) VALUES (1, 'A dummy user for testing');");
         await pool.query("INSERT INTO about (profileid, about) VALUES (2, 'Another dummy user for testing');");
+
+        res.status(200).send({ message: "Successfully added test data to database." })
     } catch (err) {
         console.log(err)
         res.sendStatus(500)

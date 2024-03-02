@@ -12,7 +12,6 @@ CREATE TABLE Profiles (
     FirstName   VARCHAR(100),
     LastName    VARCHAR(100),
     Occupation  VARCHAR(100),
-    Contact     VARCHAR(255),
     PRIMARY KEY (ProfileID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
