@@ -12,6 +12,7 @@ const MyPortfolio = () => {
     }, []);
 
     const [currSection, setCurrSection] = useState("About");
+    const myArray = ['Item 1', 'Item 2', 'Item 3'];
 
     return (
         <div className="container mt-5">
@@ -34,6 +35,12 @@ const MyPortfolio = () => {
                 <div id='editBtnContainer'>
                     <Button className='btn btn-secondary'>Edit</Button>
                 </div>
+            </div>
+
+            <div>
+                {myArray.map((item, index) => (
+                    <p key={index}>{item}</p>
+                ))}
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
 CREATE TABLE Users (
     UserID          SERIAL,
-    Username        VARCHAR(100) NOT NULL,
+    Username        VARCHAR(100) NOT NULL UNIQUE,
     PasswordHash    VARCHAR(255) NOT NULL,
-    Email           VARCHAR(255) UNIQUE.
+    Email           VARCHAR(255) UNIQUE,
     PRIMARY KEY (UserID)
 );
 
@@ -23,8 +23,8 @@ CREATE TABLE Contact (
     ProfileID           INTEGER,
     Email               VARCHAR(255),
     PhoneNumber         VARCHAR(30),
-    LinkedInProfile     VARCHAR(255);
-    Website             VARCHAR(500);
+    LinkedInProfile     VARCHAR(255),
+    Website             VARCHAR(500),
     PRIMARY KEY (ContactID),
     FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
 );
@@ -94,12 +94,9 @@ CREATE TABLE JobPostings (
     PostedDate              DATE NOT NULL,
     ApplicationDeadline     DATE NOT NULL,
     CompanyName             VARCHAR(100) NOT NULL,
-    Location                Address,
+    Location                VARCHAR(100) NOT NULL,
     SalaryRange             VARCHAR(100) NOT NULL,
     Category                VARCHAR(30) CHECK (Category IN ('Software Development', 'Design & UI/UX', 'Data Analysis & Science', 'IT & Networking','Other')),
     PRIMARY KEY (JobID),
-    FOREIGN KEY (PostedByUserID) REFERS TO Users(UserID)
+    FOREIGN KEY (PostedByUserID) REFERENCES Profiles(ProfileID)
 );
-
--- Questions
--- - Why is there a user and profile table, aren't they the same thing?
