@@ -1,12 +1,36 @@
-const ProfileImgContainer = (info) => {
+import { useEffect, useState } from 'react';
+
+const ProfileImgContainer = ({profileId}) => {
+
+    const [profileInfo, setProfileInfo] = useState([]);
+
+    const getProfileInfo = () => {
+        fetch(`http://localhost:5555/myportfolio/${profileId}`)
+		.then(response => {
+			if (!response.ok) {
+			  	throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+        .then(data => {
+            setProfileInfo(data);
+        })
+		.catch(error => {
+			console.error("Error fetching data: ", error);
+		});
+    };
+
+    useEffect(() => {
+		getProfileInfo();
+    });
 
     return (
 		<div id="profileImgContainer">
-            <img src={info.imgSrc} id="profileImg" alt="Profile Image" className='rounded-circle' /> 
+            <img src={"https://avatars.githubusercontent.com/u/1"} id="profileImg" alt="Profile" className='rounded-circle' /> 
 
             <div id="userBio">
-                <p id="username">{info.fname + " " + info.lname}</p>
-                <p id="userOccupation">{info.occupation}</p>
+                <p id="username">{profileInfo["firstname"] + " " + profileInfo["lastname"]}</p>
+                <p id="userOccupation">{profileInfo["occupation"]}</p>
             </div>
         </div>
     );

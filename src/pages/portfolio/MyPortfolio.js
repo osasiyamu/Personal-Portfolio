@@ -4,42 +4,21 @@ import '../../assets/css/myPortfolio.css';
 import ProfileImgContainer from './ProfileImgContainer';
 import SectionContent from './SectionContent';
 import { Button } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const MyPortfolio = () => {
 
     var profileId = 1;
-    const [profileInfo, setProfileInfo] = useState([]);
     const myArray = ['Item 1', 'Item 2', 'Item 3'];
-
-    const getProfileInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/${profileId}`)
-		.then(response => {
-			if (!response.ok) {
-			  	throw new Error('Network response was not ok');
-			}
-			return response.json();
-		})
-        .then(data => {
-            setProfileInfo(data);
-        })
-		.catch(error => {
-			console.error("Error fetching data: ", error);
-		});
-    };
 
     useEffect(() => {
         document.title = "MyPortfolio";
-		getProfileInfo();
     }, []);
 
     return (
         <div className="container mt-5">
             <ProfileImgContainer
-                imgSrc="https://avatars.githubusercontent.com/u/1"
-                fname={profileInfo["firstname"]}
-                lname={profileInfo["lastname"]}
-                occupation={profileInfo["occupation"]}
+                profileId={profileId}
             />
 
             <div id='sectionContainer'>
