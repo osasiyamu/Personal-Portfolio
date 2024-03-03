@@ -1,73 +1,73 @@
 import '../../assets/css/jobs.css';
-import toggleJobDescription from './scripts';
-
+import MicrosoftIcon from '../../assets/images/icon1.png';
+import IBMLogo from '../../assets/images/IBM-Logo.jpeg';
+import AppleLogo from '../../assets/images/Apple_logo.png';
+import TeslaLogo from '../../assets/images/Tesla-Logo.png';
+import CiscoLogo from '../../assets/images/Cisco-Logo.png';
 import { useEffect } from 'react';
+import { toggleJobDescription, applyForJob, saveJob, attachJobClickListeners } from './scripts';
+
 
 const Jobs = () => {
     useEffect(() => {
         document.title = "Jobs"
+        attachJobClickListeners();
     }, []);
 
     return (
         <div>
-            <div class="filter-bar">
-                {/* Filter bar above the job list */}
-                <input type="text" placeholder="Filter jobs" />
-            </div>
 
             <div class="search-bar">
-                {/* Search bar at the top right */}
                 <input type="text" placeholder="Search jobs" />
             </div>
 
             <div class="job-list">
-                {/* Panels for job titles - Replace this with dynamic content */}
-                <div class="job" data-description="Description of Job 1">
-                    <img src="company_logo_1.jpg" alt="Company Logo 1" />
-                    <h3>Company Name 1</h3>
-                    <h4>Job Title 1</h4>
-                    <p>Location: City, Country</p>
-                    <p>Salary: $60,000 - $80,000</p>
+                <div class="job" data-description="">
+                    <img src={MicrosoftIcon} alt="Microsoft Company Logo" />
+                    <h3>Microsoft</h3>
+                    <h4><strong>Software Engineer</strong></h4>
+                    <p>Toronto, ON</p>
+                    <p>$160,000 - $200,000</p>
                 </div>
 
-                <div class="job" data-description="Description of Job 2">
-                    <img src="company_logo_2.jpg" alt="Company Logo 2" />
-                    <h3>Company Name 2</h3>
-                    <h4>Job Title 2</h4>
-                    <p>Location: City, Country</p>
-                    <p>Salary: $70,000 - $90,000</p>
+                <div class="job" data-description="">
+                    <img src={IBMLogo} alt="IBM Company Logo" />
+                    <h3>IBM</h3>
+                    <h4><strong>Cloud Engineer</strong></h4>
+                    <p>Markham, ON</p>
+                    <p>$250,000 - $300,000</p>
                 </div>
 
-                <div class="job" data-description="Description of Job 3">
-                    <img src="company_logo_3jpg" alt="Company Logo 3" />
-                    <h3>Company Name 3</h3>
-                    <h4>Job Title 3</h4>
-                    <p>Location: City, Country</p>
-                    <p>Salary: $70,000 - $90,000</p>
+                <div class="job" data-description="">
+                    <img src={AppleLogo} alt="Apple Company Logo" />
+                    <h3>Apple</h3>
+                    <h4><strong>Web Developer</strong></h4>
+                    <p>Montreal, QC</p>
+                    <p>$190,000 - $220,000</p>
                 </div>
 
-                <div class="job" data-description="Description of Job 4">
-                    <img src="company_logo_4.jpg" alt="Company Logo 4" />
-                    <h3>Company Name 4</h3>
-                    <h4>Job Title 4</h4>
-                    <p>Location: City, Country</p>
-                    <p>Salary: $70,000 - $90,000</p>
+                <div class="job" data-description="">
+                    <img src={TeslaLogo} alt="Tesla Company Logo" />
+                    <h3>Tesla</h3>
+                    <h4><strong>Automation Engineer</strong></h4>
+                    <p>Ottawa, ON</p>
+                    <p>$170,000 - $250,000</p>
                 </div>
 
-                <div class="job" data-description="Description of Job 5">
-                    <img src="company_logo_5.jpg" alt="Company Logo 5" />
-                    <h3>Company Name 5</h3>
-                    <h4>Job Title 5</h4>
-                    <p>Location: City, Country</p>
-                    <p>Salary: $70,000 - $90,000</p>
+                <div class="job" data-description="">
+                    <img src={CiscoLogo} alt="Cisco Company Logo" />
+                    <h3>Cisco</h3>
+                    <h4><strong>Product Manager</strong></h4>
+                    <p>Vancouver, BC</p>
+                    <p>$70,000 - $90,000</p>
                 </div>
-                {/* Add more job panels here */}
+            
             </div>
 
             <div class="job-display-panel" id="jobDescription">
                 <span class="close-button" onclick={toggleJobDescription}>x</span>
                 <div id="jobDescriptionContent">
-                    <h4>Job Description</h4>
+                    <h4 id="top">Job Description</h4>
                     <p>Job description content will appear here.</p>
                     <div class="additional-panels">
                         <div class="apply-panel">Panel 1</div>
