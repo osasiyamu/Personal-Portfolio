@@ -12,10 +12,16 @@ CREATE TABLE Profiles (
     FirstName   VARCHAR(100),
     LastName    VARCHAR(100),
     Occupation  VARCHAR(100),
-    About       TEXT,
-    Contact     VARCHAR(255),
     PRIMARY KEY (ProfileID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE About (
+    AboutID     SERIAL,
+    ProfileID   INTEGER,
+    About       TEXT,
+    PRIMARY KEY (AboutID),
+    FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
 );
 
 CREATE TABLE Contact (
@@ -32,8 +38,8 @@ CREATE TABLE Contact (
 CREATE TABLE Education (
     EducationID     SERIAL,
     ProfileID       INTEGER,
-    Institution     VARCHAR(255) NOT NULL,
-    Degree          VARCHAR(100),
+    Institution     VARCHAR(100) NOT NULL,
+    Degree          VARCHAR(100) NOT NULL,
     FieldOfStudy    VARCHAR(100),
     StartDate       DATE NOT NULL,
     EndDate         DATE,

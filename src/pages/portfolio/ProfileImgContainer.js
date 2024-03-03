@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-// import { Button } from 'react-bootstrap';
 
-const ProfileImgContainer = () => {
-    var profileId = 1;
-    const [userDesc, setUserDesc] = useState([]);
+const ProfileImgContainer = ({profileId}) => {
 
-    const getUserDescription = () => {
+    const [profileInfo, setProfileInfo] = useState([]);
+
+    const getProfileInfo = () => {
         fetch(`http://localhost:5555/myportfolio/${profileId}`)
 		.then(response => {
 			if (!response.ok) {
@@ -14,7 +13,7 @@ const ProfileImgContainer = () => {
 			return response.json();
 		})
         .then(data => {
-            setUserDesc(data);
+            setProfileInfo(data);
         })
 		.catch(error => {
 			console.error("Error fetching data: ", error);
@@ -22,16 +21,16 @@ const ProfileImgContainer = () => {
     };
 
     useEffect(() => {
-		getUserDescription();
-    }, []);
+		getProfileInfo();
+    });
 
     return (
 		<div id="profileImgContainer">
-            <img src={"https://avatars.githubusercontent.com/u/1"} id="profileImg" alt="Profile Image" className='rounded-circle' /> 
+            <img src={"https://avatars.githubusercontent.com/u/1"} id="profileImg" alt="Profile" className='rounded-circle' /> 
 
             <div id="userBio">
-                <p id="username">{userDesc["firstname"] + " " + userDesc["lastname"]}</p>
-                <p id="userOccupation">{userDesc["occupation"]}</p>
+                <p id="username">{profileInfo["firstname"] + " " + profileInfo["lastname"]}</p>
+                <p id="userOccupation">{profileInfo["occupation"]}</p>
             </div>
         </div>
     );
