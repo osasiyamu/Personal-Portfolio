@@ -10,6 +10,10 @@ const pool = new Pool({
     database: config.database,
     password: config.password,
     port: config.db_port,
+    ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      }
 });
 
 const port = config.server_port;
@@ -83,5 +87,21 @@ app.get('/api/printprofiles', async (req, res) => {
         res.sendStatus(500)
     }
 });
+
+
+pool.connect();
+
+
+
+
+
+
+pool.query(`Select * from users`, (err, res)=>{
+    if(!err){
+        console.log(res.rows);
+    }else{
+        console.log(err.message);
+    }
+})
 
 module.exports = { app, pool, port };
