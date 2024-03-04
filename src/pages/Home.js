@@ -19,8 +19,7 @@ const Home = () => {
                     <img src={mainImage} alt="" />
                 </div>
                 <p>Post your portfolio for others to view in a new innovative way</p>
-                <a href="/myPortfolio.html" class="button-style">My Portfolio</a>
-
+                <a href="/myPortfolio" class="button-style">My Portfolio</a>
                 <div class="icons-container">
                     <div class="icon-box">
                     <div class="icon">
@@ -38,12 +37,12 @@ const Home = () => {
 
                 <div class="join-section">
                     <p>Join now and stand out from the rest</p>
-                    <a href="/join.html" class="button-style">Join</a>
+                    <a href="/join" class="button-style">Join</a>
                 </div>
             </div>
 
             <div class="contact">
-                <button>Contact us</button>
+                <a href="/Contact Us" class="button-style">Contact us</a>
             </div>
         </div>
     );
