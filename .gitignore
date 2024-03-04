@@ -1,12 +1,13 @@
 /.idea/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# node
-node_modules
-
 # dependencies
 /.pnp
 .pnp.js
+node_modules
+
+# config
+backend/config/config.json
 
 # testing
 /coverage
