@@ -13,7 +13,7 @@ const pool = new Pool({
     ssl: {
         require: true,
         rejectUnauthorized: false,
-      }
+    }
 });
 
 const port = config.server_port;
@@ -50,7 +50,7 @@ app.get('/api/teardown', async (req, res) => {
 });
 
 /*  Testing DB */
-app.get('/api/testdatainsert', async (req, res) => {
+app.post('/api/testdatainsert', async (req, res) => {
     try {
         await pool.query("INSERT INTO users (username, passwordhash, email) VALUES ('johndoe', 'password', 'johndoe@gmail.com');");
         await pool.query("INSERT INTO users (username, passwordhash, email) VALUES ('janedoe', 'password2', 'janedoe@gmail.com');");
