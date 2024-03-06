@@ -20,7 +20,7 @@ const port = config.server_port;
 
 app.use(express.json());
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', `http://${config.host}:${config.web_port}`);
+    res.setHeader('Access-Control-Allow-Origin', `http://localhost:${config.web_port}`);
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
     next();
@@ -87,21 +87,5 @@ app.get('/api/printprofiles', async (req, res) => {
         res.sendStatus(500)
     }
 });
-
-
-pool.connect();
-
-
-
-
-
-
-pool.query(`Select * from users`, (err, res)=>{
-    if(!err){
-        console.log(res.rows);
-    }else{
-        console.log(err.message);
-    }
-})
 
 module.exports = { app, pool, port };

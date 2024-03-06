@@ -28,10 +28,20 @@ CREATE TABLE Contact (
     ContactID           SERIAL,
     ProfileID           INTEGER,
     Email               VARCHAR(255),
-    PhoneNumber         VARCHAR(30),
-    LinkedInProfile     VARCHAR(255),
-    Website             VARCHAR(500),
+    PhoneType           VARCHAR(30),
+    CountryCode         INTEGER,
+    PhoneNumber         BIGINT,
+    Extension           INTEGER,
     PRIMARY KEY (ContactID),
+    FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
+);
+
+CREATE TABLE Website (
+    WebsiteID           SERIAL,
+    ProfileID           INTEGER,
+    Description         TEXT,
+    URL                 VARCHAR(255),
+    PRIMARY KEY (WebsiteID),
     FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
 );
 
