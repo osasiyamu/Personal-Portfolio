@@ -2,6 +2,7 @@ const { Pool } = require('pg');
 const config = require('./config.json');
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const fs = require('fs');
 
 const pool = new Pool({
@@ -18,13 +19,8 @@ const pool = new Pool({
 
 const port = config.server_port;
 
+app.use(cors());
 app.use(express.json());
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', `http://localhost:${config.web_port}`);
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
-    next();
-});
 
 /* DB CRUD Operations */
 app.get('/api/setup', async (req, res) => {
