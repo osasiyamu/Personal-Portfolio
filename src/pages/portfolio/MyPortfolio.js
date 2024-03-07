@@ -36,10 +36,6 @@ const MyPortfolio = () => {
                 <SectionContent
                     profileId={profileId}
                 />
-
-                <div id='editBtnContainer'>
-                    <Button className='btn btn-secondary'>Edit</Button>
-                </div>
             </div>
 
             <div>
