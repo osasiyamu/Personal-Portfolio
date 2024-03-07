@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 const MyPortfolio = () => {
 
     var profileId = 1;
-    const myArray = ['Item 1', 'Item 2', 'Item 3'];
 
     useEffect(() => {
         document.title = "MyPortfolio";
@@ -36,12 +35,6 @@ const MyPortfolio = () => {
                 <SectionContent
                     profileId={profileId}
                 />
-            </div>
-
-            <div>
-                {myArray.map((item, index) => (
-                    <p key={index}>{item}</p>
-                ))}
             </div>
         </div>
     );
