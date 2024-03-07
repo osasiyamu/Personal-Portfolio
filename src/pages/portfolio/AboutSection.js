@@ -5,8 +5,6 @@ const AboutSection = ({profileId}) => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-    // const token = localStorage.getItem('token');  // get the CSRF token
-    // localStorage.getItem(String(profileId)) ? dataInfo.push(JSON.parse(localStorage.getItem(String(profileInfo)))) : null; 
     const [updateValue, setUpdateValue] = useState("");
 
     const getDataInfo = () => {
