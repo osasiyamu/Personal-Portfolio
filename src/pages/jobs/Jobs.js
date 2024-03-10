@@ -16,7 +16,6 @@ const Jobs = () => {
 
     return (
         <div>
-
             <div class="search-bar">
                 <input type="text" placeholder="Search jobs" />
             </div>
@@ -61,13 +60,12 @@ const Jobs = () => {
                     <p>Vancouver, BC</p>
                     <p>$70,000 - $90,000</p>
                 </div>
-            
             </div>
 
-            <div class="job-display-panel" id="jobDescription">
+            <div id="jobDescription">
                 <span class="close-button" onclick={toggleJobDescription}>x</span>
                 <div id="jobDescriptionContent">
-                    <h4 id="top">Job Description</h4>
+                    <h4>Job Description</h4>
                     <p>Job description content will appear here.</p>
                     <div class="additional-panels">
                         <div class="apply-panel">Panel 1</div>

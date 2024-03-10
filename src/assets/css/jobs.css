@@ -1,5 +1,5 @@
 .search-bar {
-    float: right;
+    float: right; /* CHECK */
     /* position: absolute; */
     top: 100px;
     margin-bottom: 30px;
@@ -11,13 +11,13 @@
 }
 
 .search-bar input {
-    float:left;
+    float:left; /* CHECK */
 }
 
 .job-list {
     width: 30%;
-    float: left;
-    margin-top: 100px;
+    float: left;  /* CHECK */
+    margin-top: 100px; /* CHECK */
     margin-right: 150px;
     /* margin-bottom: 100px; */
     padding: 20px;
@@ -60,7 +60,7 @@
     margin: 5px 0;
 }
 
-.job-display-panel {
+/* .job-display-panel {
     display: none;
     width: 55%;
     float: right;
@@ -72,12 +72,31 @@
     background-color: #eaeaea;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-/* #top {
-    margin-left: 20px;
-    font-weight: bold;
 } */
+
+/* #jobSectionContainer > div {
+    display: inline-block;
+} */
+
+ /* #jobDescriptionContainer {
+    width: 50%;
+
+    padding: 10px;
+    height: 600px;
+    
+    border: 1px solid #ccc;
+} */
+
+#jobDescription {
+    display: none;
+    width: 50%;
+    float: center;
+    padding: 10px;
+    height: 600px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
 .apply-panel {
     padding: 20px; 
@@ -86,6 +105,10 @@
     margin: 10px;
     justify-content: space-between;
     align-items: center;
+    font-size: 14px;
+
+    margin-top: 1px; /* Reduced top margin */
+    margin-bottom: 1px;
 }
 
 .apply-button {
@@ -105,11 +128,13 @@
 }
 
 .description-panel {
-    padding: 90px; 
+    padding: 200px; 
     background-color: #eaeaea;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 10px;
+    height: auto;
+    overflow-y: auto;
 }
 
 .description-panel div {

@@ -76,14 +76,14 @@ input {
 
 .searchResults {
     width: 100%;
-    max-height: 800px;
+    max-height: 700px;
     margin-bottom: 50px;
     padding: 20px;
     overflow-y: scroll;
 }
 
 .user:hover {
-    border-color: rgb(145, 175, 145);
+    border-color: rgb(177, 187, 177);
 }
 
 .user-container {
@@ -116,7 +116,10 @@ input {
 
 .info {
     flex: 1;
-    font-size: small;
+    font-size: medium;
+}
+.info > p:first-child:hover {
+    color: rgb(130, 161, 130);
 }
 
 .info p {
@@ -124,5 +127,9 @@ input {
     flex: 1;
     max-height: 80px;
     overflow-y: auto;
+}
+
+.info p:first-child:hover{
+    cursor: pointer;
 }
   

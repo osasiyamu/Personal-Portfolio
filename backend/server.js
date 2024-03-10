@@ -20,6 +20,8 @@ app.post('/api/signin', authController.signIn);
 
 // Include other controllers
 require('./controllers/portfolioCtrl')(app);
+require('./controllers/searchCtrl')(app);
+
 
 // Start the server
 app.listen(port, () => {
