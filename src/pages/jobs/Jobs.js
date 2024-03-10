@@ -7,7 +7,6 @@ import CiscoLogo from '../../assets/images/Cisco-Logo.png';
 import { useEffect } from 'react';
 import { toggleJobDescription, applyForJob, saveJob, attachJobClickListeners } from './scripts';
 
-
 const Jobs = () => {
     useEffect(() => {
         document.title = "Jobs"
