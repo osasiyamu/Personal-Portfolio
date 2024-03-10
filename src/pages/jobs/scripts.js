@@ -1,7 +1,6 @@
 function toggleJobDescription() {
-    console.log("clicked")
     const jobDescription = document.getElementById('jobDescription');
-    jobDescription.style.display = (jobDescription.style.display === 'none' || jobDescription.style.display === '') ? 'block' : 'none';
+    jobDescription.style.display = (jobDescription.style.display == 'none') ? 'block' : 'none';
 }
 
 function applyForJob(title) {
@@ -20,16 +19,20 @@ function attachJobClickListeners() {
         titleElement.addEventListener('click', function () {
             const title = titleElement.innerText;
             const description = job.getAttribute('data-description');
+            const company = job.querySelector('h3').innerText;
+            const location = job.querySelectorAll('p')[0].innerText;
+            const salary = job.querySelectorAll('p')[1].innerText;
             const jobDescriptionContent = document.getElementById('jobDescriptionContent');
             jobDescriptionContent.innerHTML = `<h4>${title}</h4>
-                <p>${description}</p>
                 <div class="additional-panels">
                     <div class="apply-panel">
-                        <p>${title}</p>
+                    <p><strong></strong> ${company}</p>
+                    <p><strong></strong> ${location}</p>
+                    <p><strong></strong> ${salary}</p>
                         <button class="apply-button" onclick="applyForJob('${title}')">Apply</button>
                         <button class="save-button" onclick="saveJob('${title}')">Save</button>
                     </div>
-                    <div class="description-panel">Panel 2</div>
+                    <div class="description-panel">${description}</div>
                 </div>`;
             toggleJobDescription();
         });
