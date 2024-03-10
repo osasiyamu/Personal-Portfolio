@@ -3,7 +3,7 @@ const { pool } = require('../config/dbConnection');
 
 module.exports = {
     signUp: async (req, res) => {
-        const { username, email, password } = req.body;
+        const { username, email, password, firstName, lastName, occupation } = req.body;
         try {
             // Check if the user already exists
             const userExists = await pool.query(
@@ -21,19 +21,34 @@ module.exports = {
 
             // Insert the new user into the database
             const newUser = await pool.query(
-                "INSERT INTO users (username, passwordhash, email) VALUES ($1, $2, $3) RETURNING *;",
+                "INSERT INTO users (username, passwordhash, email) VALUES ($1, $2, $3) RETURNING userid;",
                 [username, passwordHash, email]
             );
 
-            // Return the new user, excluding the password hash
-            const { passwordhash, ...userData } = newUser.rows[0];
-            res.status(201).json(userData);
+            const userId = newUser.rows[0].userid;
+
+            // Insert the profile information into the Profiles table
+            await pool.query(
+                "INSERT INTO profiles (userid, firstname, lastname, occupation) VALUES ($1, $2, $3, $4);",
+                [userId, firstName, lastName, occupation]
+            );
+
+            // Return the new user, excluding the password hash. Adjust according to what you need to return.
+            res.status(201).json({
+                userId: userId,
+                username: username,
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                occupation: occupation
+            });
         } catch (err) {
             console.error('Error executing sign-up', err);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
 
+    
     signIn: async (req, res) => {
         const { username, password } = req.body;
         try {
