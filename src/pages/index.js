@@ -5,6 +5,7 @@ import Login from'./Login';
 import MyPortfolio from'./portfolio/MyPortfolio';
 import PageNotFound from './ErrorPage';
 import Search from './Search';
+import UserProfileInfo from './UserProfileInfo';
 
 export {
     Home,
@@ -13,5 +14,6 @@ export {
     Login,
     MyPortfolio,
     PageNotFound,
-    Search
+    Search,
+    UserProfileInfo
 };
