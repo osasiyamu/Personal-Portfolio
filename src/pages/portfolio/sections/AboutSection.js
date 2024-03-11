@@ -59,10 +59,9 @@ const AboutSection = ({profileId}) => {
                     <Button className='btn btn-secondary formBtn' onClick={editAboutSection}>Edit</Button>
                 </div>
             }
-
+            
+            {isEditing && <h5><strong>Edit About Section</strong></h5>}
             {isEditing && 
-                <h5><strong>Edit About Section</strong></h5> &&
-                
                 <div className='formInputContainer'>
                     <input 
                         className='formTextInput'
@@ -72,8 +71,9 @@ const AboutSection = ({profileId}) => {
                         onChange={(e) => setUpdateValue(e.target.value)}
                         required
                     />
-                </div> &&
-
+                </div>
+            }
+            {isEditing &&
                 <div className='formBtnContainer'>
                     <Button className='btn btn-secondary formBtn' onClick={updateAboutSection}>Submit</Button>
                 </div>
