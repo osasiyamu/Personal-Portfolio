@@ -53,17 +53,16 @@ const AboutSection = ({profileId}) => {
 
     return (
         <div>
+            {!isEditing && <p>{dataInfo["about"]}</p>}
             {!isEditing &&
-                (<p>{dataInfo["about"]}</p> ||
-                
                 <div className='formBtnContainer'>
                     <Button className='btn btn-secondary formBtn' onClick={editAboutSection}>Edit</Button>
-                </div>)
+                </div>
             }
 
             {isEditing && 
                 <h5><strong>Edit About Section</strong></h5> &&
-
+                
                 <div className='formInputContainer'>
                     <input 
                         className='formTextInput'
