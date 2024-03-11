@@ -6,9 +6,9 @@ import SectionContent from './SectionContent';
 import { Button } from 'react-bootstrap';
 import { useEffect } from 'react';
 
-const MyPortfolio = () => {
+const MyPortfolio = ({ profileId }) => {
 
-    var profileId = 1;
+    profileId = 1;
 
     useEffect(() => {
         document.title = "MyPortfolio";
