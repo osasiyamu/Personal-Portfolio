@@ -69,8 +69,16 @@
     display: flex;
 }
 
+textarea {
+    border-radius: 5px;
+    height: 150px;
+    margin: 5px;
+    width: 100%;
+}
+
 .formTextInput {
     border-radius: 5px;
+    width: auto;
     margin: 5px;
 }
 

@@ -53,31 +53,34 @@ const AboutSection = ({profileId}) => {
 
     return (
         <div>
-            {!isEditing && <p>{dataInfo["about"]}</p>}
-            {!isEditing &&
-                <div className='formBtnContainer'>
-                    <Button className='btn btn-secondary formBtn' onClick={editAboutSection}>Edit</Button>
+            {!isEditing && 
+                <div>
+                    <p>{dataInfo["about"]}</p>
+                    <div className='formBtnContainer'>
+                        <Button className='btn btn-secondary formBtn' onClick={editAboutSection}>Edit</Button>
+                    </div>
                 </div>
             }
             
-            {isEditing && <h5><strong>Edit About Section</strong></h5>}
-            {isEditing && 
-                <div className='formInputContainer'>
-                    <input 
-                        className='formTextInput'
-                        type='text'
-                        value={updateValue}
-                        name='aboutInfoText'
-                        onChange={(e) => setUpdateValue(e.target.value)}
-                        required
-                    />
-                </div>
-            }
             {isEditing &&
-                <div className='formBtnContainer'>
-                    <Button className='btn btn-secondary formBtn' onClick={updateAboutSection}>Submit</Button>
+                <div>
+                    <h5><strong>Edit About Section</strong></h5>
+
+                    <div className='formInputContainer'>
+                        <textarea
+                            type='text'
+                            value={updateValue}
+                            name='aboutInfoText'
+                            onChange={(e) => setUpdateValue(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div className='formBtnContainer'>
+                        <Button className='btn btn-secondary formBtn' onClick={updateAboutSection}>Submit</Button>
+                    </div>
                 </div>
-            }
+             }
         </div>
     );
 }
