@@ -5,6 +5,8 @@ const AboutSection = ({profileId}) => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    // const token = localStorage.getItem('token');  // get the CSRF token
+    // localStorage.getItem(String(profileId)) ? dataInfo.push(JSON.parse(localStorage.getItem(String(profileInfo)))) : null; 
     const [updateValue, setUpdateValue] = useState("");
 
     const getDataInfo = () => {
@@ -51,14 +53,17 @@ const AboutSection = ({profileId}) => {
 
     return (
         <div>
-            {!isEditing && <p>{dataInfo["about"]}</p>}
             {!isEditing &&
+                (<p>{dataInfo["about"]}</p> ||
+                
                 <div className='formBtnContainer'>
                     <Button className='btn btn-secondary formBtn' onClick={editAboutSection}>Edit</Button>
-                </div>
+                </div>)
             }
-            {isEditing && <h5><strong>Edit About Section</strong></h5>}
+
             {isEditing && 
+                <h5><strong>Edit About Section</strong></h5> &&
+
                 <div className='formInputContainer'>
                     <input 
                         className='formTextInput'
@@ -66,10 +71,10 @@ const AboutSection = ({profileId}) => {
                         value={updateValue}
                         name='aboutInfoText'
                         onChange={(e) => setUpdateValue(e.target.value)}
+                        required
                     />
-                </div>
-            }
-            {isEditing &&
+                </div> &&
+
                 <div className='formBtnContainer'>
                     <Button className='btn btn-secondary formBtn' onClick={updateAboutSection}>Submit</Button>
                 </div>
