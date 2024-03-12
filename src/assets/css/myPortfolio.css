@@ -78,10 +78,11 @@ textarea {
 
 .formTextInput {
     border-radius: 5px;
-    width: auto;
     margin: 5px;
+    width: auto;
 }
 
 .formBtn {
+    margin-left: 5px;
     width: auto;
 }
