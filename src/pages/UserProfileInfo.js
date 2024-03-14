@@ -15,19 +15,8 @@ function UserProfileInfo() {
   }
 
   return (
-    // <div style={{margin: 50}}>
-    //   <h1 style={{textAlign: 'center'}}>User Profile Information</h1>
-    //   <hr></hr>
-    //   <p>FirstName: {user.firstname}</p>
-    //   <p>LastName: {user.lastname}</p>
-    //   <p>Occupation: {user.occupation}</p>
-    // </div>
 
     <div className="container mt-5">
-        {/* <p>FirstName: {user.firstname}</p>
-        <p>LastName: {user.lastname}</p>
-
-        <p>Occupation: {user.occupation}</p> */}
         <ProfileImgContainer
                 profileId={user.profileid}
             />

@@ -27,6 +27,7 @@ const Login = () => {
             }
             const data = await response.json();
             console.log(data);
+            window.location.href = "/"
             // Handle redirection or display success message
         } catch (error) {
             console.error("Error during sign in: ", error);

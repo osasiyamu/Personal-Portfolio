@@ -13,36 +13,36 @@ const Home = () => {
 
     return (
         <div>
-            <div class="content">
+            <div className="content">
                 <h1>Your Portfolio, Your Way</h1>
-                <div class="main-image">
+                <div className="main-image">
                     <img src={mainImage} alt="" />
                 </div>
                 <p>Post your portfolio for others to view in a new innovative way</p>
-                <a href="/myPortfolio" class="button-style">My Portfolio</a>
-                <div class="icons-container">
-                    <div class="icon-box">
-                    <div class="icon">
+                <a href="/myPortfolio" className="button-style">My Portfolio</a>
+                <div className="icons-container">
+                    <div className="icon-box">
+                    <div className="icon">
                         <img src={skillImage} alt="" />
                     </div>
                     <p>Show off your skills</p>
                     </div>
-                    <div class="icon-box">
-                        <div class="icon">
+                    <div className="icon-box">
+                        <div className="icon">
                             <img src={connectImage} alt="" />
                         </div>
                         <p>Connect with people</p>
                     </div>
                 </div>
 
-                <div class="join-section">
+                <div className="join-section">
                     <p>Join now and stand out from the rest</p>
-                    <a href="/join" class="button-style">Join</a>
+                    <a href="/join" className="button-style">Join</a>
                 </div>
             </div>
 
-            <div class="contact">
-                <a href="/Contact Us" class="button-style">Contact us</a>
+            <div className="contact">
+                <a href="/Contact Us" className="button-style">Contact us</a>
             </div>
         </div>
     );

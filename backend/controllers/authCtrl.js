@@ -25,6 +25,8 @@ module.exports = {
                 [username, passwordHash, email]
             );
 
+            console.log(newUser.rows[0]);
+            console.log(newUser.rows[0].userid);
             const userId = newUser.rows[0].userid;
 
             // Insert the profile information into the Profiles table

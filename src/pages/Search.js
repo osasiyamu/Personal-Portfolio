@@ -13,11 +13,10 @@ const Search = () => {
     const [filteredResults, setFilteredResults] = useState([]);
     const [result, setResults] = useState([]);
     
-    // const history = useHistory();
     const redirect = useNavigate();
 
     const getProfileInfos = () => {
-        fetch(`http://localhost:5555/userprofiles`)
+        fetch(`http://localhost:5555/userprofiles/1`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -33,8 +32,6 @@ const Search = () => {
     };
 
     const getUserProfile = (user) => {
-        console.log(user.firstname)
-        console.log(user.lastname)
         redirect('/userprofile', { state: { userData: user } });
     }
 
@@ -55,7 +52,7 @@ const Search = () => {
 
     return (
         <div>
-            <div class="search">
+            <div className="search">
                 <div>
                     <input
                         type="text"
@@ -64,7 +61,7 @@ const Search = () => {
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
-                <div class="filterComponents">
+                <div className="filterComponents">
                     <label htmlFor="filterBy">Filter By: </label>
                     <button id="people">People</button>
                     <button>Portfolios</button>
@@ -72,11 +69,11 @@ const Search = () => {
                 </div>
             </div>
 
-            <div class="searchResults">
+            <div className="searchResults">
                 {filteredResults.map((user, index) => (
-                    <div key={index} class="user" onClick={() => getUserProfile(user)}>
+                    <div key={index} className="user" onClick={() => getUserProfile(user)}>
                         <img src={personIcon} alt="" />
-                        <div class="info">
+                        <div className="info">
                             <p>{user.firstname} {user.lastname}</p>
                             <p>{user.occupation}</p>
                         </div>
