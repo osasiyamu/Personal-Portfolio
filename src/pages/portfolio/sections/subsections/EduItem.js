@@ -4,7 +4,7 @@ import { useState } from 'react';
 const EduItem = ({dataInfo}) => {
 
     const [isEditing, setIsEditing] = useState(false);
-    var updateValue = dataInfo;
+    const [updateValue, setUpdateValue] = useState(dataInfo);
 
     const convertDate = (dateString) => {
         const date = new Date(dateString);
@@ -16,7 +16,7 @@ const EduItem = ({dataInfo}) => {
     };
 
     const editEducation = () => {
-        updateValue = dataInfo;
+        setUpdateValue(dataInfo);
         setIsEditing(true);
     };
 
