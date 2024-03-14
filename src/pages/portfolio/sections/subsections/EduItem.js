@@ -1,14 +1,14 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const EduItem = ({dataInfo}) => {
+const EduItem = ({dataInfo, add}) => {
 
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
 
     const convertDate = (dateString) => {
         const date = new Date(dateString);
-        const formattedDate = date.toLocaleDateString('en-US', {
+        const formattedDate = date.toLocaleDateString('en-CA', {
             year: 'numeric',
             month: 'long'
         });
@@ -18,6 +18,26 @@ const EduItem = ({dataInfo}) => {
     const editEducation = () => {
         setUpdateValue(dataInfo);
         setIsEditing(true);
+    };
+
+    const addEducation = () => {
+        fetch(`http://localhost:5555/myportfolio/education/add`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                institution: updateValue["institution"],
+                degree: updateValue["degree"],
+                fieldofstudy: updateValue["fieldofstudy"],
+                start_date: updateValue["startdate"],
+                end_date: updateValue["enddate"]
+            })
+        })
+        // .then(window.location.reload())
+		.catch(error => {
+			console.error("Error fetching data: ", error);
+		});
     };
 
     const updateEducation = () => {
@@ -40,8 +60,21 @@ const EduItem = ({dataInfo}) => {
 		});
     };
 
+    const deleteEducation = () => {
+        fetch(`http://localhost:5555/myportfolio/education/${dataInfo["educationid"]}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(window.location.reload())
+		.catch(error => {
+			console.error("Error fetching data: ", error);
+		});
+    };
+
     return (
-        <div className='mb-4'>
+        <div className='mb-4 eduItem'>
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>
@@ -56,14 +89,13 @@ const EduItem = ({dataInfo}) => {
             }
             {isEditing &&
                 <div>
-                    <h6><strong>Editting education...</strong></h6>
+                    {/* <h6><strong>Editting education...</strong></h6> */}
 
                     <p><strong>Institution name:</strong>
                     <input
                         className='formTextInput'
                         type='text'
-                        value={updateValue["institution"]}
-                        name='aboutInfoText'
+                        defaultValue={updateValue["institution"]}
                         onChange={(e) => (updateValue["institution"] = e.target.value)}
                         required
                     /></p>
@@ -72,8 +104,7 @@ const EduItem = ({dataInfo}) => {
                     <input
                         className='formTextInput'
                         type='text'
-                        value={updateValue["degree"]}
-                        name='aboutInfoText'
+                        defaultValue={updateValue["degree"]}
                         onChange={(e) => (updateValue["degree"] = e.target.value)}
                         required
                     /></p>
@@ -82,8 +113,7 @@ const EduItem = ({dataInfo}) => {
                     <input
                         className='formTextInput'
                         type='text'
-                        value={updateValue["fieldofstudy"]}
-                        name='aboutInfoText'
+                        defaultValue={updateValue["fieldofstudy"]}
                         onChange={(e) => (updateValue["fieldofstudy"] = e.target.value)}
                     /></p>
 
@@ -91,7 +121,7 @@ const EduItem = ({dataInfo}) => {
                     <input
                         className='formTextInput'
                         type='date'
-                        value={(new Date(updateValue["startdate"]).toLocaleDateString('en-CA', {
+                        defaultValue={(new Date(updateValue["startdate"]).toLocaleDateString('en-CA', {
                             year: 'numeric',
                             month: 'numeric',
                             day: 'numeric'
@@ -105,13 +135,16 @@ const EduItem = ({dataInfo}) => {
                     <input
                         className='formTextInput'
                         type='date'
-                        value={updateValue["enddate"] ? (new Date(updateValue["enddate"]).toLocaleDateString('en-CA', {
+                        defaultValue={updateValue["enddate"] ? (new Date(updateValue["enddate"]).toLocaleDateString('en-CA', {
                             year: 'numeric',
-                            month: 'numeric',
-                            day: 'numeric'
+                            month: '2-digit',
+                            day: '2-digit'
                         })) : ""}
-                        name='aboutInfoText'
-                        onChange={(e) => (updateValue["enddate"] = e.target.value)}
+                        onChange={(e) => (updateValue["enddate"] = (new Date(e.target.value).toLocaleDateString('en-CA', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
+                        })))}
                     /></p>
 
                     <div className='formBtnContainer'>
@@ -119,11 +152,18 @@ const EduItem = ({dataInfo}) => {
                     </div>
 
                     <div className='formBtnContainer'>
-                        <Button className='btn btn-secondary formBtn'>Delete</Button>
-                        <Button className='btn btn-secondary formBtn' onClick={updateEducation}>Submit</Button>
+                        {add &&
+                            <Button className='btn btn-secondary formBtn' onClick={() => window.location.reload()}>Cancel</Button>
+                        }
+                        {!add &&
+                            <Button className='btn btn-secondary formBtn' onClick={deleteEducation}>Delete</Button>
+                        }
+                        <Button className='btn btn-secondary formBtn' onClick={
+                            add ? addEducation : updateEducation
+                            }>Submit</Button>
                     </div>
                 </div>
-             }
+            }
         </div>
     );
 }

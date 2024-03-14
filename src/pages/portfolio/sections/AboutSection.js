@@ -49,7 +49,7 @@ const AboutSection = ({profileId}) => {
 
     useEffect(() => {
 		getDataInfo();
-    });
+    }, []);
 
     return (
         <div>
