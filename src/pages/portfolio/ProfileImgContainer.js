@@ -22,7 +22,7 @@ const ProfileImgContainer = ({profileId}) => {
 
     useEffect(() => {
 		getProfileInfo();
-    });
+    }, []);
 
     return (
 		<div id="profileImgContainer">

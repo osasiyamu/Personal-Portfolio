@@ -58,6 +58,24 @@ module.exports = function (app) {
         }
     });
 
+    app.post('/myportfolio/education/add', async (req, res) => {
+        const institution = req.body.institution;
+        const degree = req.body.degree;
+        const fieldofstudy = req.body.fieldofstudy;
+        const start_date = req.body.start_date;
+        const end_date = req.body.end_date;
+
+        try {
+            const client = await pool.connect();
+            await client.query(`INSERT INTO education (institution, degree, fieldofstudy, startdate, enddate) VALUES ('${institution}', '${degree}', '${fieldofstudy}', '${start_date}', '${end_date}')`);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
     app.post('/myportfolio/education/:id', async (req, res) => {
         const id = req.params.id;
         const institution = req.body.institution;
@@ -69,6 +87,20 @@ module.exports = function (app) {
         try {
             const client = await pool.connect();
             await client.query(`UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = '${end_date}' WHERE educationid = ${id}`);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    app.delete('/myportfolio/education/:id', async (req, res) => {
+        const id = req.params.id;
+
+        try {
+            const client = await pool.connect();
+            await client.query(`DELETE FROM education WHERE educationid = ${id}`);
             client.release();
             res.status(200);
         } catch (err) {

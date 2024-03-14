@@ -6,8 +6,7 @@ import EduItem from './subsections/EduItem';
 const EduSection = ({profileId}) => {
 
     const [dataInfo, setDataInfo] = useState([]);
-    const [isEditing, setIsEditing] = useState(false);
-    const [updateValue, setUpdateValue] = useState("");
+    const [isAdding, setIsAdding] = useState(false);
 
     const getDataInfo = () => {
         fetch(`http://localhost:5555/myportfolio/education/${profileId}`)
@@ -32,8 +31,16 @@ const EduSection = ({profileId}) => {
     return (
         <div>
             {dataInfo.map((row, index) => (
-                <EduItem key={index} dataInfo={row} />
+                <EduItem key={index} dataInfo={row} add={false} />
             ))}
+
+            {!isAdding &&
+                <div className='formBtnContainer'>
+                    <Button className='btn btn-secondary formBtn' onClick={() => setIsAdding(true)}>Add</Button>
+                </div>
+            }
+
+            {isAdding && <EduItem dataInfo={{}} add={true} />}
         </div>
     );
 }
