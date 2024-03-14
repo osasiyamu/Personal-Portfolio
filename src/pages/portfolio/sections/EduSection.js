@@ -31,7 +31,7 @@ const EduSection = ({profileId}) => {
     return (
         <div>
             {dataInfo.map((row, index) => (
-                <EduItem key={index} dataInfo={row} add={false} />
+                <EduItem key={index} dataInfo={row} />
             ))}
 
             {!isAdding &&
