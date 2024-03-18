@@ -83,7 +83,7 @@ const EduItem = ({dataInfo, add=false}) => {
                     </div>
                     <div>
                         <h2>{dataInfo["institution"]}</h2>
-                        <h4>{dataInfo["degree"]} {dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
+                        <h4>{dataInfo["degree"]}{dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
                         <p>{convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
                     </div>
                 </div>
