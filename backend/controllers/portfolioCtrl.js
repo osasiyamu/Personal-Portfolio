@@ -71,9 +71,15 @@ module.exports = function (app) {
         const start_date = req.body.start_date;
         const end_date = req.body.end_date;
 
+        var query = `INSERT INTO education (profileid, institution, degree, fieldofstudy, startdate, enddate) VALUES ('${profile_id}', '${institution}', '${degree}', '${fieldofstudy}', '${start_date}', '${end_date}')`;
+
+        if (end_date == "Invalid Date") {
+            query = `INSERT INTO education (profileid, institution, degree, fieldofstudy, startdate, enddate) VALUES ('${profile_id}', '${institution}', '${degree}', '${fieldofstudy}', '${start_date}', '')`
+        }
+
         try {
             const client = await pool.connect();
-            await client.query(`INSERT INTO education (profileid, institution, degree, fieldofstudy, startdate, enddate) VALUES ('${profile_id}', '${institution}', '${degree}', '${fieldofstudy}', '${start_date}', '${end_date}')`);
+            await client.query();
             client.release();
             res.status(200);
         } catch (err) {
@@ -89,11 +95,17 @@ module.exports = function (app) {
         const degree = req.body.degree;
         const fieldofstudy = req.body.fieldofstudy;
         const start_date = req.body.start_date;
-        const end_date = req.body.end_date;
+        var end_date = req.body.end_date;
+
+        var query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = '${end_date}' WHERE educationid = ${id}`;
+
+        if (end_date == "Invalid Date") {
+            query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = NULL WHERE educationid = ${id}`;
+        }
 
         try {
             const client = await pool.connect();
-            await client.query(`UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = '${end_date}' WHERE educationid = ${id}`);
+            await client.query(query);
             client.release();
             res.status(200);
         } catch (err) {
