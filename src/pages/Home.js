@@ -19,10 +19,12 @@ const Home = () => {
                     <img src={mainImage} alt="" />
                 </div>
                 <p>Post your portfolio for others to view in a new innovative way</p>
+
                 <a href="/myPortfolio" className="button-style">My Portfolio</a>
                 <div className="icons-container">
                     <div className="icon-box">
                     <div className="icon">
+
                         <img src={skillImage} alt="" />
                     </div>
                     <p>Show off your skills</p>

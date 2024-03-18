@@ -1,4 +1,4 @@
-import AboutSection from "./AboutSection";
+import { AboutSection, EduSection } from './sections';
 
 const SectionContent = ({ profileId }) => {
 
@@ -6,6 +6,9 @@ const SectionContent = ({ profileId }) => {
         <div>
             {(window.location.pathname === "/myportfolio") && 
                 <AboutSection profileId={profileId} />
+            }
+            {(window.location.pathname === "/myportfolio/education") && 
+                <EduSection profileId={profileId} />
             }
         </div>
     );
