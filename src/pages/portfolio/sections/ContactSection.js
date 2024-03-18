@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const AboutSection = ({profileId}) => {
+const ContactSection = ({profileId}) => {
 
     const [dataInfo, setDataInfo] = useState([]);
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/about/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/contact/${profileId}`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -22,7 +22,7 @@ const AboutSection = ({profileId}) => {
 
     useEffect(() => {
 		getDataInfo();
-    });
+    }, []);
 
     return (
         <div>
@@ -31,4 +31,4 @@ const AboutSection = ({profileId}) => {
     );
 }
 
-export default AboutSection;
+export default ContactSection;

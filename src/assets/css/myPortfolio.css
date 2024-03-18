@@ -46,9 +46,9 @@
 }
 
 #sectionControls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 #ctrlBtn {
@@ -60,9 +60,35 @@
     width: 120px;
 }
 
-#editBtnContainer {
+.formBtnContainer {
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-end;
-    margin: 10px 10px 0px 0px;
+}
+
+.formInputContainer {
+    display: flex;
+}
+
+textarea {
+    border-radius: 5px;
+    height: 150px;
+    margin: 5px;
+    width: 100%;
+}
+
+.formTextInput {
+    border-radius: 5px;
+    margin: 5px;
+    width: auto;
+}
+
+.formBtn {
+    margin-left: 5px;
+    width: auto;
+}
+
+.eduItem {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 5px;
+    padding: 5px;
 }

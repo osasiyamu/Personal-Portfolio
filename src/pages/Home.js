@@ -19,7 +19,7 @@ const Home = () => {
                     <img src={mainImage} alt="" />
                 </div>
                 <p>Post your portfolio for others to view in a new innovative way</p>
-                <a href="/myPortfolio" class="button-style">My Portfolio</a>
+                <a href="/myportfolio" class="button-style">My Portfolio</a>
                 <div class="icons-container">
                     <div class="icon-box">
                     <div class="icon">
