@@ -2,12 +2,13 @@ import './assets/css/main.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './assets/components';
-import { Home, Jobs, Join, Login, MyPortfolio, PageNotFound, Search } from './pages';
+import { Home, Jobs, Join, Login, MyPortfolio, PageNotFound, Search, UserProfileInfo } from './pages';
 
 function App() {
 	return (
 		<div className='body'>
 			<Navbar />
+
 			<div className='main-info'>
 				<BrowserRouter>
 					<Routes path='/' element={<Home />}>
