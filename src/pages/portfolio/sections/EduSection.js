@@ -40,7 +40,7 @@ const EduSection = ({profileId}) => {
                 </div>
             }
 
-            {isAdding && <EduItem dataInfo={{}} add={true} />}
+            {isAdding && <EduItem dataInfo={{"profileId": profileId}} add={true} />}
         </div>
     );
 }

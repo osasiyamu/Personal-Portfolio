@@ -1,6 +1,7 @@
 const { pool } = require('../config/dbConnection');
 
 module.exports = function (app) {
+    // Get profile info for a user
     app.get('/myportfolio/:id', async (req, res) => {
         const id = req.params.id;
         try {
@@ -15,6 +16,7 @@ module.exports = function (app) {
         }
     });
 
+    // Get about info for a user
     app.get('/myportfolio/about/:id', async (req, res) => {
         const id = req.params.id;
         try {
@@ -29,6 +31,7 @@ module.exports = function (app) {
         }
     });
 
+    // Update about info for a user
     app.post('/myportfolio/about/:id', async (req, res) => {
         const id = req.params.id;
         const text = req.body.text;
@@ -44,6 +47,7 @@ module.exports = function (app) {
         }
     });
 
+    // Get user education history
     app.get('/myportfolio/education/:id', async (req, res) => {
         const id = req.params.id;
         try {
@@ -58,7 +62,9 @@ module.exports = function (app) {
         }
     });
 
+    // Add to a user's education history 
     app.post('/myportfolio/education/add', async (req, res) => {
+        const profile_id = req.body.profile_id;
         const institution = req.body.institution;
         const degree = req.body.degree;
         const fieldofstudy = req.body.fieldofstudy;
@@ -67,7 +73,7 @@ module.exports = function (app) {
 
         try {
             const client = await pool.connect();
-            await client.query(`INSERT INTO education (institution, degree, fieldofstudy, startdate, enddate) VALUES ('${institution}', '${degree}', '${fieldofstudy}', '${start_date}', '${end_date}')`);
+            await client.query(`INSERT INTO education (profileid, institution, degree, fieldofstudy, startdate, enddate) VALUES ('${profile_id}', '${institution}', '${degree}', '${fieldofstudy}', '${start_date}', '${end_date}')`);
             client.release();
             res.status(200);
         } catch (err) {
@@ -76,6 +82,7 @@ module.exports = function (app) {
         }
     });
 
+    // Update a user's education history
     app.post('/myportfolio/education/:id', async (req, res) => {
         const id = req.params.id;
         const institution = req.body.institution;
@@ -95,6 +102,7 @@ module.exports = function (app) {
         }
     });
 
+    // Delete from a user's education history
     app.delete('/myportfolio/education/:id', async (req, res) => {
         const id = req.params.id;
 
