@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import personIcon from '../assets/images/personIcon.jpeg';
 
-
 const Search = () => {
     useEffect(() => {
         document.title = "Search";
@@ -12,43 +11,48 @@ const Search = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
     const [result, setResults] = useState([]);
-    
+    const [filterType, setFilterType] = useState('people'); // New state for filter type
+
     const redirect = useNavigate();
 
     const getProfileInfos = () => {
         fetch(`http://localhost:5555/userprofiles/1`)
-		.then(response => {
-			if (!response.ok) {
-			  	throw new Error('Network response was not ok');
-			}
-			return response.json();
-		})
-        .then(data => {
-            setResults(data);
-        })
-		.catch(error => {
-			console.error("Error fetching data: ", error);
-		});
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setResults(data);
+            })
+            .catch(error => {
+                console.error("Error fetching data: ", error);
+            });
     };
 
     const getUserProfile = (user) => {
         redirect('/userprofile', { state: { userData: user } });
-    }
+    };
 
     useEffect(() => {
-		getProfileInfos();
+        getProfileInfos();
     }, []);
 
     useEffect(() => {
         if (result.length > 0) {
-            const filteredResults = result.filter(user =>
-                user.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                user.lastname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                user.occupation.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setFilteredResults(filteredResults);
+            const filtered = result.filter(user => {
+                const query = searchQuery.toLowerCase();
+                if (filterType === 'people') {
+                    return user.firstname.toLowerCase().includes(query) || user.lastname.toLowerCase().includes(query);
+                } else if (filterType === 'occupation') {
+                    return user.occupation.toLowerCase().includes(query);
+                }
+                return false; // Ensure all paths return a value
+            });
+            setFilteredResults(filtered);
         }
-    }, [searchQuery, result]);
+    }, [searchQuery, result, filterType]);
 
     return (
         <div>
@@ -62,10 +66,21 @@ const Search = () => {
                     />
                 </div>
                 <div className="filterComponents">
-                    <label htmlFor="filterBy">Filter By: </label>
-                    <button id="people">People</button>
-                    <button>Portfolios</button>
-                    <button>Skills</button>
+    <label htmlFor="filterBy">Filter By: </label>
+    <button
+        id="filterPeople"
+        onClick={() => setFilterType('people')}
+        className={filterType === 'people' ? 'activeFilter' : ''}
+    >
+        People
+    </button>
+    <button
+        id="filterOccupation"
+        onClick={() => setFilterType('occupation')}
+        className={filterType === 'occupation' ? 'activeFilter' : ''}
+    >
+        Occupation
+    </button>
                 </div>
             </div>
 
