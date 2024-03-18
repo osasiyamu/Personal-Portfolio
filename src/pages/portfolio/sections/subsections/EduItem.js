@@ -26,7 +26,8 @@ const EduItem = ({dataInfo, add=false}) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
+                profile_id: dataInfo["profileId"],
                 institution: updateValue["institution"],
                 degree: updateValue["degree"],
                 fieldofstudy: updateValue["fieldofstudy"],
@@ -34,7 +35,7 @@ const EduItem = ({dataInfo, add=false}) => {
                 end_date: updateValue["enddate"]
             })
         })
-        // .then(window.location.reload())
+        .then(window.location.reload())
 		.catch(error => {
 			console.error("Error fetching data: ", error);
 		});
@@ -82,21 +83,19 @@ const EduItem = ({dataInfo, add=false}) => {
                     </div>
                     <div>
                         <h2>{dataInfo["institution"]}</h2>
-                        <h4>{dataInfo["degree"]}{dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
+                        <h4>{dataInfo["degree"]} {dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
                         <p>{convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
                     </div>
                 </div>
             }
             {isEditing &&
                 <div>
-                    {/* <h6><strong>Editting education...</strong></h6> */}
-
                     <p><strong>Institution name:</strong>
                     <input
                         className='formTextInput'
                         type='text'
                         defaultValue={updateValue["institution"]}
-                        onChange={(e) => (updateValue["institution"] = e.target.value)}
+                        onChange={(e) => updateValue["institution"] = e.target.value}
                         required
                     /></p>
 
@@ -105,7 +104,7 @@ const EduItem = ({dataInfo, add=false}) => {
                         className='formTextInput'
                         type='text'
                         defaultValue={updateValue["degree"]}
-                        onChange={(e) => (updateValue["degree"] = e.target.value)}
+                        onChange={(e) => updateValue["degree"] = e.target.value}
                         required
                     /></p>
 
@@ -114,20 +113,20 @@ const EduItem = ({dataInfo, add=false}) => {
                         className='formTextInput'
                         type='text'
                         defaultValue={updateValue["fieldofstudy"]}
-                        onChange={(e) => (updateValue["fieldofstudy"] = e.target.value)}
+                        onChange={(e) => updateValue["fieldofstudy"] = e.target.value}
                     /></p>
 
                     <p><strong>Start Date:</strong>
                     <input
                         className='formTextInput'
                         type='date'
-                        defaultValue={(new Date(updateValue["startdate"]).toLocaleDateString('en-CA', {
+                        defaultValue={new Date(updateValue["startdate"]).toLocaleDateString('en-CA', {
                             year: 'numeric',
                             month: 'numeric',
                             day: 'numeric'
-                        }))}
+                        })}
                         name='aboutInfoText'
-                        onChange={(e) => (updateValue["startdate"] = e.target.value)}
+                        onChange={(e) => updateValue["startdate"] = e.target.value}
                         required
                     /></p>
 
@@ -140,16 +139,12 @@ const EduItem = ({dataInfo, add=false}) => {
                             month: '2-digit',
                             day: '2-digit'
                         })) : ""}
-                        onChange={(e) => (updateValue["enddate"] = (new Date(e.target.value).toLocaleDateString('en-CA', {
+                        onChange={(e) => updateValue["enddate"] = (new Date(e.target.value).toLocaleDateString('en-CA', {
                             year: 'numeric',
                             month: '2-digit',
                             day: '2-digit'
-                        })))}
+                        }))}
                     /></p>
-
-                    <div className='formBtnContainer'>
-                        
-                    </div>
 
                     <div className='formBtnContainer'>
                         {add &&
