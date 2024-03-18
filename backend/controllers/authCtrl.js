@@ -11,9 +11,23 @@ module.exports = {
                 [username, email]
             );
 
-            if (userExists.rows.length > 0) {
+            // Determine if the conflict is due to the username or the email
+        if (userExists.rows.length > 0) {
+            // Iterate through the results to find out if it's the username or email that exists
+            let usernameConflict = false;
+            let emailConflict = false;
+            userExists.rows.forEach(row => {
+                if (row.username === username) usernameConflict = true;
+                if (row.email === email) emailConflict = true;
+            });
+
+            // Return specific error messages based on the conflict found
+            if (usernameConflict) {
                 return res.status(400).json({ message: "User already exists." });
+            } else if (emailConflict) {
+                return res.status(400).json({ message: "Email already taken." });
             }
+        }
 
             // Hash the password
             const salt = await bcrypt.genSalt(10);

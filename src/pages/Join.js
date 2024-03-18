@@ -10,6 +10,7 @@ const Join = () => {
     const [lastName, setLastName] = useState('');
     const [occupation, setOccupation] = useState('');
     const [error, setError] = useState(''); // State to store the error message
+    const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +20,22 @@ const Join = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(''); // Clear any existing errors
+    
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            setError('Passwords do not match.');
+            return; // Stop the submission if passwords don't match
+        }
+    
+        // Define the password validation regex
+        const passwordPolicyRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+
+        // Validate the password against the policy
+        if (!passwordPolicyRegex.test(password)) {
+            setError('Password must contain at least one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.');
+        return; // Stop the submission if the password doesn't meet the policy
+        }
+
         try {
             const response = await fetch('http://localhost:5555/api/signup', {
                 method: 'POST',
@@ -34,16 +51,15 @@ const Join = () => {
                     occupation,
                 }),
             });
-
+    
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Could not complete sign up.');
             }
-
-            // If sign up is successful, you might want to automatically log the user in or redirect them to the login page
-            navigate('/login');
+    
+            navigate('/login'); // Navigate to login page on successful sign-up
         } catch (error) {
-            setError(error.message);
+            setError(error.message); // Set error message if there's an exception
         }
     };
 
@@ -51,7 +67,7 @@ const Join = () => {
         <div>
             <div id="pageHeading">
                 <h1>Create a New Account</h1>
-                <h3>Hello, let's set up your new account. Already have an account? <a href="/login">Sign in here</a></h3>
+                <h3>Already have an account? <a href="/login">Sign in here</a></h3>
             </div>
 
             <div id="signUpC">
@@ -64,6 +80,10 @@ const Join = () => {
 
                     <label>Password:</label>
                     <input type="password" id="password" name="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+
+                    <label>Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+
 
                     <label>First Name:</label>
                     <input type="text" id="firstName" name="firstName" required value={firstName} onChange={(e) => setFirstName(e.target.value)} />
