@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react';
 import '../assets/css/join.css';
+import { login } from '../Authentication';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -26,11 +27,16 @@ const Login = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data);
-            window.location.href = "/"
+            if (data) {
+                // Assuming 'data' contains a token or an indication of successful login
+                // For this example, let's assume successful login sets 'isLoggedIn' in local storage
+                login(); // You might want to pass a token here if your backend provides one
+                window.location.href = "/"; // Redirect to the homepage or dashboard
+            }
             // Handle redirection or display success message
         } catch (error) {
             console.error("Error during sign in: ", error);
+            // Ideally, show an error message to the user
         }
     };
 
