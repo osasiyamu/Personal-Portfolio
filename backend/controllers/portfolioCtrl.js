@@ -128,4 +128,78 @@ module.exports = function (app) {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     });
+
+    // Get user's contacts
+    app.get('/myportfolio/contact/:id', async (req, res) => {
+        const id = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM contact WHERE profileId = ${id}`);
+            const data = result.rows;
+            client.release();
+            res.status(200).json(data[0]);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Update user's contacts
+    app.post('/myportfolio/contact/:id', async (req, res) => {
+        const id = req.params.id;
+        const email = req.body.email;
+        const countrycode = req.body.countrycode;
+        const phonenumber = req.body.phonenumber;
+        var extension = req.body.extension;
+
+        var query = `UPDATE contact SET email = '${email}', countrycode = '${countrycode}', phonenumber = '${phonenumber}', extension = '${extension}' WHERE profileid = ${id}`;
+
+        // if (end_date == "Invalid Date") {
+        //     query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = NULL WHERE educationid = ${id}`;
+        // }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Get user's web links
+    app.get('/myportfolio/website/:id', async (req, res) => {
+        const id = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM website WHERE profileId = ${id}`);
+            const data = result.rows;
+            client.release();
+            res.status(200).json(data);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Update user's web links
+    app.post('/myportfolio/website/:id', async (req, res) => {
+        const id = req.params.id;
+        const description = req.body.description;
+        const url = req.body.url;
+
+        var query = `UPDATE website SET description = '${description}', url = '${url}' WHERE websiteid = ${id}`;
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
 };
