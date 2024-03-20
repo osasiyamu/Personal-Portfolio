@@ -26,10 +26,10 @@ CREATE TABLE About (
 
 CREATE TABLE Contact (
     ContactID           SERIAL,
-    ProfileID           INTEGER,
+    ProfileID           INTEGER UNIQUE,
     Email               VARCHAR(255),
     PhoneType           VARCHAR(30),
-    CountryCode         INTEGER,
+    CountryCode         VARCHAR(5),
     PhoneNumber         BIGINT,
     Extension           INTEGER,
     PRIMARY KEY (ContactID),
@@ -40,7 +40,7 @@ CREATE TABLE Website (
     WebsiteID           SERIAL,
     ProfileID           INTEGER,
     Description         TEXT,
-    URL                 VARCHAR(255),
+    URL                 TEXT,
     PRIMARY KEY (WebsiteID),
     FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
 );

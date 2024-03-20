@@ -82,7 +82,7 @@ const EduItem = ({dataInfo, add=false}) => {
                         <Button className='btn btn-secondary formBtn' onClick={editEducation}>Edit</Button>
                     </div>
                     <div>
-                        <h2>{dataInfo["institution"]}</h2>
+                        <h2><strong>{dataInfo["institution"]}</strong></h2>
                         <h4>{dataInfo["degree"]}{dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
                         <p>{convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
                     </div>
