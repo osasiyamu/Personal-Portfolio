@@ -139,7 +139,7 @@ const ContactSection = ({profileId}) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {websiteInfo.map((row, index) => (
+                                {websiteUpdate.map((row, index) => (
                                     <tr key={index}>
                                         <td>
                                             <input
