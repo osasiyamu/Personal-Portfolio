@@ -129,6 +129,93 @@ module.exports = function (app) {
         }
     });
 
+
+    //Get Users Experience 
+    //Add an Experience for User
+    //Update Users Experience
+    //Delete Users Experience
+
+    //Get Users License 
+    app.get('/myportfolio/licenses/:id', async (req, res) => {
+        const id = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM licenses WHERE profileId = ${id} ORDER BY issuedate DESC`);
+            const data = result.rows;
+            client.release();
+            res.status(200).json(data);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    //Add a License for User
+    app.post('/myportfolio/licenses/add', async (req, res) => {
+        const profile_id = req.body.profile_id;
+        const licenseName = req.body.licenseName;
+        const awardingInsitution = req.body.awardingInsitution;
+        const awardDate = req.body.awardDate;
+        const expirationDate = req.body.expirationDate;
+       
+
+        var query = `INSERT INTO licenses (licenseid, profileid, licensename, issuedby, issuedate, expirydate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}', '${expirationDate}')`;
+
+        if (("" + expirationDate) == "undefined") {
+            query = `INSERT INTO licenses (licenseid, profileid, licensename, issuedby, issuedate, expirydate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}')`
+        }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    //Update Users License
+    app.post('/myportfolio/licenses/:id', async (req, res) => {
+        const profile_id = req.body.profile_id;
+        const licenseName = req.body.licenseName;
+        const awardingInsitution = req.body.awardingInsitution;
+        const awardDate = req.body.awardDate;
+        const expirationDate = req.body.expirationDate;
+
+        var query = `UPDATE licenses SET licenseName = '${licenseName}', awardingInsitution = '${awardingInsitution}', awardDate = '${awardDate}', expirationDate = '${expirationDate}' WHERE licenseid = ${id}`;
+
+        if (expirationDate == "Invalid Date") {
+            query = `UPDATE licenses SET licenseName = '${licenseName}', awardingInsitution = '${awardingInsitution}', awardDate = '${awardDate}', expirationDate = NULL WHERE licenseid = ${id}`;
+        }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });                                                                                                                                                                                                                                                                                                                                                                      
+        }
+    });
+
+    //Delete Users License
+    app.delete('/myportfolio/licenses/:id', async (req, res) => {
+        const id = req.params.id;
+
+        try {
+            const client = await pool.connect();
+            await client.query(`DELETE FROM licenses WHERE licenseid = ${id}`);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
     // Get user project history
     app.get('/myportfolio/projects/:id', async (req, res) => {
         const id = req.params.id;
