@@ -109,7 +109,7 @@ const LicenseItem = ({dataInfo, add=false}) => {
                     <p><strong>Issue Date:</strong>
                     <input
                         className='formTextInput'
-                        type='text'
+                        type='date'
                         defaultValue={updateValue["issuedate"]}
                         onChange={(e) => updateValue["issuedate"] = e.target.value}
                     /></p>
