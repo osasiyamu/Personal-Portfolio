@@ -95,8 +95,8 @@ CREATE TABLE Projects (
 CREATE TABLE Skills (
     SkillID             SERIAL,
     ProfileID           INTEGER,
-    SkillName           VARCHAR(100) NOT NULL,
-    ProficiencyLevel    VARCHAR(50),
+    SkillName           TEXT NOT NULL,
+    ProficiencyLevel    VARCHAR(15) NOT NULL,
     PRIMARY KEY (SkillID),
     FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
 );

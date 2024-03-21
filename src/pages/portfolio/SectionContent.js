@@ -1,4 +1,4 @@
-import { AboutSection, EduSection, ContactSection } from './sections';
+import { AboutSection, EduSection, SkillSection, ContactSection } from './sections';
 
 const SectionContent = ({ profileId }) => {
 
@@ -9,6 +9,9 @@ const SectionContent = ({ profileId }) => {
             }
             {(window.location.pathname === "/myportfolio/education") && 
                 <EduSection profileId={profileId} />
+            }
+            {(window.location.pathname === "/myportfolio/skills") && 
+                <SkillSection profileId={profileId} />
             }
             {(window.location.pathname === "/myportfolio/contact") && 
                 <ContactSection profileId={profileId} />

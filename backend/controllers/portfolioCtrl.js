@@ -129,6 +129,40 @@ module.exports = function (app) {
         }
     });
 
+    // Get user's skills
+    app.get('/myportfolio/skills/:id', async (req, res) => {
+        const id = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM skills WHERE profileId = ${id}`);
+            const data = result.rows;
+            client.release();
+            res.status(200).json(data);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Update user's skills
+    app.post('/myportfolio/skills/:id', async (req, res) => {
+        const id = req.params.id;
+        const skill_name = req.body.skill_name;
+        const proficiency_level = req.body.proficiency_level;
+
+        var query = `UPDATE skills SET skillname = '${skill_name}', proficiencylevel = '${proficiency_level}' WHERE skillid = ${id}`;
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
     // Get user's contacts
     app.get('/myportfolio/contact/:id', async (req, res) => {
         const id = req.params.id;
