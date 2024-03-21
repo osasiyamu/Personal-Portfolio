@@ -81,8 +81,8 @@ const LicenseItem = ({dataInfo, add=false}) => {
                     </div>
                     <div>
                         <h2><strong>{dataInfo["licensename"]}</strong></h2>
-                        <h4>{dataInfo["degree"]}{dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
-                        <p>{convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
+                        <h4>{dataInfo["issuedby"]}</h4>
+                        <p>{convertDate(dataInfo["issuedate"])} to {dataInfo["expirydate"] ? convertDate(dataInfo["expirydate"]) : "Present"}</p>
                     </div>
                 </div>
             }
@@ -102,7 +102,7 @@ const LicenseItem = ({dataInfo, add=false}) => {
                         className='formTextInput'
                         type='text'
                         defaultValue={updateValue["issuedby"]}
-                        onChange={(e) => updateValue["deissuedbygree"] = e.target.value}
+                        onChange={(e) => updateValue["issuedby"] = e.target.value}
                         required
                     /></p>
 

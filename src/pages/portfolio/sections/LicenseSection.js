@@ -26,7 +26,7 @@ const LicenseSection = ({profileId}) => {
 
     useEffect(() => {
 		getDataInfo();
-    });
+    }, []);
 
     return (
         <div>

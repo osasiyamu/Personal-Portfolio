@@ -158,11 +158,10 @@ module.exports = function (app) {
         const awardDate = req.body.awardDate;
         const expirationDate = req.body.expirationDate;
        
-
-        var query = `INSERT INTO licenses (licenseid, profileid, licensename, issuedby, issuedate, expirydate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}', '${expirationDate}')`;
+        var query = `INSERT INTO licenses (profileid, licensename, issuedby, issuedate, expirydate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}', '${expirationDate}')`;
 
         if (("" + expirationDate) == "undefined") {
-            query = `INSERT INTO licenses (licenseid, profileid, licensename, issuedby, issuedate, expirydate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}')`
+            query = `INSERT INTO licenses (profileid, licensename, issuedby, issuedate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}')`
         }
 
         try {
@@ -178,16 +177,16 @@ module.exports = function (app) {
 
     //Update Users License
     app.post('/myportfolio/licenses/:id', async (req, res) => {
-        const profile_id = req.body.profile_id;
+        const id = req.params.id;
         const licenseName = req.body.licenseName;
         const awardingInsitution = req.body.awardingInsitution;
         const awardDate = req.body.awardDate;
         const expirationDate = req.body.expirationDate;
 
-        var query = `UPDATE licenses SET licenseName = '${licenseName}', awardingInsitution = '${awardingInsitution}', awardDate = '${awardDate}', expirationDate = '${expirationDate}' WHERE licenseid = ${id}`;
+        var query = `UPDATE licenses SET licenseName = '${licenseName}', issuedby = '${awardingInsitution}', issuedate = '${awardDate}', expiryDate = '${expirationDate}' WHERE licenseid = ${id}`;
 
         if (expirationDate == "Invalid Date") {
-            query = `UPDATE licenses SET licenseName = '${licenseName}', awardingInsitution = '${awardingInsitution}', awardDate = '${awardDate}', expirationDate = NULL WHERE licenseid = ${id}`;
+            query = `UPDATE licenses SET licenseName = '${licenseName}', issuedby = '${awardingInsitution}', issuedate = '${awardDate}', expiryDate = NULL WHERE licenseid = ${id}`;
         }
 
         try {
