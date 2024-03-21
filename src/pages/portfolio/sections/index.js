@@ -1,7 +1,13 @@
 import AboutSection from './AboutSection';
 import EduSection from './EduSection';
+import ProjectSection from './ProjectSection';
+import SkillSection from './SkillSection';
+import ContactSection from './ContactSection';
 
 export {
     AboutSection,
-    EduSection
+    EduSection,
+    ProjectSection,
+    SkillSection,
+    ContactSection
 };

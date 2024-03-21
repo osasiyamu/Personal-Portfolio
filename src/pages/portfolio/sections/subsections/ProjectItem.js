@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const EduItem = ({dataInfo, add=false}) => {
+const ProjectItem = ({dataInfo, add=false}) => {
 
     const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
@@ -15,24 +15,24 @@ const EduItem = ({dataInfo, add=false}) => {
         return formattedDate;  
     };
 
-    const editEducation = () => {
+    const editProject = () => {
         setUpdateValue(dataInfo);
         setIsEditing(true);
     };
 
-    const addEducation = () => {
-        fetch(`http://localhost:5555/myportfolio/education/add`, {
+    const addProject = () => {
+        fetch(`http://localhost:5555/myportfolio/projects/add`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 profile_id: dataInfo["profileId"],
-                institution: updateValue["institution"],
-                degree: updateValue["degree"],
-                fieldofstudy: updateValue["fieldofstudy"],
+                project_name: updateValue["projectname"],
+                details: updateValue["details"],
                 start_date: updateValue["startdate"],
-                end_date: updateValue["enddate"]
+                end_date: updateValue["enddate"],
+                project_url: updateValue["projecturl"]
             })
         })
         .then(window.location.reload())
@@ -41,18 +41,18 @@ const EduItem = ({dataInfo, add=false}) => {
 		});
     };
 
-    const updateEducation = () => {
-        fetch(`http://localhost:5555/myportfolio/education/${dataInfo["educationid"]}`, {
+    const updateProject = () => {
+        fetch(`http://localhost:5555/myportfolio/projects/${dataInfo["projectid"]}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
-                institution: updateValue["institution"],
-                degree: updateValue["degree"],
-                fieldofstudy: updateValue["fieldofstudy"],
+                project_name: updateValue["projectname"],
+                details: updateValue["details"],
                 start_date: updateValue["startdate"],
-                end_date: updateValue["enddate"]
+                end_date: updateValue["enddate"],
+                project_url: updateValue["projecturl"]
             })
         })
         .then(window.location.reload())
@@ -61,8 +61,8 @@ const EduItem = ({dataInfo, add=false}) => {
 		});
     };
 
-    const deleteEducation = () => {
-        fetch(`http://localhost:5555/myportfolio/education/${dataInfo["educationid"]}`, {
+    const deleteProject = () => {
+        fetch(`http://localhost:5555/myportfolio/projects/${dataInfo["projectid"]}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -79,41 +79,42 @@ const EduItem = ({dataInfo, add=false}) => {
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>
-                        <Button className='btn btn-secondary formBtn' onClick={editEducation}>Edit</Button>
+                        <Button className='btn btn-secondary formBtn' onClick={editProject}>Edit</Button>
                     </div>
                     <div>
-                        <h2><strong>{dataInfo["institution"]}</strong></h2>
-                        <h4>{dataInfo["degree"]}{dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>
+                        <h2><strong>{dataInfo["projectname"]}</strong></h2>
                         <p>{convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
+                        <p>{dataInfo["details"]}</p>
+                        <p>{dataInfo["projecturl"] ? <strong>Link:</strong> : null} {dataInfo["projecturl"]}</p>
                     </div>
                 </div>
             }
             {isEditing &&
                 <div>
-                    <p><strong>Institution name:</strong>
+                    <p><strong>Project Name:</strong>
                     <input
                         className='formTextInput'
                         type='text'
-                        defaultValue={updateValue["institution"]}
-                        onChange={(e) => updateValue["institution"] = e.target.value}
+                        defaultValue={updateValue["projectname"]}
+                        onChange={(e) => updateValue["projectname"] = e.target.value}
                         required
                     /></p>
 
-                    <p><strong>Degree:</strong>
+                    <p><strong>Details:</strong>
                     <input
                         className='formTextInput'
                         type='text'
-                        defaultValue={updateValue["degree"]}
-                        onChange={(e) => updateValue["degree"] = e.target.value}
+                        defaultValue={updateValue["details"]}
+                        onChange={(e) => updateValue["details"] = e.target.value}
                         required
                     /></p>
 
-                    <p><strong>Field of Study:</strong>
+                    <p><strong>Project URL:</strong>
                     <input
                         className='formTextInput'
                         type='text'
-                        defaultValue={updateValue["fieldofstudy"]}
-                        onChange={(e) => updateValue["fieldofstudy"] = e.target.value}
+                        defaultValue={updateValue["projecturl"]}
+                        onChange={(e) => updateValue["projecturl"] = e.target.value}
                     /></p>
 
                     <p><strong>Start Date:</strong>
@@ -151,10 +152,10 @@ const EduItem = ({dataInfo, add=false}) => {
                             <Button className='btn btn-secondary formBtn' onClick={() => window.location.reload()}>Cancel</Button>
                         }
                         {!add &&
-                            <Button className='btn btn-secondary formBtn' onClick={deleteEducation}>Delete</Button>
+                            <Button className='btn btn-secondary formBtn' onClick={deleteProject}>Delete</Button>
                         }
                         <Button className='btn btn-secondary formBtn' onClick={
-                            add ? addEducation : updateEducation
+                            add ? addProject : updateProject
                             }>Submit</Button>
                     </div>
                 </div>
@@ -163,4 +164,4 @@ const EduItem = ({dataInfo, add=false}) => {
     );
 }
 
-export default EduItem;
+export default ProjectItem;
