@@ -72,7 +72,7 @@ const ExpItem = ({dataInfo, add=false}) => {
 			console.error("Error fetching data: ", error);
 		});
     };
-    //Come back to this 
+    
     return (
         <div className='mb-4 licenceItem'>
             {!isEditing &&
