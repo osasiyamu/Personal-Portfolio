@@ -1,0 +1,109 @@
+.container > div {
+    background-color: rgb(169, 224, 144);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.centralized {
+    text-align: center;
+}
+
+#profileImgContainer {
+    background-color: white;
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 10px;
+    display: flex;
+}
+
+#profileImg {
+    border-radius: 50%;
+    height: 200px;
+    margin: 10px;
+    width: 200px;
+}
+
+#userBio {
+    align-items: flex-end;
+    margin-left: 10px;
+    margin-top: 95px;
+}
+
+#username {
+    font-weight: bolder;
+    font-size: 40px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#userOccupation {
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#sectionContainer {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#sectionControls {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#ctrlBtn {
+    background-color: rgba(20, 150, 20, 0.75);
+    border: 1px solid rgba(20, 150, 20, 1);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin: 5px;
+    width: 120px;
+}
+
+.formBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.formInputContainer {
+    display: flex;
+}
+
+textarea {
+    border-radius: 5px;
+    height: 150px;
+    margin: 5px;
+    width: 100%;
+}
+
+.formTextInput {
+    border-radius: 5px;
+    margin: 5px;
+    width: auto;
+}
+
+.formBtn {
+    margin-left: 5px;
+    width: auto;
+}
+
+.eduItem {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+}
+  
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px; 
+}

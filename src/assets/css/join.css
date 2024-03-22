@@ -1,0 +1,69 @@
+/* Base link styling */
+a {
+    text-decoration: none;
+    color: #007bff; /* Bootstrap-like link color for better visibility */
+}
+
+/* Page heading styling */
+#pageHeading {
+    text-align: center;
+    margin-bottom: 2%; /* Reduced for a tighter layout */
+    font-size: 2rem; /* Larger text for emphasis */
+    color: #333; /* Darker text for better readability */
+}
+
+/* Signup form styling */
+#signupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%; /* Adjusted width for better form control */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 2%; /* Add some padding around the form */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    border-radius: 8px; /* Rounded corners for the form container */
+}
+
+label {
+    text-align: left;
+    margin-top: 20px; /* Increased margin for better spacing */
+    font-weight: bold; /* Make labels bold for clarity */
+}
+
+/* Checkbox styling */
+#checkbox {
+    margin-left: 0; /* Align checkbox properly with the label text */
+}
+
+/* Input and button shared styling */
+input, button {
+    width: 80%; /* Increased width for better touch targets */
+    padding: 15px; /* More padding for a better feel */
+    margin: 10px 0; /* Increase margin for better spacing */
+    border: 2px solid #007bff; /* Stylish border color */
+    font-size: 1rem; /* Larger font size for better readability */
+}
+
+/* Button specific styling */
+button {
+    width: auto; /* Auto width based on content */
+    background-color: #007bff; /* Bootstrap-like button color for consistency */
+    color: white; /* Text color for better contrast */
+    font-weight: bold; /* Bold text for emphasis */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover for feedback */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    #signupForm {
+        width: 90%; /* More screen width on smaller devices */
+    }
+
+    input, button {
+        width: 90%; /* Adjust input and button width on smaller screens */
+    }
+}

@@ -1,0 +1,151 @@
+#navbar-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: auto;
+}
+
+input {
+    flex: 1;
+    margin: 20px 0 0 5px;
+    border-radius: 20px;
+    outline: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 500px;
+    padding: 20px;
+    margin: 20px 0 0 5px;
+    border-radius: 20px;
+    outline: 0;
+}
+
+.filterComponents {
+    border-style:ridge;
+    border-radius: 5%;
+    padding: 5px;
+    padding-top: 0px;
+    margin-right: 10px;
+    border-width: 0.5px;
+}
+
+.filterComponents a {
+    margin-right: 5px;
+}
+
+.filterComponents button {
+    padding-top: 5px;
+    margin-right: 5px;
+    background-color: rgb(221, 230, 221);
+    width: auto;
+    height: 35px;
+    text-align: center;
+    align-items: center;
+}
+
+#people {
+    background-color: rgb(101, 136, 101);
+}
+
+.filterComponents label{
+    margin-right: 5px;
+}
+
+.icon-container {
+    text-align: center;
+    margin-right: 10px;
+}
+
+.icon-container i {
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.icon-container p {
+    margin-top: 5px;
+    font-size: small;
+}
+
+.searchResults {
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 20px;
+}
+
+.user:hover {
+    border-color: rgb(177, 187, 177);
+}
+
+.user-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.user {
+    width: 80%;
+    height: 100px;
+    border: 2px solid #cdcccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 2px;
+}   
+
+.user img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.info {
+    flex: 1;
+    font-size: medium;
+}
+.info > p:first-child:hover {
+    color: rgb(130, 161, 130);
+}
+
+.info p {
+    margin: 0;
+    flex: 1;
+    max-height: 80px;
+    font-weight: 520;
+}
+
+.info p:first-child:hover{
+    cursor: pointer;
+}
+  
+.activeFilter {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.8; 
+}
+
+
+button {
+    background-color: transparent;
+    color: inherit;
+    border: 2px solid #007bff; 
+    padding: 10px 20px;
+    cursor: pointer;
+}

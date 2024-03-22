@@ -1,0 +1,156 @@
+.search-bar {
+    float: right; /* CHECK */
+    /* position: absolute; */
+    top: 100px;
+    margin-bottom: 30px;
+    /* right: 70px; */
+    border-radius: 50%;
+    border-color: black;
+    padding: 10px;
+    /*background-color: #f0f0f0;*/
+}
+
+.search-bar input {
+    float:left; /* CHECK */
+}
+
+.job-list {
+    width: 30%;
+    float: left;  /* CHECK */
+    margin-top: 100px; /* CHECK */
+    margin-right: 150px;
+    /* margin-bottom: 100px; */
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.job {
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+}
+
+.job img {
+    max-width: 30px;
+    max-height: 30px;
+}
+
+.job h3 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+.job h4 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.job h4 strong:hover {
+    color: rgb(101, 136, 101);
+}
+
+.job p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* .job-display-panel {
+    display: none;
+    width: 55%;
+    float: right;
+    margin-top: 30px; 
+    margin-right: 66px;
+    padding: 10px;
+    height: 550px;
+    overflow-y: scroll;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+} */
+
+/* #jobSectionContainer > div {
+    display: inline-block;
+} */
+
+ /* #jobDescriptionContainer {
+    width: 50%;
+
+    padding: 10px;
+    height: 600px;
+    
+    border: 1px solid #ccc;
+} */
+
+#jobDescription {
+    display: none;
+    width: 50%;
+    float: center;
+    padding: 10px;
+    height: 600px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.apply-panel {
+    padding: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+
+    margin-top: 1px; /* Reduced top margin */
+    margin-bottom: 1px;
+}
+
+.apply-button {
+    background-color: rgb(101, 136, 101);
+    padding: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    justify-content: center;
+}
+
+.save-button {
+    background-color: rgb(101, 136, 101);
+    padding: 10px; 
+    cursor: pointer; 
+    font-size: 10px;
+    justify-content: center;
+}
+
+.description-panel {
+    padding: 200px; 
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    height: auto;
+    overflow-y: auto;
+}
+
+.description-panel div {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background: #9eabb0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.close-button {
+    cursor: pointer;
+    float: right;
+    padding: 5px 10px;
+    background-color: rgb(101, 136, 101);
+    border-radius: 80%;
+    margin-right: 10px;
+}
