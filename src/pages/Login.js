@@ -50,7 +50,7 @@ const Login = () => {
                     
                     <h6>Don't have an account? <a href="/join">Sign up here</a></h6>
 
-                    <button type="submit">Sign In</button>
+                    <button type="submit" id='signin'>Sign In</button>
                 </form>
             </div>
         </div>

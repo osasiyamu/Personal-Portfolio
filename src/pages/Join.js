@@ -36,8 +36,18 @@ const Join = () => {
             });
 
             if (!response.ok) {
+                // if (await response.json() === "User already exists."){
+                //     alert("User already exists");
+                // }
+                // const errorData = await response.json();
+                // throw new Error(errorData.message || 'Could not complete sign up.');
                 const errorData = await response.json();
-                throw new Error(errorData.message || 'Could not complete sign up.');
+                if (errorData.message === "User already exists.") {
+                    alert("User already exists.");
+                    throw new Error('Could not complete sign up.');
+                } else {
+                    throw new Error(errorData.message || 'Could not complete sign up.');
+                }
             }
 
             // If sign up is successful, you might want to automatically log the user in or redirect them to the login page
@@ -81,7 +91,7 @@ const Join = () => {
                     
                     {/* Display error message if sign up fails */}
                     {error && <div className="error">{error}</div>}
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" id='signup'>Sign Up</button>
                 </form>
             </div>
         </div>
