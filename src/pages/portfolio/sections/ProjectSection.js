@@ -26,7 +26,7 @@ const ProjectSection = ({profileId}) => {
 
     useEffect(() => {
 		getDataInfo();
-    });
+    }, []);
 
     return (
         <div>

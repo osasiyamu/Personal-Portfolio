@@ -1,9 +1,10 @@
 const { Pool } = require('pg');
 const config = require('./config.json');
 const express = require('express');
-const app = express();
+const session = require('express-session');
 const cors = require('cors');
 const fs = require('fs');
+const app = express();
 
 const pool = new Pool({
     host: config.host,
@@ -19,8 +20,16 @@ const pool = new Pool({
 
 const port = config.server_port;
 
-app.use(cors());
+app.use(cors({
+    origin: `http://localhost:${config.web_port}`,
+    credentials: true
+}));
 app.use(express.json());
+app.use(session({
+    secret: config.session_secret,
+    resave: false,
+    saveUninitialized: false
+  }));
 
 /* DB CRUD Operations */
 app.get('/api/setup', async (req, res) => {
