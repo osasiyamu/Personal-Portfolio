@@ -5,6 +5,7 @@
 * [Overview](#overview)
 * [Authors](#authors)
 * [Running the Application](#running-the-application)
+* [Requirements](#requirements)
 <!-- TOC -->
 
 ## Overview
@@ -23,4 +24,9 @@ The project aims to create a personal portfolio website that serves as a showcas
 
 ## Running the Application
 1. Navigate to the project directory in your terminal
-2. Run the command `yarn start`
+2. Run the command `yarn dev`
+
+## Requirements
+The following ports must be free on your device:
+- Port 3000 for the client.
+- Port 5555 for the server.
