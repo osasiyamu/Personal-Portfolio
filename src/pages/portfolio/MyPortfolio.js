@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 const MyPortfolio = ({ profileId }) => {
 
-    profileId = 1;
+    profileId = localStorage.getItem("profile_id"); // get the id of user's profile that is being viewed
 
     useEffect(() => {
         document.title = "MyPortfolio";

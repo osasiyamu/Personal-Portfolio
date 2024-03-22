@@ -90,7 +90,7 @@ module.exports = {
             req.session.profile_id = profile_id.rows[0]["profileid"];
 
             // Return success message (Consider using JWT for authentication tokens here)
-            res.status(200).json({ message: 'Logged in successfully', userId: user.rows[0].userid });
+            res.status(200).json({ message: 'Logged in successfully', profile_id: profile_id.rows[0]["profileid"] });
         } catch (err) {
             console.error('Error executing sign-in', err);
             res.status(500).json({ error: 'Internal Server Error' });
