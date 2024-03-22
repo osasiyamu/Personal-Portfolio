@@ -42,8 +42,8 @@ const MyPortfolio = ({ profileId }) => {
             }
 
             {(localStorage.getItem("loggedIn") !== "true") && 
-                <div className="container mt-5">
-                    <p>Sorry, you are not logged in.</p>
+                <div className="container mt-5 centralized">
+                    <h1>Sorry, you are not logged in!</h1>
                     <Button href="/login" className='errorBtn'>LOGIN</Button>
                 </div>
             }
