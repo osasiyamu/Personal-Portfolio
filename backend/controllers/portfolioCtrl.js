@@ -157,7 +157,7 @@ module.exports = function (app) {
         var query = `INSERT INTO experience (profileid, company, position, startdate, enddate, details) VALUES ('${profile_id}', '${companyName}', '${positionTitle}', '${startDate}', '${endDate}', '${description}')`;
 
         if (("" + endDate) == "undefined") {
-            query = `INSERT INTO experience (profileid, company, position, startdate, enddate, details) VALUES ('${profile_id}', '${companyName}', '${positionTitle}', '${startDate}', '${description}')`
+            query = `INSERT INTO experience (profileid, company, position, startdate, details) VALUES ('${profile_id}', '${companyName}', '${positionTitle}', '${startDate}', '${description}')`
         }
 
         try {
