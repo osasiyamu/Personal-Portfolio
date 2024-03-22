@@ -43,7 +43,7 @@ const Login = () => {
             <div id="signUpC">
                 <form id="signupForm" onSubmit={handleSubmit}>
                     <label>Username:</label>
-                    <input type="text" id="username" name="username" required value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" id="user-name" name="username" required value={username} onChange={(e) => setUsername(e.target.value)} />
 
                     <label>Password:</label>
                     <input type="password" id="password" name="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
