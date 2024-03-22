@@ -4,6 +4,8 @@ module.exports = function (app) {
     // Get profile info for a user
     app.get('/myportfolio/:id', async (req, res) => {
         const id = req.params.id;
+        // TODO: Validate if the user is logged in and has access to this portfolio
+        // const id = req.session.profile_id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM profiles WHERE profileId = ${id}`);
@@ -121,6 +123,169 @@ module.exports = function (app) {
         try {
             const client = await pool.connect();
             await client.query(`DELETE FROM education WHERE educationid = ${id}`);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+
+    //Get Users Experience 
+    app.get('/myportfolio/experience/:id', async (req, res) => {
+        const id = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM experience WHERE profileId = ${id} ORDER BY startdate DESC`);
+            const data = result.rows;
+            client.release();
+            res.status(200).json(data);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });          
+
+    //Add an Experience for User
+    app.post('/myportfolio/experience/add', async (req, res) => {
+        const profile_id = req.body.profile_id;
+        const companyName = req.body.companyName;
+        const positionTitle = req.body.positionTitle;
+        const description = req.body.description;
+        const startDate = req.body.startDate;
+        const endDate = req.body.endDate;
+       
+        var query = `INSERT INTO experience (profileid, company, position, startdate, enddate, details) VALUES ('${profile_id}', '${companyName}', '${positionTitle}', '${startDate}', '${endDate}', '${description}')`;
+
+        if (("" + endDate) == "undefined") {
+            query = `INSERT INTO experience (profileid, company, position, startdate, details) VALUES ('${profile_id}', '${companyName}', '${positionTitle}', '${startDate}', '${description}')`
+        }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    //Update Users Experience
+    app.post('/myportfolio/experience/:id', async (req, res) => {
+        const id = req.params.id;
+        const companyName = req.body.companyName;
+        const positionTitle = req.body.positionTitle;
+        const description = req.body.description;
+        const startDate = req.body.startDate;
+        const endDate = req.body.endDate;
+
+        var query = `UPDATE experience SET company = '${companyName}', position = '${positionTitle}', startdate = '${startDate}', enddate = '${endDate}, details = '${description}' WHERE licenseid = ${id}`;
+
+        if (enddate == "Invalid Date") {
+            query = `UPDATE experience SET company = '${companyName}', position = '${positionTitle}', startdate = '${startDate}', details = '${description}', enddate = NULL WHERE experienceid = ${id}`;
+        }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });                                                                                                                                                                                                                                                                                                                                                                      
+        }
+    });
+
+    //Delete Users Experience
+    app.delete('/myportfolio/experience/:id', async (req, res) => {
+        const id = req.params.id;
+
+        try {
+            const client = await pool.connect();
+            await client.query(`DELETE FROM licenses WHERE experienceid = ${id}`);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    //Get Users License 
+    app.get('/myportfolio/licenses/:id', async (req, res) => {
+        const id = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM licenses WHERE profileId = ${id} ORDER BY issuedate DESC`);
+            const data = result.rows;
+            client.release();
+            res.status(200).json(data);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    //Add a License for User
+    app.post('/myportfolio/licenses/add', async (req, res) => {
+        const profile_id = req.body.profile_id;
+        const licenseName = req.body.licenseName;
+        const awardingInsitution = req.body.awardingInsitution;
+        const awardDate = req.body.awardDate;
+        const expirationDate = req.body.expirationDate;
+       
+        var query = `INSERT INTO licenses (profileid, licensename, issuedby, issuedate, expirydate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}', '${expirationDate}')`;
+
+        if (("" + expirationDate) == "undefined") {
+            query = `INSERT INTO licenses (profileid, licensename, issuedby, issuedate) VALUES ('${profile_id}', '${licenseName}', '${awardingInsitution}', '${awardDate}')`
+        }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    //Update Users License
+    app.post('/myportfolio/licenses/:id', async (req, res) => {
+        const id = req.params.id;
+        const licenseName = req.body.licenseName;
+        const awardingInsitution = req.body.awardingInsitution;
+        const awardDate = req.body.awardDate;
+        const expirationDate = req.body.expirationDate;
+
+        var query = `UPDATE licenses SET licenseName = '${licenseName}', issuedby = '${awardingInsitution}', issuedate = '${awardDate}', expiryDate = '${expirationDate}' WHERE licenseid = ${id}`;
+
+        if (expirationDate == "Invalid Date") {
+            query = `UPDATE licenses SET licenseName = '${licenseName}', issuedby = '${awardingInsitution}', issuedate = '${awardDate}', expiryDate = NULL WHERE licenseid = ${id}`;
+        }
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });                                                                                                                                                                                                                                                                                                                                                                      
+        }
+    });
+
+    //Delete Users License
+    app.delete('/myportfolio/licenses/:id', async (req, res) => {
+        const id = req.params.id;
+
+        try {
+            const client = await pool.connect();
+            await client.query(`DELETE FROM licenses WHERE licenseid = ${id}`);
             client.release();
             res.status(200);
         } catch (err) {

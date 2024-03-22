@@ -1,15 +1,14 @@
 import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
-import ProjectItem from './subsections/ProjectItem';
+import ExpItem from './subsections/ExpItem';
 
-const ProjectSection = ({profileId}) => {
-
+const ExpSection = ({profileId}) => {
     const [dataInfo, setDataInfo] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/projects/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/experience/${profileId}`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -31,7 +30,7 @@ const ProjectSection = ({profileId}) => {
     return (
         <div>
             {dataInfo.map((row, index) => (
-                <ProjectItem key={index} dataInfo={row} />
+                <ExpItem key={index} dataInfo={row} />
             ))}
 
             {!isAdding &&
@@ -40,9 +39,9 @@ const ProjectSection = ({profileId}) => {
                 </div>
             }
 
-            {isAdding && <ProjectItem dataInfo={{"profileId": profileId}} add={true} />}
+            {isAdding && <ExpItem dataInfo={{"profileId": profileId}} add={true} />}
         </div>
     );
 }
 
-export default ProjectSection;
+export default ExpSection;

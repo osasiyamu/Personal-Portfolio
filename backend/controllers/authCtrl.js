@@ -84,6 +84,11 @@ module.exports = {
                 return res.status(400).json({ error: 'Invalid credentials' });
             }
 
+            const user_id = await pool.query("SELECT userId FROM users WHERE username = $1;", [username]);
+            const profile_id = await pool.query("SELECT profileId FROM profiles WHERE userId = $1;", [user_id.rows[0]["userid"]]);
+
+            req.session.profile_id = profile_id.rows[0]["profileid"];
+
             // Return success message (Consider using JWT for authentication tokens here)
             res.status(200).json({ message: 'Logged in successfully', userId: user.rows[0].userid });
         } catch (err) {

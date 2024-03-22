@@ -26,8 +26,8 @@ const Login = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data);
-            window.location.href = "/"
+            window.location = "/"
+            localStorage.setItem("loggedIn", "true");
             // Handle redirection or display success message
         } catch (error) {
             console.error("Error during sign in: ", error);

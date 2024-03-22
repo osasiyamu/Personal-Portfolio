@@ -3,11 +3,13 @@
     font-family: Arial, sans-serif;
     font-size: large;
     min-height: 100vh;
-    max-height: fit-content;
 }
 
 .main-info {
-    max-height: 90vh;
+    overflow: scroll;
+}
+
+.main-info {
     overflow: scroll;
 }
 
@@ -18,7 +20,6 @@
     background-color: #f6f6f6;
     border-bottom: 1px solid #e0e0e0;
     margin: 2px;
-    max-height: 10vh;
 }
 
 .navbar a {
