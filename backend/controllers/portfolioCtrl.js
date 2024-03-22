@@ -4,6 +4,8 @@ module.exports = function (app) {
     // Get profile info for a user
     app.get('/myportfolio/:id', async (req, res) => {
         const id = req.params.id;
+        // TODO: Validate if the user is logged in and has access to this portfolio
+        // const id = req.session.profile_id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM profiles WHERE profileId = ${id}`);

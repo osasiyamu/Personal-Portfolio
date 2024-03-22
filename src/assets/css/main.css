@@ -9,6 +9,10 @@
     overflow: scroll;
 }
 
+.main-info {
+    overflow: scroll;
+}
+
 .navbar {
     display: flex;
     align-items: center;

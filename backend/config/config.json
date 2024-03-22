@@ -6,5 +6,6 @@
     "db_port": 5432,
     "web_port": 3000,
     "server_port": 5555,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "session_secret": "secret"
 }

@@ -6,7 +6,6 @@ import ProjectSection from './ProjectSection';
 import SkillSection from './SkillSection';
 import ContactSection from './ContactSection';
 
-
 export {
     AboutSection,
     EduSection,

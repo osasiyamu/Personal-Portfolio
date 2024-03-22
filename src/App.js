@@ -2,7 +2,7 @@ import './assets/css/main.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './assets/components';
-import { Home, Jobs, Join, Login, MyPortfolio, PageNotFound, Search } from './pages';
+import { Home, Jobs, Join, Login, MyPortfolio, PageNotFound, Search, UserProfileInfo } from './pages';
 
 function App() {
 	return (
@@ -12,7 +12,10 @@ function App() {
 				<BrowserRouter>
 					<Routes path='/' element={<Home />}>
 						<Route index element={<Home />} />
+						{/*My search paths*/}
 						<Route path='search' element={<Search />} />
+						<Route path="userprofile" element={<UserProfileInfo />} />
+
 						<Route path='jobs' element={<Jobs />} />
 
 						{/* My Portfolio Paths */}

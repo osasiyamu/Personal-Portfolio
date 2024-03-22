@@ -15,27 +15,38 @@ const MyPortfolio = ({ profileId }) => {
     }, []);
 
     return (
-        <div className="container mt-5">
-            <ProfileImgContainer
-                profileId={profileId}
-            />
+        <div>
+            {(localStorage.getItem("loggedIn") === "true") &&
+                <div className="container mt-5">
+                    <ProfileImgContainer
+                        profileId={profileId}
+                    />
 
-            <div id='sectionContainer'>
-                <div id='sectionControls'>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio"}>About</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/education"}>Education</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/experience"}>Experience</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/licenses"}>Licenses</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/projects"}>Projects</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/skills"}>Skills</Button>
-                    <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/contact"}>Contact</Button>
+                    <div id='sectionContainer'>
+                        <div id='sectionControls'>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio"}>About</Button>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/education"}>Education</Button>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/experience"}>Experience</Button>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/licenses"}>Licenses</Button>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/projects"}>Projects</Button>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/skills"}>Skills</Button>
+                            <Button className='btn btn-primary' id='ctrlBtn' onClick={() => window.location.href="/myportfolio/contact"}>Contact</Button>
+                        </div>
+                        <hr />
+
+                        <SectionContent
+                            profileId={profileId}
+                        />
+                    </div>
                 </div>
-                <hr />
+            }
 
-                <SectionContent
-                    profileId={profileId}
-                />
-            </div>
+            {(localStorage.getItem("loggedIn") !== "true") && 
+                <div className="container mt-5">
+                    <p>Sorry, you are not logged in.</p>
+                    <Button href="/login" className='errorBtn'>LOGIN</Button>
+                </div>
+            }
         </div>
     );
 }

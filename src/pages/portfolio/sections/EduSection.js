@@ -26,7 +26,7 @@ const EduSection = ({profileId}) => {
 
     useEffect(() => {
 		getDataInfo();
-    });
+    }, []);
 
     return (
         <div>

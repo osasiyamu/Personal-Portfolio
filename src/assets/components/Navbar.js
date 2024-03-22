@@ -5,6 +5,11 @@ import jobIcon from '../images/jobIcon.png';
 import myPortfolioIcon from '../images/myPortfolioIcon.png';
 
 const Navbar = () => {
+
+    const logout = () => {
+        localStorage.setItem("loggedIn", false);
+    }
+
     return (
         <div className='navbar'>
             <img id="mainlogo" src={mainLogo} alt="logo" />
@@ -26,7 +31,9 @@ const Navbar = () => {
                 <img src={myPortfolioIcon} alt="myPortfolioIcon" />
                 My Portfolio
             </a>
-            <a href="/join" className="icons"> Sign Up/In</a>
+
+            {(localStorage.getItem("loggedIn") === "true") && <a href="" onClick={logout} className="icons">Logout</a>}
+            {(localStorage.getItem("loggedIn") !== "true") && <a href="/join" className="icons">Sign Up/In</a>}
         </div>
     );
 }
