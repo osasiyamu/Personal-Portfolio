@@ -1,8 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const LicenseItem = ({dataInfo, add=false}) => {
-
+const ExpItem = ({dataInfo, add=false}) => {
     const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
 
@@ -15,23 +14,24 @@ const LicenseItem = ({dataInfo, add=false}) => {
         return formattedDate;  
     };
 
-    const editLicense = () => {
+    const editExperience = () => {
         setUpdateValue(dataInfo);
         setIsEditing(true);
     };
 
-    const addLicense = () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/add`, {
+    const addExperience = () => {
+        fetch(`http://localhost:5555/myportfolio/experience/add`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 profile_id: dataInfo["profileId"],
-                licenseName: updateValue["licensename"],
-                awardingInsitution: updateValue["issuedby"],
-                awardDate: updateValue["issuedate"],
-                expirationDate: updateValue["expirydate"]
+                companyName: updateValue["company"],
+                positionTitle: updateValue["position"],
+                description: updateValue["details"],
+                startDate: updateValue["startdate"],
+                endDate: updateValue["enddate"]
             })
         })
         .then(window.location.reload())
@@ -40,17 +40,18 @@ const LicenseItem = ({dataInfo, add=false}) => {
 		});
     };
 
-    const updateLicense = () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/${dataInfo["licenseid"]}`, {
+    const updateExperience = () => {
+        fetch(`http://localhost:5555/myportfolio/experience/${dataInfo["experienceid"]}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
-                licenseName: updateValue["licensename"],
-                awardingInsitution: updateValue["issuedby"],
-                issueDate: updateValue["issuedate"],
-                expirationDate: updateValue["expirydate"]
+                companyName: updateValue["company"],
+                positionTitle: updateValue["position"],
+                description: updateValue["details"],
+                startDate: updateValue["startdate"],
+                endDate: updateValue["enddate"]
             })
         })
         .then(window.location.reload())
@@ -59,8 +60,8 @@ const LicenseItem = ({dataInfo, add=false}) => {
 		});
     };
 
-    const deleteLicense= () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/${dataInfo["licenseid"]}`, {
+    const deleteExperience = () => {
+        fetch(`http://localhost:5555/myportfolio/licenses/${dataInfo["experienceid"]}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -71,60 +72,69 @@ const LicenseItem = ({dataInfo, add=false}) => {
 			console.error("Error fetching data: ", error);
 		});
     };
-   
+    //Come back to this 
     return (
         <div className='mb-4 licenceItem'>
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>
-                        <Button className='btn btn-secondary formBtn' onClick={editLicense}>Edit</Button>
+                        <Button className='btn btn-secondary formBtn' onClick={editExperience}>Edit</Button>
                     </div>
                     <div>
-                        <h2><strong>License Name: {dataInfo["licensename"]}</strong></h2>
-                        <h4>Issuing Company: {dataInfo["issuedby"]}</h4>
-                        <p>Validity Date: {convertDate(dataInfo["issuedate"])} to {dataInfo["expirydate"] ? convertDate(dataInfo["expirydate"]) : "Present"}</p>
+                        <h2><strong>Company Name: {dataInfo["company"]}</strong></h2>
+                        <h4>Position Title: {dataInfo["position"]}</h4>
+                        <h4>Description: {dataInfo["details"]}</h4>
+                        <p>Validity Date: {convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
                     </div>
                 </div>
             }
             {isEditing &&
                 <div>
-                    <p><strong>License Name:</strong>
+                    <p><strong>Company Name:</strong>
                     <input
                         className='formTextInput'
                         type='text'
-                        defaultValue={updateValue["licensename"]}
-                        onChange={(e) => updateValue["licensename"] = e.target.value}
+                        defaultValue={updateValue["company"]}
+                        onChange={(e) => updateValue["company"] = e.target.value}
                         required
                     /></p>
 
-                    <p><strong>Awarding Institution:</strong>
+                    <p><strong>Position Title:</strong>
                     <input
                         className='formTextInput'
                         type='text'
-                        defaultValue={updateValue["issuedby"]}
-                        onChange={(e) => updateValue["issuedby"] = e.target.value}
+                        defaultValue={updateValue["position"]}
+                        onChange={(e) => updateValue["position"] = e.target.value}
                         required
                     /></p>
 
-                    <p><strong>Issue Date:</strong>
+                    <p><strong>Description:</strong>
                     <input
                         className='formTextInput'
-                        type='date'
-                        defaultValue={updateValue["issuedate"]}
-                        onChange={(e) => updateValue["issuedate"] = e.target.value}
+                        type='text'
+                        defaultValue={updateValue["details"]}
+                        onChange={(e) => updateValue["details"] = e.target.value}
                     /></p>
 
-                    <p><strong>Expiration Date:</strong>
+                    <p><strong>Start Date:</strong>
                     <input
                         className='formTextInput'
                         type='date'
-                        defaultValue={new Date(updateValue["expirydate"]).toLocaleDateString('en-CA', {
+                        defaultValue={updateValue["startdate"]}
+                        onChange={(e) => updateValue["startdate"] = e.target.value}
+                    /></p>
+
+                    <p><strong>End Date:</strong>
+                    <input
+                        className='formTextInput'
+                        type='date'
+                        defaultValue={new Date(updateValue["enddate"]).toLocaleDateString('en-CA', {
                             year: 'numeric',
                             month: 'numeric',
                             day: 'numeric'
                         })}
                         name='aboutInfoText'
-                        onChange={(e) => updateValue["expirydate"] = e.target.value}
+                        onChange={(e) => updateValue["enddate"] = e.target.value}
                         required
                     /></p>
 
@@ -133,10 +143,10 @@ const LicenseItem = ({dataInfo, add=false}) => {
                             <Button className='btn btn-secondary formBtn' onClick={() => window.location.reload()}>Cancel</Button>
                         }
                         {!add &&
-                            <Button className='btn btn-secondary formBtn' onClick={deleteLicense}>Delete</Button>
+                            <Button className='btn btn-secondary formBtn' onClick={deleteExperience}>Delete</Button>
                         }
                         <Button className='btn btn-secondary formBtn' onClick={
-                            add ? addLicense : updateLicense
+                            add ? addExperience : updateExperience
                             }>Submit</Button>
                     </div>
                 </div>
@@ -145,4 +155,4 @@ const LicenseItem = ({dataInfo, add=false}) => {
     );
 }
 
-export default LicenseItem;
+export default ExpItem;
