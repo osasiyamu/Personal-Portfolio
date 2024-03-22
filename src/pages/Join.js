@@ -73,7 +73,7 @@ const Join = () => {
             <div id="signUpC">
                 <form id="signupForm" onSubmit={handleSubmit}>
                     <label>Username:</label>
-                    <input type="text" id="username" name="username" required value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" id="user-name" name="username" required value={username} onChange={(e) => setUsername(e.target.value)} />
 
                     <label>Email:</label>
                     <input type="email" id="email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
