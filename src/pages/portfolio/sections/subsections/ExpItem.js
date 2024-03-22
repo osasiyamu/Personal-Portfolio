@@ -61,7 +61,7 @@ const ExpItem = ({dataInfo, add=false}) => {
     };
 
     const deleteExperience = () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/${dataInfo["experienceid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/experience/${dataInfo["experienceid"]}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
