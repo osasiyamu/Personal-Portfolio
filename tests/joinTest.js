@@ -24,7 +24,7 @@ describe('Join Feature', function() { let driver;
   });
 
   // Test case 1
-  it('Verify a user can sign up successfully', async function() {
+  it('Verify a user can sign up successfully, while maintsining unique usernames/emails', async function() {
     this.timeout(500000);
     await driver.get(homePage);
     await driver.manage().window().maximize();
