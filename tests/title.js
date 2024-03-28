@@ -18,13 +18,8 @@ describe('Title', function() {
   it('Verifies that the title page is set to "SearchMeUp"', async function() {
     await driver.get(homePage);
     let title = await driver.getTitle();
-
-    delay(50000);
     assert.equal(title, 'SearchMeUp', 'Incorrect Website Title');
   });
 });
 
 
-async function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
