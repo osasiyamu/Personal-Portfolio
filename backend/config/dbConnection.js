@@ -1,10 +1,15 @@
 const { Pool } = require('pg');
 const config = require('./config.json');
+
 const express = require('express');
-const session = require('express-session');
+const expressSession = require('express-session');
+var genuuid = require('uuid');
 const cors = require('cors');
-const fs = require('fs');
 const app = express();
+const port = config.server_port;
+
+const path = require('path');
+const fs = require('fs');
 
 const pool = new Pool({
     host: config.host,
@@ -17,24 +22,30 @@ const pool = new Pool({
         rejectUnauthorized: false,
     }
 });
-
-const port = config.server_port;
+const sessionConfig = {
+    name: 'SessionCookie',
+    genid: function(req) {
+        return genuuid.v4() // use UUIDs for session IDs
+    },
+    secret: config.session_secret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true, maxAge: 300000}
+};
+const session = expressSession(sessionConfig);
 
 app.use(cors({
     origin: `http://localhost:${config.web_port}`,
     credentials: true
 }));
 app.use(express.json());
-app.use(session({
-    secret: config.session_secret,
-    resave: false,
-    saveUninitialized: false
-  }));
+app.use(session);
 
 /* DB CRUD Operations */
 app.get('/api/setup', async (req, res) => {
     try {
-        const sql_data = fs.readFileSync('../../src/assets/sql/setup.sql', 'utf-8')
+        let filename = path.join(process.cwd, '../../src/assets/sql/setup.sql')
+        const sql_data = fs.readFileSync(filename, 'utf-8')
         await pool.query(sql_data);
         res.status(200).send({ message: "Successfully setup database." })
     } catch (err) {
@@ -45,7 +56,8 @@ app.get('/api/setup', async (req, res) => {
 
 app.get('/api/teardown', async (req, res) => {
     try {
-        const sql_data = fs.readFileSync('../../src/assets/sql/tearDown.sql', 'utf-8')
+        let filename = path.join(process.cwd, '../../src/assets/sql/tearDown.sql')
+        const sql_data = fs.readFileSync(filename, 'utf-8')
         await pool.query(sql_data);
         res.status(200).send({ message: "Successfully tore down database." })
     } catch (err) {
@@ -93,4 +105,4 @@ app.get('/api/printprofiles', async (req, res) => {
     }
 });
 
-module.exports = { app, pool, port };
+module.exports = { app, session, pool, port };

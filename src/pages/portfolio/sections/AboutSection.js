@@ -1,16 +1,14 @@
 import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
-const AboutSection = ({profileId}) => {
+const AboutSection = () => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-    // const token = localStorage.getItem('token');  // get the CSRF token
-    // localStorage.getItem(String(profileId)) ? dataInfo.push(JSON.parse(localStorage.getItem(String(profileInfo)))) : null; 
     const [updateValue, setUpdateValue] = useState("");
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/about/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/about`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -31,7 +29,7 @@ const AboutSection = ({profileId}) => {
     };
 
     const updateAboutSection = () => {
-        fetch(`http://localhost:5555/myportfolio/about/${profileId}`, {
+        fetch(`http://localhost:5555/myportfolio/about`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -45,6 +43,7 @@ const AboutSection = ({profileId}) => {
 		.catch(error => {
 			console.error("Error fetching data: ", error);
 		});
+        window.location.reload();
     };
 
     useEffect(() => {

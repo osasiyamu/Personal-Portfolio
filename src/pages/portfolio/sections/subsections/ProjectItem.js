@@ -27,7 +27,6 @@ const ProjectItem = ({dataInfo, add=false}) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                profile_id: dataInfo["profileId"],
                 project_name: updateValue["projectname"],
                 details: updateValue["details"],
                 start_date: updateValue["startdate"],
@@ -42,12 +41,13 @@ const ProjectItem = ({dataInfo, add=false}) => {
     };
 
     const updateProject = () => {
-        fetch(`http://localhost:5555/myportfolio/projects/${dataInfo["projectid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/projects`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
+                project_id: dataInfo["projectid"],
                 project_name: updateValue["projectname"],
                 details: updateValue["details"],
                 start_date: updateValue["startdate"],
@@ -62,11 +62,14 @@ const ProjectItem = ({dataInfo, add=false}) => {
     };
 
     const deleteProject = () => {
-        fetch(`http://localhost:5555/myportfolio/projects/${dataInfo["projectid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/projects`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({ 
+                project_id: dataInfo["projectid"]
+            })
         })
         .then(window.location.reload())
 		.catch(error => {
@@ -75,7 +78,7 @@ const ProjectItem = ({dataInfo, add=false}) => {
     };
 
     return (
-        <div className='mb-4 eduItem'>
+        <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>

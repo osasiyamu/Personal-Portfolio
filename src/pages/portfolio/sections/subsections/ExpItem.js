@@ -26,7 +26,6 @@ const ExpItem = ({dataInfo, add=false}) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                profile_id: dataInfo["profileId"],
                 companyName: updateValue["company"],
                 positionTitle: updateValue["position"],
                 description: updateValue["details"],
@@ -41,12 +40,13 @@ const ExpItem = ({dataInfo, add=false}) => {
     };
 
     const updateExperience = () => {
-        fetch(`http://localhost:5555/myportfolio/experience/${dataInfo["experienceid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/experience`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
+                experience_id: dataInfo["experienceid"],
                 companyName: updateValue["company"],
                 positionTitle: updateValue["position"],
                 description: updateValue["details"],
@@ -61,11 +61,14 @@ const ExpItem = ({dataInfo, add=false}) => {
     };
 
     const deleteExperience = () => {
-        fetch(`http://localhost:5555/myportfolio/experience/${dataInfo["experienceid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/experience`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({ 
+                experience_id: dataInfo["experienceid"]
+            })
         })
         .then(window.location.reload())
 		.catch(error => {
@@ -74,7 +77,7 @@ const ExpItem = ({dataInfo, add=false}) => {
     };
     
     return (
-        <div className='mb-4 licenceItem'>
+        <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>
@@ -120,7 +123,11 @@ const ExpItem = ({dataInfo, add=false}) => {
                     <input
                         className='formTextInput'
                         type='date'
-                        defaultValue={updateValue["startdate"]}
+                        defaultValue={new Date(updateValue["startdate"]).toLocaleDateString('en-CA', {
+                            year: 'numeric',
+                            month: 'numeric',
+                            day: 'numeric'
+                        })}
                         onChange={(e) => updateValue["startdate"] = e.target.value}
                     /></p>
 

@@ -57,7 +57,7 @@ const Join = () => {
                 throw new Error(errorData.message || 'Could not complete sign up.');
             }
     
-            navigate('/login'); // Navigate to login page on successful sign-up
+            navigate('/'); // Navigate to login page on successful sign-up
         } catch (error) {
             setError(error.message); // Set error message if there's an exception
         }

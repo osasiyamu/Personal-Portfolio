@@ -1,11 +1,13 @@
-const { pool } = require('../config/dbConnection');
+const { session, pool } = require('../config/dbConnection');
+
+function getProfileIdFromSession() {
+    return session.profileId;
+}
 
 module.exports = function (app) {
     // Get profile info for a user
-    app.get('/myportfolio/:id', async (req, res) => {
-        const id = req.params.id;
-        // TODO: Validate if the user is logged in and has access to this portfolio
-        // const id = req.session.profile_id;
+    app.get('/myportfolio', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM profiles WHERE profileId = ${id}`);
@@ -19,8 +21,8 @@ module.exports = function (app) {
     });
 
     // Get about info for a user
-    app.get('/myportfolio/about/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/about', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT about FROM about WHERE profileId = ${id}`);
@@ -34,8 +36,8 @@ module.exports = function (app) {
     });
 
     // Update about info for a user
-    app.post('/myportfolio/about/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/about', async (req, res) => {
+        const id = getProfileIdFromSession();
         const text = req.body.text;
         try {
             const client = await pool.connect();
@@ -50,8 +52,8 @@ module.exports = function (app) {
     });
 
     // Get user education history
-    app.get('/myportfolio/education/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/education', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM education WHERE profileId = ${id} ORDER BY startdate DESC`);
@@ -66,7 +68,7 @@ module.exports = function (app) {
 
     // Add to a user's education history 
     app.post('/myportfolio/education/add', async (req, res) => {
-        const profile_id = req.body.profile_id;
+        const profile_id = getProfileIdFromSession();
         const institution = req.body.institution;
         const degree = req.body.degree;
         const fieldofstudy = req.body.fieldofstudy;
@@ -83,7 +85,7 @@ module.exports = function (app) {
             const client = await pool.connect();
             await client.query(query);
             client.release();
-            res.status(200);
+            res.status(201);
         } catch (err) {
             console.error('Error executing query', err);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -91,18 +93,18 @@ module.exports = function (app) {
     });
 
     // Update a user's education history
-    app.post('/myportfolio/education/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/education', async (req, res) => {
+        const educationId = req.body.education_id;
         const institution = req.body.institution;
         const degree = req.body.degree;
         const fieldofstudy = req.body.fieldofstudy;
         const start_date = req.body.start_date;
         var end_date = req.body.end_date;
 
-        var query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = '${end_date}' WHERE educationid = ${id}`;
+        var query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = '${end_date}' WHERE educationid = ${educationId}`;
 
         if (end_date == "Invalid Date") {
-            query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = NULL WHERE educationid = ${id}`;
+            query = `UPDATE education SET institution = '${institution}', degree = '${degree}', fieldofstudy = '${fieldofstudy}', startdate = '${start_date}', enddate = NULL WHERE educationid = ${educationId}`;
         }
 
         try {
@@ -117,12 +119,12 @@ module.exports = function (app) {
     });
 
     // Delete from a user's education history
-    app.delete('/myportfolio/education/:id', async (req, res) => {
-        const id = req.params.id;
+    app.delete('/myportfolio/education', async (req, res) => {
+        const educationId = req.body.education_id;
 
         try {
             const client = await pool.connect();
-            await client.query(`DELETE FROM education WHERE educationid = ${id}`);
+            await client.query(`DELETE FROM education WHERE educationid = ${educationId}`);
             client.release();
             res.status(200);
         } catch (err) {
@@ -131,10 +133,9 @@ module.exports = function (app) {
         }
     });
 
-
     //Get Users Experience 
-    app.get('/myportfolio/experience/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/experience', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM experience WHERE profileId = ${id} ORDER BY startdate DESC`);
@@ -149,7 +150,7 @@ module.exports = function (app) {
 
     //Add an Experience for User
     app.post('/myportfolio/experience/add', async (req, res) => {
-        const profile_id = req.body.profile_id;
+        const profile_id = getProfileIdFromSession();
         const companyName = req.body.companyName;
         const positionTitle = req.body.positionTitle;
         const description = req.body.description;
@@ -166,7 +167,7 @@ module.exports = function (app) {
             const client = await pool.connect();
             await client.query(query);
             client.release();
-            res.status(200);
+            res.status(201);
         } catch (err) {
             console.error('Error executing query', err);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -174,8 +175,8 @@ module.exports = function (app) {
     });
 
     //Update Users Experience
-    app.post('/myportfolio/experience/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/experience', async (req, res) => {
+        const id = req.body.experience_id;
         const companyName = req.body.companyName;
         const positionTitle = req.body.positionTitle;
         const description = req.body.description;
@@ -184,7 +185,7 @@ module.exports = function (app) {
 
         var query = `UPDATE experience SET company = '${companyName}', position = '${positionTitle}', startdate = '${startDate}', enddate = '${endDate}, details = '${description}' WHERE licenseid = ${id}`;
 
-        if (enddate == "Invalid Date") {
+        if (endDate == "Invalid Date") {
             query = `UPDATE experience SET company = '${companyName}', position = '${positionTitle}', startdate = '${startDate}', details = '${description}', enddate = NULL WHERE experienceid = ${id}`;
         }
 
@@ -195,13 +196,13 @@ module.exports = function (app) {
             res.status(200);
         } catch (err) {
             console.error('Error executing query', err);
-            res.status(500).json({ error: 'Internal Server Error' });                                                                                                                                                                                                                                                                                                                                                                      
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     });
 
     //Delete Users Experience
-    app.delete('/myportfolio/experience/:id', async (req, res) => {
-        const id = req.params.id;
+    app.delete('/myportfolio/experience', async (req, res) => {
+        const id = req.body.experience_id;
 
         try {
             const client = await pool.connect();
@@ -215,8 +216,8 @@ module.exports = function (app) {
     });
 
     //Get Users License 
-    app.get('/myportfolio/licenses/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/licenses', async (req, res) => {
+        const id = getProfileIdFromSession()
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM licenses WHERE profileId = ${id} ORDER BY issuedate DESC`);
@@ -231,7 +232,7 @@ module.exports = function (app) {
 
     //Add a License for User
     app.post('/myportfolio/licenses/add', async (req, res) => {
-        const profile_id = req.body.profile_id;
+        const profile_id = getProfileIdFromSession();
         const licenseName = req.body.licenseName;
         const awardingInsitution = req.body.awardingInsitution;
         const awardDate = req.body.awardDate;
@@ -247,16 +248,16 @@ module.exports = function (app) {
             const client = await pool.connect();
             await client.query(query);
             client.release();
-            res.status(200);
+            res.status(201);
         } catch (err) {
             console.error('Error executing query', err);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     });
 
-    //Update Users License
-    app.post('/myportfolio/licenses/:id', async (req, res) => {
-        const id = req.params.id;
+    // Update Users License
+    app.post('/myportfolio/licenses', async (req, res) => {
+        const id = req.body.licenseId;
         const licenseName = req.body.licenseName;
         const awardingInsitution = req.body.awardingInsitution;
         const awardDate = req.body.awardDate;
@@ -275,13 +276,13 @@ module.exports = function (app) {
             res.status(200);
         } catch (err) {
             console.error('Error executing query', err);
-            res.status(500).json({ error: 'Internal Server Error' });                                                                                                                                                                                                                                                                                                                                                                      
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     });
 
-    //Delete Users License
-    app.delete('/myportfolio/licenses/:id', async (req, res) => {
-        const id = req.params.id;
+    // Delete Users License
+    app.delete('/myportfolio/licenses', async (req, res) => {
+        const id = req.body.licenseId;
 
         try {
             const client = await pool.connect();
@@ -295,8 +296,8 @@ module.exports = function (app) {
     });
 
     // Get user project history
-    app.get('/myportfolio/projects/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/projects', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM projects WHERE profileId = ${id} ORDER BY startdate DESC`);
@@ -311,7 +312,7 @@ module.exports = function (app) {
 
     // Add to a user's project history 
     app.post('/myportfolio/projects/add', async (req, res) => {
-        const profile_id = req.body.profile_id;
+        const profile_id = getProfileIdFromSession();
         const project_name = req.body.project_name;
         const details = req.body.details;
         const start_date = req.body.start_date;
@@ -328,7 +329,7 @@ module.exports = function (app) {
             const client = await pool.connect();
             await client.query(query);
             client.release();
-            res.status(200);
+            res.status(201);
         } catch (err) {
             console.error('Error executing query', err);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -336,8 +337,8 @@ module.exports = function (app) {
     });
 
     // Update a user's project history
-    app.post('/myportfolio/projects/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/projects', async (req, res) => {
+        const id = req.body.project_id;
         const project_name = req.body.project_name;
         const details = req.body.details;
         const start_date = req.body.start_date;
@@ -362,8 +363,8 @@ module.exports = function (app) {
     });
 
     // Delete from a user's project history
-    app.delete('/myportfolio/projects/:id', async (req, res) => {
-        const id = req.params.id;
+    app.delete('/myportfolio/projects', async (req, res) => {
+        const id = req.body.project_id;
 
         try {
             const client = await pool.connect();
@@ -377,8 +378,8 @@ module.exports = function (app) {
     });
 
     // Get user's skills
-    app.get('/myportfolio/skills/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/skills', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM skills WHERE profileId = ${id}`);
@@ -392,8 +393,8 @@ module.exports = function (app) {
     });
 
     // Update user's skills
-    app.post('/myportfolio/skills/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/skills', async (req, res) => {
+        const id = req.body.skill_id;
         const skill_name = req.body.skill_name;
         const proficiency_level = req.body.proficiency_level;
 
@@ -411,8 +412,8 @@ module.exports = function (app) {
     });
 
     // Get user's contacts
-    app.get('/myportfolio/contact/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/contact', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM contact WHERE profileId = ${id}`);
@@ -426,8 +427,8 @@ module.exports = function (app) {
     });
 
     // Update user's contacts
-    app.post('/myportfolio/contact/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/contact', async (req, res) => {
+        const id = getProfileIdFromSession();
         const email = req.body.email;
         const countrycode = req.body.countrycode;
         const phonenumber = req.body.phonenumber;
@@ -451,8 +452,8 @@ module.exports = function (app) {
     });
 
     // Get user's web links
-    app.get('/myportfolio/website/:id', async (req, res) => {
-        const id = req.params.id;
+    app.get('/myportfolio/website', async (req, res) => {
+        const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM website WHERE profileId = ${id}`);
@@ -466,8 +467,8 @@ module.exports = function (app) {
     });
 
     // Update user's web links
-    app.post('/myportfolio/website/:id', async (req, res) => {
-        const id = req.params.id;
+    app.post('/myportfolio/website', async (req, res) => {
+        const id = req.body.website_id;
         const description = req.body.description;
         const url = req.body.url;
 

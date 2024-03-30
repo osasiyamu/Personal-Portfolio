@@ -27,7 +27,6 @@ const EduItem = ({dataInfo, add=false}) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                profile_id: dataInfo["profileId"],
                 institution: updateValue["institution"],
                 degree: updateValue["degree"],
                 fieldofstudy: updateValue["fieldofstudy"],
@@ -42,12 +41,13 @@ const EduItem = ({dataInfo, add=false}) => {
     };
 
     const updateEducation = () => {
-        fetch(`http://localhost:5555/myportfolio/education/${dataInfo["educationid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/education`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
+                education_id: dataInfo["educationid"],
                 institution: updateValue["institution"],
                 degree: updateValue["degree"],
                 fieldofstudy: updateValue["fieldofstudy"],
@@ -62,11 +62,14 @@ const EduItem = ({dataInfo, add=false}) => {
     };
 
     const deleteEducation = () => {
-        fetch(`http://localhost:5555/myportfolio/education/${dataInfo["educationid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/education`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({
+                education_id: dataInfo["educationid"]
+            })
         })
         .then(window.location.reload())
 		.catch(error => {
@@ -75,7 +78,7 @@ const EduItem = ({dataInfo, add=false}) => {
     };
 
     return (
-        <div className='mb-4 eduItem'>
+        <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>

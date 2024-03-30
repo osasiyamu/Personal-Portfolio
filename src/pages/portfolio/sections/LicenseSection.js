@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 
 import LicenseItem from './subsections/LicenseItem';
 
-const LicenseSection = ({profileId}) => {
+const LicenseSection = () => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/licenses`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -40,7 +40,7 @@ const LicenseSection = ({profileId}) => {
                 </div>
             }
 
-            {isAdding && <LicenseItem dataInfo={{"profileId": profileId}} add={true} />}
+            {isAdding && <LicenseItem dataInfo={{}} add={true} />}
         </div>
     );
 }

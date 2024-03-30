@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 
 import ExpItem from './subsections/ExpItem';
 
-const ExpSection = ({profileId}) => {
+const ExpSection = () => {
     const [dataInfo, setDataInfo] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/experience/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/experience`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -39,7 +39,7 @@ const ExpSection = ({profileId}) => {
                 </div>
             }
 
-            {isAdding && <ExpItem dataInfo={{"profileId": profileId}} add={true} />}
+            {isAdding && <ExpItem dataInfo={{}} add={true} />}
         </div>
     );
 }

@@ -1,29 +1,29 @@
 import { AboutSection, EduSection, ExpSection, LicenseSection, ProjectSection, SkillSection, ContactSection } from './sections';
 
-const SectionContent = ({ profileId }) => {
+const SectionContent = () => {
 
     return (
         <div>
             {(window.location.pathname === "/myportfolio") && 
-                <AboutSection profileId={profileId} />
+                <AboutSection />
             }
             {(window.location.pathname === "/myportfolio/education") && 
-                <EduSection profileId={profileId} />
+                <EduSection />
             }
             {(window.location.pathname === "/myportfolio/experience") && 
-                <ExpSection profileId={profileId} />
+                <ExpSection />
             }
             {(window.location.pathname === "/myportfolio/licenses") && 
-                <LicenseSection profileId={profileId} />
+                <LicenseSection />
             }
             {(window.location.pathname === "/myportfolio/projects") && 
-                <ProjectSection profileId={profileId} />
+                <ProjectSection />
             }
             {(window.location.pathname === "/myportfolio/skills") && 
-                <SkillSection profileId={profileId} />
+                <SkillSection />
             }
             {(window.location.pathname === "/myportfolio/contact") && 
-                <ContactSection profileId={profileId} />
+                <ContactSection />
             }
         </div>
     );

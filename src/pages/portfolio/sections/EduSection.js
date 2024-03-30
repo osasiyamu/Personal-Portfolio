@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 
 import EduItem from './subsections/EduItem';
 
-const EduSection = ({profileId}) => {
+const EduSection = () => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/education/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/education`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -40,7 +40,7 @@ const EduSection = ({profileId}) => {
                 </div>
             }
 
-            {isAdding && <EduItem dataInfo={{"profileId": profileId}} add={true} />}
+            {isAdding && <EduItem dataInfo={{}} add={true} />}
         </div>
     );
 }

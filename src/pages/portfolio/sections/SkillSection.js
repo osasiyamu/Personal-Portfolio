@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
-const SkillSection = ({profileId}) => {
+const SkillSection = () => {
 
     const [skillInfo, setSkillInfo] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
@@ -10,7 +10,7 @@ const SkillSection = ({profileId}) => {
     const proficiency_levels = ["Beginner", "Intermediate", "Expert", "Professional"]
 
     const getSkillInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/skills/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/skills`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -27,12 +27,13 @@ const SkillSection = ({profileId}) => {
 
     const updateSkillInfo = () => {
         skillInfo.forEach(item => {
-            fetch(`http://localhost:5555/myportfolio/skills/${item["skillid"]}`, {
+            fetch(`http://localhost:5555/myportfolio/skills`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify({
+                    skill_id: item["skillid"],
                     skill_name: item["skillname"],
                     proficiency_level: item["proficiencylevel"]
                 })
@@ -54,7 +55,7 @@ const SkillSection = ({profileId}) => {
     }, []);
 
     return (
-        <div>
+        <div className='subItem'>
             {!isEditing &&
                 <div>
                     {skillInfo.map((row, index) => (

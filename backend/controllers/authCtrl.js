@@ -1,5 +1,9 @@
 const bcrypt = require('bcrypt');
-const { pool } = require('../config/dbConnection');
+const { session, pool } = require('../config/dbConnection');
+
+function setUserIdInSession(profileId) {
+    session.profileId = profileId;
+}
 
 module.exports = {
     signUp: async (req, res) => {
@@ -12,22 +16,22 @@ module.exports = {
             );
 
             // Determine if the conflict is due to the username or the email
-        if (userExists.rows.length > 0) {
-            // Iterate through the results to find out if it's the username or email that exists
-            let usernameConflict = false;
-            let emailConflict = false;
-            userExists.rows.forEach(row => {
-                if (row.username === username) usernameConflict = true;
-                if (row.email === email) emailConflict = true;
-            });
+            if (userExists.rows.length > 0) {
+                // Iterate through the results to find out if it's the username or email that exists
+                let usernameConflict = false;
+                let emailConflict = false;
+                userExists.rows.forEach(row => {
+                    if (row.username === username) usernameConflict = true;
+                    if (row.email === email) emailConflict = true;
+                });
 
-            // Return specific error messages based on the conflict found
-            if (usernameConflict) {
-                return res.status(400).json({ message: "User already exists." });
-            } else if (emailConflict) {
-                return res.status(400).json({ message: "Email already taken." });
+                // Return specific error messages based on the conflict found
+                if (usernameConflict) {
+                    return res.status(400).json({ message: "User already exists." });
+                } else if (emailConflict) {
+                    return res.status(400).json({ message: "Email already taken." });
+                }
             }
-        }
 
             // Hash the password
             const salt = await bcrypt.genSalt(10);
@@ -39,8 +43,6 @@ module.exports = {
                 [username, passwordHash, email]
             );
 
-            console.log(newUser.rows[0]);
-            console.log(newUser.rows[0].userid);
             const userId = newUser.rows[0].userid;
 
             // Insert the profile information into the Profiles table
@@ -48,22 +50,18 @@ module.exports = {
                 "INSERT INTO profiles (userid, firstname, lastname, occupation) VALUES ($1, $2, $3, $4);",
                 [userId, firstName, lastName, occupation]
             );
+            const profile_id = await pool.query("SELECT profileId FROM profiles WHERE userId = $1;", [userId]);
+            await pool.query("INSERT INTO about (profileId, about) VALUES ($1, $2);", [profile_id.rows[0]["profileid"], ""]);
+
+            setUserIdInSession(profile_id.rows[0]["profileid"]);
 
             // Return the new user, excluding the password hash. Adjust according to what you need to return.
-            res.status(201).json({
-                userId: userId,
-                username: username,
-                email: email,
-                firstName: firstName,
-                lastName: lastName,
-                occupation: occupation
-            });
+            res.status(201);
         } catch (err) {
             console.error('Error executing sign-up', err);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
-
     
     signIn: async (req, res) => {
         const { username, password } = req.body;
@@ -87,7 +85,7 @@ module.exports = {
             const user_id = await pool.query("SELECT userId FROM users WHERE username = $1;", [username]);
             const profile_id = await pool.query("SELECT profileId FROM profiles WHERE userId = $1;", [user_id.rows[0]["userid"]]);
 
-            req.session.profile_id = profile_id.rows[0]["profileid"];
+            setUserIdInSession(profile_id.rows[0]["profileid"]);
 
             // Return success message (Consider using JWT for authentication tokens here)
             res.status(200).json({ message: 'Logged in successfully', profile_id: profile_id.rows[0]["profileid"] });

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const ProfileImgContainer = ({profileId}) => {
+const ProfileImgContainer = () => {
 
     const [profileInfo, setProfileInfo] = useState([]);
 
     const getProfileInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');

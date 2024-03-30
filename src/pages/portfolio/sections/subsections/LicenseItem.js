@@ -27,7 +27,6 @@ const LicenseItem = ({dataInfo, add=false}) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                profile_id: dataInfo["profileId"],
                 licenseName: updateValue["licensename"],
                 awardingInsitution: updateValue["issuedby"],
                 awardDate: updateValue["issuedate"],
@@ -41,12 +40,13 @@ const LicenseItem = ({dataInfo, add=false}) => {
     };
 
     const updateLicense = () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/${dataInfo["licenseid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/licenses`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
+                licenseId: dataInfo["licenseid"],
                 licenseName: updateValue["licensename"],
                 awardingInsitution: updateValue["issuedby"],
                 issueDate: updateValue["issuedate"],
@@ -60,11 +60,14 @@ const LicenseItem = ({dataInfo, add=false}) => {
     };
 
     const deleteLicense= () => {
-        fetch(`http://localhost:5555/myportfolio/licenses/${dataInfo["licenseid"]}`, {
+        fetch(`http://localhost:5555/myportfolio/licenses`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({
+                licenseId: dataInfo["licenseid"]
+            })
         })
         .then(window.location.reload())
 		.catch(error => {
@@ -73,7 +76,7 @@ const LicenseItem = ({dataInfo, add=false}) => {
     };
    
     return (
-        <div className='mb-4 licenceItem'>
+        <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
                     <div className='formBtnContainer' style={{'float': 'right'}}>

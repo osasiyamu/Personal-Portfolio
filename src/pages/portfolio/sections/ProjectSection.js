@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 
 import ProjectItem from './subsections/ProjectItem';
 
-const ProjectSection = ({profileId}) => {
+const ProjectSection = () => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
 
     const getDataInfo = () => {
-        fetch(`http://localhost:5555/myportfolio/projects/${profileId}`)
+        fetch(`http://localhost:5555/myportfolio/projects`)
 		.then(response => {
 			if (!response.ok) {
 			  	throw new Error('Network response was not ok');
@@ -40,7 +40,7 @@ const ProjectSection = ({profileId}) => {
                 </div>
             }
 
-            {isAdding && <ProjectItem dataInfo={{"profileId": profileId}} add={true} />}
+            {isAdding && <ProjectItem dataInfo={{}} add={true} />}
         </div>
     );
 }
