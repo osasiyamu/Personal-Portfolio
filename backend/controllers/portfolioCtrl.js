@@ -382,10 +382,29 @@ module.exports = function (app) {
         const id = getProfileIdFromSession();
         try {
             const client = await pool.connect();
-            const result = await client.query(`SELECT * FROM skills WHERE profileId = ${id}`);
+            const result = await client.query(`SELECT * FROM skills WHERE profileId = ${id} ORDER BY rank ASC`);
             const data = result.rows;
             client.release();
             res.status(200).json(data);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Add to a user's skill list
+    app.post('/myportfolio/skills/add', async (req, res) => {
+        const profile_id = getProfileIdFromSession();
+        const skill_name = req.body.skill_name;
+        const proficiency_level = req.body.proficiency_level;
+
+        var query = `INSERT INTO skills (profileid, skillname, proficiencylevel) VALUES ('${profile_id}', '${skill_name}', '${proficiency_level}')`;
+
+        try {
+            const client = await pool.connect();
+            await client.query(query);
+            client.release();
+            res.status(201);
         } catch (err) {
             console.error('Error executing query', err);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -403,6 +422,21 @@ module.exports = function (app) {
         try {
             const client = await pool.connect();
             await client.query(query);
+            client.release();
+            res.status(200);
+        } catch (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    // Delete from a user's skill list
+    app.delete('/myportfolio/projects', async (req, res) => {
+        const id = req.body.skill_id;
+
+        try {
+            const client = await pool.connect();
+            await client.query(`DELETE FROM skills WHERE skillid = ${id}`);
             client.release();
             res.status(200);
         } catch (err) {

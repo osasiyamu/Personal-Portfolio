@@ -97,6 +97,7 @@ CREATE TABLE Skills (
     ProfileID           INTEGER,
     SkillName           TEXT NOT NULL,
     ProficiencyLevel    VARCHAR(15) NOT NULL,
+    Rank                INTEGER NOT NULL DEFAULT 1,
     PRIMARY KEY (SkillID),
     FOREIGN KEY (ProfileID) REFERENCES Profiles(ProfileID)
 );
