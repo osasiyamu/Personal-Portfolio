@@ -27,9 +27,9 @@ module.exports = {
 
                 // Return specific error messages based on the conflict found
                 if (usernameConflict) {
-                    return res.status(400).json({ message: "User already exists." });
+                    return res.status(400).json({ message: "User already exists.", statusCode: 400 });
                 } else if (emailConflict) {
-                    return res.status(400).json({ message: "Email already taken." });
+                    return res.status(400).json({ message: "Email already taken.", statusCode: 400 });
                 }
             }
 
@@ -55,11 +55,10 @@ module.exports = {
 
             setUserIdInSession(profile_id.rows[0]["profileid"]);
 
-            // Return the new user, excluding the password hash. Adjust according to what you need to return.
-            res.status(201);
+            res.status(200).json({ message: 'Signed up successfully', statusCode: 200 });
         } catch (err) {
             console.error('Error executing sign-up', err);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ message: 'Internal Server Error', statusCode: 500 });
         }
     },
     
@@ -74,13 +73,13 @@ module.exports = {
             );
 
             if (user.rows.length === 0) {
-                return res.status(401).json({ error: 'User not found' });
+                return res.status(401).json({ message: 'User not found', statusCode: 401 });
             }
 
             // Check if the password is correct
             const validPassword = await bcrypt.compare(password, user.rows[0].passwordhash);
             if (!validPassword) {
-                return res.status(401).json({ error: 'Invalid credentials' });
+                return res.status(401).json({ message: 'Invalid credentials', statusCode: 401 });
             }
 
             const user_id = await pool.query("SELECT userId FROM users WHERE username = $1;", [username]);
@@ -89,10 +88,10 @@ module.exports = {
             setUserIdInSession(profile_id.rows[0]["profileid"]);
 
             // Return success message (Consider using JWT for authentication tokens here)
-            res.status(200).json({ message: 'Logged in successfully'});
+            res.status(200).json({ message: 'Logged in successfully', statusCode: 200 });
         } catch (err) {
             console.error('Error executing sign-in', err);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ message: 'Internal Server Error', statusCode: 500 });
         }
     }
 };

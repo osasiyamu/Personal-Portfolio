@@ -29,48 +29,30 @@ const Join = () => {
         // Validate the password against the policy
         if (!passwordPolicyRegex.test(password)) {
             handleStatus(0, 'Password must contain at least one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.');
-        return; // Stop the submission if the password doesn't meet the policy
+            return; // Stop the submission if the password doesn't meet the policy
         }
 
-        try {
-            fetch('http://localhost:5555/api/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password,
-                    firstName,
-                    lastName,
-                    occupation,
-                }),
-            }).then(response => {
-                if (!response.ok) {
-                  throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-              .then(data => {
-                // Assuming your response JSON structure is { message: "Some message", statusCode: 200 }
-                const { message, statusCode } = data;
-                console.log('Message:', message);
-                console.log('Status Code:', statusCode);
-              })
-              .catch(error => {
-                console.error('There was a problem with your fetch operation:', error);
-              });
-            
-            handleStatus(response.status, response.json()); 
-    
-            // if (!response.ok) {
-            //     const errorData = await response.json();
-            //     throw new Error(errorData.message || 'Could not complete sign up.');
-            // }
-        } catch (error) {
-            handleStatus(0, error.message); // Set error message if there's an exception
-        }
+        fetch('http://localhost:5555/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+                firstName,
+                lastName,
+                occupation,
+            }),
+        })
+        .then(response => {
+			return response.json();
+		})
+        .then(data => {
+            const { message, statusCode } = data;
+            handleStatus(statusCode, message);
+        });
     };
 
     function handleStatus(resCode, errMsg) {
@@ -81,12 +63,8 @@ const Join = () => {
         if (resCode === 200) {
             localStorage.setItem("loggedIn", "true");
             window.location.replace("/");
-        } else if (resCode === 0) {
+        } else if ([0, 400, 401].includes(resCode)) {
             errorPar.innerHTML = "Error: " + errMsg;
-        } else if (resCode === 400) {
-            errorPar.innerHTML = "Error: Invalid Username or Password!";
-        } else if (resCode === 401) {
-            errorPar.innerHTML = "Error: Invalid Username or Password!";
         } else if (resCode ===  500){
             alert("Server is currently unavailable.")
         } else {
