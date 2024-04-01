@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import '../assets/css/join.css';
-import { useNavigate } from 'react-router-dom';
 
 const Join = () => {
     const [username, setUsername] = useState('');
@@ -9,9 +8,7 @@ const Join = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [occupation, setOccupation] = useState('');
-    const [error, setError] = useState(''); // State to store the error message
     const [confirmPassword, setConfirmPassword] = useState('');
-    const navigate = useNavigate();
 
     useEffect(() => {
         document.title = "Join";
@@ -19,11 +16,10 @@ const Join = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Clear any existing errors
     
         // Check if passwords match
         if (password !== confirmPassword) {
-            setError('Passwords do not match.');
+            handleStatus(0 ,'Passwords do not match.');
             return; // Stop the submission if passwords don't match
         }
     
@@ -32,12 +28,12 @@ const Join = () => {
 
         // Validate the password against the policy
         if (!passwordPolicyRegex.test(password)) {
-            setError('Password must contain at least one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.');
+            handleStatus(0, 'Password must contain at least one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.');
         return; // Stop the submission if the password doesn't meet the policy
         }
 
         try {
-            const response = await fetch('http://localhost:5555/api/signup', {
+            fetch('http://localhost:5555/api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,18 +46,53 @@ const Join = () => {
                     lastName,
                     occupation,
                 }),
-            });
+            }).then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+              .then(data => {
+                // Assuming your response JSON structure is { message: "Some message", statusCode: 200 }
+                const { message, statusCode } = data;
+                console.log('Message:', message);
+                console.log('Status Code:', statusCode);
+              })
+              .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+              });
+            
+            handleStatus(response.status, response.json()); 
     
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Could not complete sign up.');
-            }
-    
-            navigate('/'); // Navigate to login page on successful sign-up
+            // if (!response.ok) {
+            //     const errorData = await response.json();
+            //     throw new Error(errorData.message || 'Could not complete sign up.');
+            // }
         } catch (error) {
-            setError(error.message); // Set error message if there's an exception
+            handleStatus(0, error.message); // Set error message if there's an exception
         }
     };
+
+    function handleStatus(resCode, errMsg) {
+        const errorPar = document.querySelector('.errorMsg');
+        console.log(resCode);
+        console.log(errMsg);
+
+        if (resCode === 200) {
+            localStorage.setItem("loggedIn", "true");
+            window.location.replace("/");
+        } else if (resCode === 0) {
+            errorPar.innerHTML = "Error: " + errMsg;
+        } else if (resCode === 400) {
+            errorPar.innerHTML = "Error: Invalid Username or Password!";
+        } else if (resCode === 401) {
+            errorPar.innerHTML = "Error: Invalid Username or Password!";
+        } else if (resCode ===  500){
+            alert("Server is currently unavailable.")
+        } else {
+            errorPar.innerHTML = "Error Code: " + resCode + ". An unexpected error occurred. Please try again later.";
+        }
+    }
 
     return (
         <div>
@@ -97,10 +128,11 @@ const Join = () => {
                     <div>
                         <input type="checkbox" id="terms_and_conds" name="checkbox" required />
                         <label htmlFor='terms_and_conds'>I accept the Terms and Conditions</label>
-                    </div>
-                    
+                    </div><br />
+
                     {/* Display error message if sign up fails */}
-                    {error && <div className="error">{error}</div>}
+                    <p className='errorMsg'></p>
+                    
                     <button type="submit">Sign Up</button>
                 </form>
             </div>

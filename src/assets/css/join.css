@@ -57,6 +57,10 @@ button:hover {
     background-color: #0056b3; /* Darker shade on hover for feedback */
 }
 
+.errorMsg {
+    color: #ff0000;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     #signupForm {

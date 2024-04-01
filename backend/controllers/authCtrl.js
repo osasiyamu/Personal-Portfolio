@@ -66,6 +66,7 @@ module.exports = {
     signIn: async (req, res) => {
         const { username, password } = req.body;
         try {
+            console.log(username + ", " + password);
             // Find the user by username
             const user = await pool.query(
                 "SELECT * FROM users WHERE username = $1;",
@@ -73,13 +74,13 @@ module.exports = {
             );
 
             if (user.rows.length === 0) {
-                return res.status(404).json({ error: 'User not found' });
+                return res.status(401).json({ error: 'User not found' });
             }
 
             // Check if the password is correct
             const validPassword = await bcrypt.compare(password, user.rows[0].passwordhash);
             if (!validPassword) {
-                return res.status(400).json({ error: 'Invalid credentials' });
+                return res.status(401).json({ error: 'Invalid credentials' });
             }
 
             const user_id = await pool.query("SELECT userId FROM users WHERE username = $1;", [username]);
@@ -88,7 +89,7 @@ module.exports = {
             setUserIdInSession(profile_id.rows[0]["profileid"]);
 
             // Return success message (Consider using JWT for authentication tokens here)
-            res.status(200).json({ message: 'Logged in successfully', profile_id: profile_id.rows[0]["profileid"] });
+            res.status(200).json({ message: 'Logged in successfully'});
         } catch (err) {
             console.error('Error executing sign-in', err);
             res.status(500).json({ error: 'Internal Server Error' });
