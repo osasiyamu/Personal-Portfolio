@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ProfileImgContainer = () => {
+const ProfileImgContainer = ({ searchId }) => {
 
     const [profileInfo, setProfileInfo] = useState([]);
 

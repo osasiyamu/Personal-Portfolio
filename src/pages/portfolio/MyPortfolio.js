@@ -6,9 +6,7 @@ import SectionContent from './SectionContent';
 import { Button } from 'react-bootstrap';
 import { useEffect } from 'react';
 
-const MyPortfolio = ({ profileId }) => {
-
-    profileId = localStorage.getItem("profile_id"); // get the id of user's profile that is being viewed
+const MyPortfolio = ({ searchId=0 }) => {
 
     useEffect(() => {
         document.title = "MyPortfolio";
@@ -18,9 +16,7 @@ const MyPortfolio = ({ profileId }) => {
         <div>
             {(localStorage.getItem("loggedIn") === "true") &&
                 <div className="container mt-5">
-                    <ProfileImgContainer
-                        profileId={profileId}
-                    />
+                    <ProfileImgContainer searchId={searchId} />
 
                     <div id='sectionContainer'>
                         <div id='sectionControls'>
@@ -34,9 +30,7 @@ const MyPortfolio = ({ profileId }) => {
                         </div>
                         <hr />
 
-                        <SectionContent
-                            profileId={profileId}
-                        />
+                        <SectionContent searchId={searchId} />
                     </div>
                 </div>
             }

@@ -65,7 +65,6 @@ module.exports = {
     signIn: async (req, res) => {
         const { username, password } = req.body;
         try {
-            console.log(username + ", " + password);
             // Find the user by username
             const user = await pool.query(
                 "SELECT * FROM users WHERE username = $1;",

@@ -16,7 +16,7 @@ const Search = () => {
     const redirect = useNavigate();
 
     const getProfileInfos = () => {
-        fetch(`http://localhost:5555/userprofiles/1`)
+        fetch(`http://localhost:5555/userprofiles`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

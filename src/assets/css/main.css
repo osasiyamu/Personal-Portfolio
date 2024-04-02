@@ -3,23 +3,25 @@
     font-family: Arial, sans-serif;
     font-size: large;
     min-height: 100vh;
+    max-height: 100vh;
 }
 
 .main-info {
-    overflow: scroll;
-}
-
-.main-info {
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .navbar {
-    display: flex;
     align-items: center;
-    padding: 10px 20px;
     background-color: #f6f6f6;
     border-bottom: 1px solid #e0e0e0;
+    display: flex;
     margin: 2px;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0; /* Stick to the top of the viewport */
+    left: 0; /* Stick to the left of the viewport */
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar a {
