@@ -15,6 +15,12 @@ function App() {
 						{/*My search paths*/}
 						<Route path='search' element={<Search />} />
 						<Route path="userprofile" element={<UserProfileInfo />} />
+						<Route path="userprofile/education" element={<UserProfileInfo />} />
+						<Route path="userprofile/experience" element={<UserProfileInfo />} />
+						<Route path="userprofile/licenses" element={<UserProfileInfo />} />
+						<Route path="userprofile/projects" element={<UserProfileInfo />} />
+						<Route path="userprofile/skills" element={<UserProfileInfo />} />
+						<Route path="userprofile/contact" element={<UserProfileInfo />} />
 
 						<Route path='jobs' element={<Jobs />} />
 

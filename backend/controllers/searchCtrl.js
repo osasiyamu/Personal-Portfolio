@@ -2,7 +2,9 @@ const { session, pool } = require('../config/dbConnection');
 
 module.exports = function (app) {
     app.get('/userprofiles', async (req, res) => {
-        const profileId = session.profileId;
+        var profileId = session.profileId;
+        if (!profileId) profileId = 0; // default to guest user
+        
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM profiles WHERE NOT profileid = ${profileId}`);
@@ -16,8 +18,8 @@ module.exports = function (app) {
     });
 
     // Get profile info for a user
-    app.get('/myportfolio', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM profiles WHERE profileId = ${id}`);
@@ -31,8 +33,8 @@ module.exports = function (app) {
     });
 
     // Get about info for a user
-    app.get('/myportfolio/about', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/about/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT about FROM about WHERE profileId = ${id}`);
@@ -46,8 +48,8 @@ module.exports = function (app) {
     });
 
     // Get user education history
-    app.get('/myportfolio/education', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/education/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM education WHERE profileId = ${id} ORDER BY startdate DESC`);
@@ -61,8 +63,8 @@ module.exports = function (app) {
     });
 
     //Get Users Experience 
-    app.get('/myportfolio/experience', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/experience/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM experience WHERE profileId = ${id} ORDER BY startdate DESC`);
@@ -76,8 +78,8 @@ module.exports = function (app) {
     });          
 
     //Get Users License 
-    app.get('/myportfolio/licenses', async (req, res) => {
-        const id = session.profileId
+    app.get('/userprofile/licenses/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM licenses WHERE profileId = ${id} ORDER BY issuedate DESC`);
@@ -91,8 +93,8 @@ module.exports = function (app) {
     });
 
     // Get user project history
-    app.get('/myportfolio/projects', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/projects/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM projects WHERE profileId = ${id} ORDER BY startdate DESC`);
@@ -106,8 +108,8 @@ module.exports = function (app) {
     });
 
     // Get user's skills
-    app.get('/myportfolio/skills', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/skills/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM skills WHERE profileId = ${id} ORDER BY rank ASC`);
@@ -121,8 +123,8 @@ module.exports = function (app) {
     });
 
     // Get user's contacts
-    app.get('/myportfolio/contact', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/contact/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM contact WHERE profileId = ${id}`);
@@ -136,8 +138,8 @@ module.exports = function (app) {
     });
 
     // Get user's web links
-    app.get('/myportfolio/website', async (req, res) => {
-        const id = session.profileId;
+    app.get('/userprofile/website/:id', async (req, res) => {
+        const id = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query(`SELECT * FROM website WHERE profileId = ${id}`);

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import ProjectItem from './subsections/ProjectItem';
 
-const ProjectSection = () => {
+const ProjectSection = ({ searchId }) => {
 
     const [dataInfo, setDataInfo] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
@@ -24,17 +24,37 @@ const ProjectSection = () => {
 		});
     };
 
+    const searchUserData = () => {
+        fetch(`http://localhost:5555/usserprofile/projects/${searchId}`)
+		.then(response => {
+			if (!response.ok) {
+			  	throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+        .then(data => {
+            setDataInfo(data);
+        })
+		.catch(error => {
+			console.error("Error fetching data: ", error);
+		});
+    };
+
     useEffect(() => {
-		getDataInfo();
+		if(searchId === 0) {
+            getDataInfo();
+        } else {
+            searchUserData();
+        }
     }, []);
 
     return (
         <div>
             {dataInfo.map((row, index) => (
-                <ProjectItem key={index} dataInfo={row} />
+                <ProjectItem key={index} dataInfo={row} searchId={searchId} />
             ))}
 
-            {!isAdding &&
+            {!isAdding && (searchId === 0) &&
                 <div className='formBtnContainer'>
                     <Button className='btn btn-secondary formBtn' onClick={() => setIsAdding(true)}>Add</Button>
                 </div>

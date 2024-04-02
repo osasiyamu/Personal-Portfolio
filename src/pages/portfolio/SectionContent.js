@@ -1,29 +1,29 @@
 import { AboutSection, EduSection, ExpSection, LicenseSection, ProjectSection, SkillSection, ContactSection } from './sections';
 
-const SectionContent = () => {
+const SectionContent = ({ searchId }) => {
 
     return (
         <div>
-            {(window.location.pathname === "/myportfolio") && 
-                <AboutSection />
+            {(["/myportfolio", "/userprofile"].includes(window.location.pathname)) && 
+                <AboutSection searchId={searchId} />
             }
-            {(window.location.pathname === "/myportfolio/education") && 
-                <EduSection />
+            {(["/myportfolio/education", "/userprofile/education"].includes(window.location.pathname)) && 
+                <EduSection searchId={searchId} />
             }
-            {(window.location.pathname === "/myportfolio/experience") && 
-                <ExpSection />
+            {(["/myportfolio/experience", "/userprofile/experience"].includes(window.location.pathname)) && 
+                <ExpSection searchId={searchId} />
             }
-            {(window.location.pathname === "/myportfolio/licenses") && 
-                <LicenseSection />
+            {(["/myportfolio/licenses", "/userprofile/licenses"].includes(window.location.pathname)) && 
+                <LicenseSection searchId={searchId} />
             }
-            {(window.location.pathname === "/myportfolio/projects") && 
-                <ProjectSection />
+            {(["/myportfolio/projects", "/userprofile/projects"].includes(window.location.pathname)) && 
+                <ProjectSection searchId={searchId} />
             }
-            {(window.location.pathname === "/myportfolio/skills") && 
-                <SkillSection />
+            {(["/myportfolio/skills", "/userprofile/skills"].includes(window.location.pathname)) && 
+                <SkillSection searchId={searchId} />
             }
-            {(window.location.pathname === "/myportfolio/contact") && 
-                <ContactSection />
+            {(["/myportfoliocontact", "/userprofilecontact"].includes(window.location.pathname)) && 
+                <ContactSection searchId={searchId} />
             }
         </div>
     );

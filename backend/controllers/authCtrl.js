@@ -92,5 +92,15 @@ module.exports = {
             console.error('Error executing sign-in', err);
             res.status(500).json({ message: 'Internal Server Error', statusCode: 500 });
         }
+    },
+    
+    signOut: async (req, res) => {
+        try {
+            setUserIdInSession(0);
+            res.status(200).json({ message: 'Signed out successfully', statusCode: 200 });
+        } catch (err) {
+            console.error('Error executing sign-in', err);
+            res.status(500).json({ message: 'Internal Server Error', statusCode: 500 });
+        }
     }
 };

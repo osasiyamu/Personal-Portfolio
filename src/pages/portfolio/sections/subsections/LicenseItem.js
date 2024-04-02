@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const LicenseItem = ({dataInfo, add=false}) => {
+const LicenseItem = ({ dataInfo, add=false, searchId }) => {
 
     const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
@@ -79,9 +79,9 @@ const LicenseItem = ({dataInfo, add=false}) => {
         <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
-                    <div className='formBtnContainer' style={{'float': 'right'}}>
+                    {(searchId === 0) && <div className='formBtnContainer' style={{'float': 'right'}}>
                         <Button className='btn btn-secondary formBtn' onClick={editLicense}>Edit</Button>
-                    </div>
+                    </div>}
                     <div>
                         <h2><strong>License Name: {dataInfo["licensename"]}</strong></h2>
                         <h4>Issuing Company: {dataInfo["issuedby"]}</h4>

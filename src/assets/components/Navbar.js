@@ -8,6 +8,12 @@ const Navbar = () => {
 
     const logout = () => {
         localStorage.setItem("loggedIn", false);
+        fetch(`http://localhost:5555/api/signout`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
     }
 
     return (

@@ -20,8 +20,28 @@ const ProfileImgContainer = ({ searchId }) => {
 		});
     };
 
+    const searchUserProfile = () => {
+        fetch(`http://localhost:5555/userprofile/${searchId}`)
+		.then(response => {
+			if (!response.ok) {
+			  	throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+        .then(data => {
+            setProfileInfo(data);
+        })
+		.catch(error => {
+			console.error("Error fetching data: ", error);
+		});
+    };
+
     useEffect(() => {
-		getProfileInfo();
+        if(searchId === 0) {
+            getProfileInfo();
+        } else {
+            searchUserProfile();
+        }
     }, []);
 
     return (

@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const ProjectItem = ({dataInfo, add=false}) => {
+const ProjectItem = ({ dataInfo, add=false, searchId }) => {
 
     const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
@@ -81,9 +81,9 @@ const ProjectItem = ({dataInfo, add=false}) => {
         <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
-                    <div className='formBtnContainer' style={{'float': 'right'}}>
+                    {(searchId === 0) && <div className='formBtnContainer' style={{'float': 'right'}}>
                         <Button className='btn btn-secondary formBtn' onClick={editProject}>Edit</Button>
-                    </div>
+                    </div>}
                     <div>
                         <h2><strong>{dataInfo["projectname"]}</strong></h2>
                         <p>{convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>

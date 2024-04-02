@@ -32,7 +32,8 @@ const Search = () => {
     };
 
     const getUserProfile = (user) => {
-        redirect('/userprofile', { state: { userData: user } });
+        localStorage.setItem('searchId', user["userid"]);
+        redirect('/userprofile');
     };
 
     useEffect(() => {

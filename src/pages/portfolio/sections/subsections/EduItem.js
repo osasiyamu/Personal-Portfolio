@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const EduItem = ({dataInfo, add=false}) => {
+const EduItem = ({ dataInfo, add=false, searchId }) => {
 
     const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
@@ -81,9 +81,9 @@ const EduItem = ({dataInfo, add=false}) => {
         <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
-                    <div className='formBtnContainer' style={{'float': 'right'}}>
+                    {(searchId === 0) && <div className='formBtnContainer' style={{'float': 'right'}}>
                         <Button className='btn btn-secondary formBtn' onClick={editEducation}>Edit</Button>
-                    </div>
+                    </div> }
                     <div>
                         <h2><strong>{dataInfo["institution"]}</strong></h2>
                         <h4>{dataInfo["degree"]}{dataInfo["fieldofstudy"] ? ": " + dataInfo["fieldofstudy"] : ""}</h4>

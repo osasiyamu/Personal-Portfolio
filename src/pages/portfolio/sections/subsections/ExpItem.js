@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-const ExpItem = ({dataInfo, add=false}) => {
+const ExpItem = ({ dataInfo, add=false, searchId }) => {
     const [isEditing, setIsEditing] = useState(add);
     const [updateValue, setUpdateValue] = useState(dataInfo);
 
@@ -80,14 +80,14 @@ const ExpItem = ({dataInfo, add=false}) => {
         <div className='mb-4 subItem'>
             {!isEditing &&
                 <div>
-                    <div className='formBtnContainer' style={{'float': 'right'}}>
+                    {(searchId === 0) && <div className='formBtnContainer' style={{'float': 'right'}}>
                         <Button className='btn btn-secondary formBtn' onClick={editExperience}>Edit</Button>
-                    </div>
+                    </div>}
                     <div>
                         <h2><strong>Company Name: {dataInfo["company"]}</strong></h2>
                         <h4>Position Title: {dataInfo["position"]}</h4>
                         <h4>Description: {dataInfo["details"]}</h4>
-                        <p>Validity Date: {convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
+                        <p>Experience Period: {convertDate(dataInfo["startdate"])} to {dataInfo["enddate"] ? convertDate(dataInfo["enddate"]) : "Present"}</p>
                     </div>
                 </div>
             }

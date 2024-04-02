@@ -10,6 +10,7 @@ const MyPortfolio = ({ searchId=0 }) => {
 
     useEffect(() => {
         document.title = "MyPortfolio";
+        localStorage.setItem('searchId', 0);
     }, []);
 
     return (
