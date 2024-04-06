@@ -1,25 +1,27 @@
 .search-bar {
-    float: right; /* CHECK */
-    /* position: absolute; */
-    top: 100px;
+    float: left;
+    position: relative;
+    top: 10px;
     margin-bottom: 30px;
-    /* right: 70px; */
     border-radius: 50%;
     border-color: black;
     padding: 10px;
-    /*background-color: #f0f0f0;*/
 }
 
 .search-bar input {
-    float:left; /* CHECK */
+    float:left;
+}
+
+.jobs {
+    display: flex;
+    margin-top: 50px;
+    width:100%;
+
 }
 
 .job-list {
-    width: 30%;
-    float: left;  /* CHECK */
-    margin-top: 100px; /* CHECK */
-    margin-right: 150px;
-    /* margin-bottom: 100px; */
+    width: 35%;
+    margin-right: 75px;
     padding: 20px;
     border-right: 1px solid #ccc;
     height: 600px;
@@ -89,8 +91,9 @@
 
 #jobDescription {
     display: none;
-    width: 50%;
+    width: 60%;
     float: center;
+    margin-right: 10px;
     padding: 10px;
     height: 600px;
     overflow-y: scroll;

@@ -107,3 +107,12 @@ table {
     width: 100%;
     margin-top: 20px; 
 }
+
+
+.viewPortfolio {
+    padding: 200px;
+}
+
+.errorBtn {
+    margin: 10px;
+}

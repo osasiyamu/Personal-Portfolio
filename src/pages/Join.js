@@ -105,7 +105,7 @@ const Join = () => {
 
                     <div className="checkbox-container">
                         <input type="checkbox" id="terms_and_conds" name="checkbox" required />
-                        <label htmlFor='terms_and_conds'>I accept the Terms and Conditions</label>
+                        <label htmlFor='terms_and_conds'>&nbsp; I accept the Terms and Conditions</label>
                     </div>
 
                     {/* Display error message if sign up fails */}

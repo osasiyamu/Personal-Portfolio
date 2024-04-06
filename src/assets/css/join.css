@@ -1,15 +1,16 @@
 /* Base link styling */
 a {
     text-decoration: none;
-    color: #007bff; /* Bootstrap-like link color for better visibility */
+    color: #007bff;
 }
 
 /* Page heading styling */
 #pageHeading {
+    margin-top: 50px;
     text-align: center;
-    margin-bottom: 2%; /* Reduced for a tighter layout */
-    font-size: 2rem; /* Larger text for emphasis */
-    color: #333; /* Darker text for better readability */
+    margin-bottom: 2%;
+    font-size: 2rem; 
+    color: #333; 
 }
 
 /* Signup form styling */
@@ -17,44 +18,44 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%; /* Adjusted width for better form control */
-    margin: 0 auto; /* Center the form horizontally */
-    padding: 2%; /* Add some padding around the form */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
-    border-radius: 8px; /* Rounded corners for the form container */
+    width: 50%;
+    margin: 0 auto;
+    padding: 2%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 label {
     text-align: left;
-    margin-top: 20px; /* Increased margin for better spacing */
-    font-weight: bold; /* Make labels bold for clarity */
+    margin-top: 20px;
+    font-weight: bold;
 }
 
 /* Checkbox styling */
 #checkbox {
-    margin-left: 0; /* Align checkbox properly with the label text */
+    margin-left: 0;
 }
 
 /* Input and button shared styling */
 input, button {
-    width: 80%; /* Increased width for better touch targets */
-    padding: 15px; /* More padding for a better feel */
-    margin: 10px 0; /* Increase margin for better spacing */
-    border: 2px solid #007bff; /* Stylish border color */
-    font-size: 1rem; /* Larger font size for better readability */
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0; 
+    border: 2px solid #007bff;
+    font-size: 1rem;
 }
 
 /* Button specific styling */
 button {
-    width: auto; /* Auto width based on content */
-    background-color: #007bff; /* Bootstrap-like button color for consistency */
-    color: white; /* Text color for better contrast */
-    font-weight: bold; /* Bold text for emphasis */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    width: auto;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover for feedback */
+    background-color: #0056b3;
 }
 
 .errorMsg {
@@ -64,11 +65,11 @@ button:hover {
 /* Responsiveness */
 @media (max-width: 768px) {
     #signupForm {
-        width: 90%; /* More screen width on smaller devices */
+        width: 90%;
     }
 
     input, button {
-        width: 90%; /* Adjust input and button width on smaller screens */
+        width: 90%;
     }
 }
 
@@ -87,17 +88,21 @@ button:hover {
 
 .checkbox-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+}
+
+.checkbox-container input{
+    width: 20px;
+    margin-top: 3px;
 }
 
 /* Styles for the checkbox */
 #terms_and_conds {
-    /* Remove any specific width/height if it's causing the checkbox to appear larger */
-    margin-bottom: 5px; /* Reduced space between checkbox and label text */
+    margin-bottom: 5px;
 }
 
 /* You may adjust the label margin if needed */
 label[for='terms_and_conds'] {
-    margin-top: 0; /* Remove excess space above the label */
+    margin-top: 0;
 }

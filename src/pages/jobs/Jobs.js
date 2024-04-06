@@ -16,12 +16,13 @@ const Jobs = () => {
 
     return (
         <div>
-            <div class="search-bar">
+            <div className="search-bar">
                 <input type="text" placeholder="Search jobs" />
             </div>
 
-            <div class="job-list">
-                <div class="job" data-description="">
+            <div className='jobs'>
+            <div className="job-list">
+                <div className="job" data-description="">
                     <img src={MicrosoftIcon} alt="Microsoft Company Logo" />
                     <h3>Microsoft</h3>
                     <h4><strong>Software Engineer</strong></h4>
@@ -29,7 +30,7 @@ const Jobs = () => {
                     <p>$160,000 - $200,000</p>
                 </div>
 
-                <div class="job" data-description="">
+                <div className="job" data-description="">
                     <img src={IBMLogo} alt="IBM Company Logo" />
                     <h3>IBM</h3>
                     <h4><strong>Cloud Engineer</strong></h4>
@@ -37,7 +38,7 @@ const Jobs = () => {
                     <p>$250,000 - $300,000</p>
                 </div>
 
-                <div class="job" data-description="">
+                <div className="job" data-description="">
                     <img src={AppleLogo} alt="Apple Company Logo" />
                     <h3>Apple</h3>
                     <h4><strong>Web Developer</strong></h4>
@@ -45,7 +46,7 @@ const Jobs = () => {
                     <p>$190,000 - $220,000</p>
                 </div>
 
-                <div class="job" data-description="">
+                <div className="job" data-description="">
                     <img src={TeslaLogo} alt="Tesla Company Logo" />
                     <h3>Tesla</h3>
                     <h4><strong>Automation Engineer</strong></h4>
@@ -53,7 +54,7 @@ const Jobs = () => {
                     <p>$170,000 - $250,000</p>
                 </div>
 
-                <div class="job" data-description="">
+                <div className="job" data-description="">
                     <img src={CiscoLogo} alt="Cisco Company Logo" />
                     <h3>Cisco</h3>
                     <h4><strong>Product Manager</strong></h4>
@@ -63,15 +64,16 @@ const Jobs = () => {
             </div>
 
             <div id="jobDescription">
-                <span class="close-button" onclick={toggleJobDescription}>x</span>
+                <span className="close-button" onClick={toggleJobDescription}>x</span>
                 <div id="jobDescriptionContent">
-                    <h4>Job Description</h4>
+                    {/* <h4>Job Description</h4>
                     <p>Job description content will appear here.</p>
-                    <div class="additional-panels">
-                        <div class="apply-panel">Panel 1</div>
-                        <div class="description-panel">Panel 2</div>
-                    </div>
+                    <div className="additional-panels">
+                        <div className="apply-panel">Panel 1</div>
+                        <div className="description-panel">Panel 2</div>
+                    </div> */}
                 </div>
+            </div>
             </div>
         </div>
     );

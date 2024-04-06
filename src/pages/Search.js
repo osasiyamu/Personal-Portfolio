@@ -56,7 +56,7 @@ const Search = () => {
     }, [searchQuery, result, filterType]);
 
     return (
-        <div>
+        <div className="searchPage">
             <div className="search">
                 <div>
                     <input
