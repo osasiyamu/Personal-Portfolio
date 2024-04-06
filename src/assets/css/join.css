@@ -71,3 +71,33 @@ button:hover {
         width: 90%; /* Adjust input and button width on smaller screens */
     }
 }
+
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Styles for the checkbox */
+#terms_and_conds {
+    margin-bottom: 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styles for the checkbox */
+#terms_and_conds {
+    /* Remove any specific width/height if it's causing the checkbox to appear larger */
+    margin-bottom: 5px; /* Reduced space between checkbox and label text */
+}
+
+/* You may adjust the label margin if needed */
+label[for='terms_and_conds'] {
+    margin-top: 0; /* Remove excess space above the label */
+}
