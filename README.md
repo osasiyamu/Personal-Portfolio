@@ -6,6 +6,7 @@
 * [Authors](#authors)
 * [Running the Application](#running-the-application)
 * [Requirements](#requirements)
+* [The Entity Relationship Diagram](#the-entity-relationship-diagram)
 <!-- TOC -->
 
 ## Overview
@@ -30,3 +31,7 @@ The project aims to create a personal portfolio website that serves as a showcas
 The following ports must be free on your device:
 - Port 3000 for the client.
 - Port 5555 for the server.
+
+## The Entity Relationship Diagram
+![SearchMeUp_ERD](https://github.com/osasiyamu/Personal-Portfolio/assets/59775183/04e2e1d4-ccf6-4cbb-9345-86b1fc384f22)
+
